@@ -48,7 +48,7 @@
   <script src="{{ asset('theme/src/js/color-modes.js') }}"></script>
   <link href="node_modules/@coreui/chartjs/dist/css/coreui-chartjs.css" rel="stylesheet">
 
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -236,7 +236,7 @@
           onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()"
           style="margin-inline-start: -14px;">
           <svg class="icon icon-lg">
-            <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-menu"></use>
+            <use xlink:href="@coreui/icons/sprites/free.svg#cil-menu"></use>
           </svg>
         </button>
         <ul class="header-nav d-none d-lg-flex">
