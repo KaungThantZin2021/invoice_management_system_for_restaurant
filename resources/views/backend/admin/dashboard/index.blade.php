@@ -243,6 +243,7 @@
           <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">{{ auth()->guard('web')->user()->name }}</a></li>
         </ul>
         <ul class="header-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#">
