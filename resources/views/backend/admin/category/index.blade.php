@@ -11,38 +11,48 @@
                 <div class="card">
                     <h5 class="card-header">Category</h5>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table" id="categoriesTable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Created at</th>
+                                    <th scope="col">Updated at</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            {{-- <tbody>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
+
+                            </tbody> --}}
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#categoriesTable').DataTable({
+            processing: true,
+            serverSide: true,
+            responsive: true,
+            scrollX: true,
+            ajax: '{{ route('admin.category.index') }}',
+            columns: [
+                { data: 'id', name: 'id' },
+                { data: 'name', name: 'name' },
+                { data: 'image', name: 'image' },
+                { data: 'created_at', name: 'created_at' },
+                { data: 'updated_at', name: 'updated_at' },
+                // { data: 'action', name: 'action', orderable: false, searchable: false }
+            ]
+        });
+    });
+    </script>
 @endsection

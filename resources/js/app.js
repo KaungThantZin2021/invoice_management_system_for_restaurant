@@ -14,3 +14,7 @@ import * as coreui from '@coreui/coreui'
 window.coreui = coreui
 
 import { Tooltip, Toast, Popover } from '@coreui/coreui'
+
+// import $ from 'jquery';
+// import 'datatables.net-dt';
+

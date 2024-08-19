@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Admin;
 use Exception;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
@@ -13,8 +14,19 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $categories = Category::query();
+
+            return DataTables::of($categories)
+            ->addColumn('action', function ($user) {
+                return '-';
+                // return '<a href="'.route('users.edit', $user->id).'" class="btn btn-sm btn-primary">Edit</a>';
+            })
+            ->make(true);
+        }
+
         return view('backend.admin.category.index');
     }
 

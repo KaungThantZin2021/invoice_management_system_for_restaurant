@@ -19,6 +19,9 @@
     "dependencies": {
         "@coreui/coreui": "^5.1.1",
         "@coreui/icons": "^3.0.1",
-        "@popperjs/core": "^2.11.8"
+        "@popperjs/core": "^2.11.8",
+        "datatables.net": "^2.1.4",
+        "datatables.net-dt": "^2.1.4",
+        "jquery": "^3.7.1"
     }
 }
