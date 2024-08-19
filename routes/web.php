@@ -48,13 +48,13 @@ use App\Http\Controllers\Backend\Admin\Auth\EmailVerificationNotificationControl
 
 Route::prefix('/admin')->name('admin.')->group(function () {
 
-    Route::middleware('guest')->group(function () {
+    Route::middleware('guest:web')->group(function () {
         Route::get('register', [RegisteredUserController::class, 'create'])
                     ->name('register');
 
         Route::post('register', [RegisteredUserController::class, 'store']);
 
-        Route::get('login', [AuthenticatedSessionController::class, 'create'])
+        Route::get('login', [\App\Http\Controllers\Backend\Admin\Auth\AuthenticatedSessionController::class, 'create'])
                     ->name('login');
 
         Route::post('login', [AuthenticatedSessionController::class, 'store']);
@@ -93,18 +93,18 @@ Route::prefix('/admin')->name('admin.')->group(function () {
 
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                     ->name('logout');
+
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('admin-user', AdminUserController::class);
+        Route::get('admin-user/{admin_user}/change-password', [AdminUserController::class, 'changePassword'])->name('admin-user.change-password');
+        Route::patch('admin-user/{admin_user}/update-password', [AdminUserController::class, 'updatePassword'])->name('admin-user.update-password');
+
+        Route::resource('staff', StaffController::class);
+        Route::get('staff/{staff}/change-password', [StaffController::class, 'changePassword'])->name('staff.change-password');
+        Route::patch('staff/{staff}/update-password', [StaffController::class, 'updatePassword'])->name('staff.update-password');
+
+        Route::resource('category', CategoryController::class);
+
+        Route::resource('product', ProductController::class);
     });
-
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('admin-user', AdminUserController::class);
-    Route::get('admin-user/{admin_user}/change-password', [AdminUserController::class, 'changePassword'])->name('admin-user.change-password');
-    Route::patch('admin-user/{admin_user}/update-password', [AdminUserController::class, 'updatePassword'])->name('admin-user.update-password');
-
-    Route::resource('staff', StaffController::class);
-    Route::get('staff/{staff}/change-password', [StaffController::class, 'changePassword'])->name('staff.change-password');
-    Route::patch('staff/{staff}/update-password', [StaffController::class, 'updatePassword'])->name('staff.update-password');
-
-    Route::resource('category', CategoryController::class);
-
-    Route::resource('product', ProductController::class);
 });
