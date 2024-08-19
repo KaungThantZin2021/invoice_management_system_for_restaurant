@@ -53,6 +53,8 @@
     <link href="node_modules/@coreui/chartjs/dist/css/coreui-chartjs.css" rel="stylesheet">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    @include('backend.admin.layouts.css')
 </head>
 
 <body>
@@ -87,6 +89,8 @@
     <script src="node_modules/@coreui/utils/dist/umd/index.js"></script>
     <script src="{{ asset('theme/src/js/main.js') }}"></script>
     <script></script>
+
+    @include('backend.admin.layouts.js')
 </body>
 
 </html>

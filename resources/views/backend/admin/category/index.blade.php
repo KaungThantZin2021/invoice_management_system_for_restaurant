@@ -5,8 +5,8 @@
         <div class="row mb-4">
             <div class="col-12">
                 <div class="mb-4">
-                    <button type="button" class="btn btn-dark">Back</button>
-                    <a href="{{ route('admin.category.create') }}" class="btn btn-success">Create</a>
+                    <button type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <a href="{{ route('admin.category.create') }}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Create</a>
                 </div>
                 <div class="card">
                     <h5 class="card-header">Featured</h5>
