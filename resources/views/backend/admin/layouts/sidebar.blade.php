@@ -23,6 +23,15 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.staff.index') }}">
+                <svg class="nav-icon">
+                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                </svg>
+                Staff
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.category.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>

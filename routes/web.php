@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Backend\Admin\StaffController;
 use App\Http\Controllers\Backend\Admin\ProductController;
 use App\Http\Controllers\Backend\Admin\CategoryController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
@@ -94,6 +95,9 @@ Route::prefix('/admin')->name('admin.')->group(function () {
     });
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('staff', StaffController::class);
+    Route::get('staff/{staff}/change-password', [StaffController::class, 'changePassword'])->name('staff.change-password');
+    Route::patch('staff/{staff}/update-password', [StaffController::class, 'updatePassword'])->name('staff.update-password');
     Route::resource('category', CategoryController::class);
     Route::resource('product', ProductController::class);
 });
