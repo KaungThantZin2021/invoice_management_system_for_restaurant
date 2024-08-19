@@ -14,6 +14,6 @@ class Staff extends BaseModel
 
     public function getProfileImageUrlAttribute()
     {
-        return Storage::url('staff/' . $this->profile_image);
+        return $this->profile_image ? Storage::url('staff/' . $this->profile_image) : 'https://ui-avatars.com/api/?name=' . $this->name;
     }
 }

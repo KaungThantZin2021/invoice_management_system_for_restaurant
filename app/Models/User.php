@@ -43,7 +43,7 @@ class User extends Authenticatable
 
     public function getProfileImageUrlAttribute()
     {
-        return $this->profile_image ? Storage::url('admin_user/' . $this->profile_image) : '';
+        return $this->profile_image ? Storage::url('admin_user/' . $this->profile_image) : 'https://ui-avatars.com/api/?name=' . $this->name;
     }
 
     public function getCreatedAtAttribute($value)

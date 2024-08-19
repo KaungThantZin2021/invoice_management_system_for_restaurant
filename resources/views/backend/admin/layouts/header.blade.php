@@ -71,7 +71,7 @@
             </li>
             <li class="nav-item dropdown"><a class="nav-link py-0 pe-0" data-coreui-toggle="dropdown" href="#"
                     role="button" aria-haspopup="true" aria-expanded="false">
-                    <div class="avatar avatar-md"><img class="avatar-img" src="{{ auth()->guard('web')->user()->profile_image_url }}" alt="user@email.com">
+                    <div class="avatar avatar-md"><img class="avatar-img" src="{{ auth()->guard('web')->user()->profile_image_url }}" alt="{{  auth()->guard('web')->user()->email }}">
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
