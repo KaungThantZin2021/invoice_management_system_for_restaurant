@@ -9,7 +9,7 @@
                     <a href="{{ route('admin.category.create') }}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Create</a>
                 </div>
                 <div class="card">
-                    <h5 class="card-header">Featured</h5>
+                    <h5 class="card-header">Category</h5>
                     <div class="card-body">
                         <table class="table">
                             <thead>

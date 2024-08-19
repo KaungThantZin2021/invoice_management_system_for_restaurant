@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Backend\Admin;
 
-use App\Http\Controllers\Controller;
+use Exception;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -28,7 +31,30 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                'name' => 'required|unique:categories,name',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+
+
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $file_name = time() . '_' . uniqid() . '.' . str_replace(' ', '', $file->getClientOriginalName());
+                $file->storeAs('public/category', $file_name);
+            }
+
+            Category::create([
+                'name' => $request->name,
+                'image' => $file_name,
+            ]);
+
+            return redirect()->route('admin.category.index')->with('success', 'Category created successfully');
+
+        } catch (Exception $e) {
+            Log::info($e);
+            return redirect()->back()->with('fail', $e->getMessage());
+        }
     }
 
     /**

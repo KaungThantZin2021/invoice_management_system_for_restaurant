@@ -55,6 +55,9 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     @include('backend.admin.layouts.css')
+
+    @yield('css')
+    @stack('css')
 </head>
 
 <body>
@@ -91,6 +94,10 @@
     <script></script>
 
     @include('backend.admin.layouts.js')
+    @include('backend.admin.layouts.session')
+
+    @yield('js')
+    @stack('js')
 </body>
 
 </html>
