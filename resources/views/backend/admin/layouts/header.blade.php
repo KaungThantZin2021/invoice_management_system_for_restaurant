@@ -11,8 +11,7 @@
             <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
-            <li class="nav-item"><a class="nav-link"
-                    href="#">{{ auth()->guard('web')->user()->name }}</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">{{ auth()->guard('web')->user()->name }}</a></li>
         </ul>
         <ul class="header-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#">
@@ -70,21 +69,19 @@
             <li class="nav-item py-1">
                 <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
             </li>
-            <li class="nav-item dropdown"><a class="nav-link py-0 pe-0" data-coreui-toggle="dropdown"
-                    href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg"
-                            alt="user@email.com">
+            <li class="nav-item dropdown"><a class="nav-link py-0 pe-0" data-coreui-toggle="dropdown" href="#"
+                    role="button" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-md"><img class="avatar-img" src="{{ auth()->guard('web')->user()->profile_image_url }}" alt="user@email.com">
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
-                    <div
-                        class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top mb-2">
+                    <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top mb-2">
                         Account
                     </div><a class="dropdown-item" href="#">
                         <svg class="icon me-2">
                             <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-bell"></use>
-                        </svg> Updates<span class="badge badge-sm bg-info ms-2">42</span></a><a
-                        class="dropdown-item" href="#">
+                        </svg> Updates<span class="badge badge-sm bg-info ms-2">42</span></a><a class="dropdown-item"
+                        href="#">
                         <svg class="icon me-2">
                             <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-envelope-open">
                             </use>
@@ -92,8 +89,8 @@
                         class="dropdown-item" href="#">
                         <svg class="icon me-2">
                             <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-task"></use>
-                        </svg> Tasks<span class="badge badge-sm bg-danger ms-2">42</span></a><a
-                        class="dropdown-item" href="#">
+                        </svg> Tasks<span class="badge badge-sm bg-danger ms-2">42</span></a><a class="dropdown-item"
+                        href="#">
                         <svg class="icon me-2">
                             <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-comment-square">
                             </use>
@@ -121,22 +118,22 @@
                             </use>
                         </svg> Lock Account</a>
 
-                        <form method="POST" action="{{ route('admin.logout') }}">
-                          @csrf
-                          {{-- <a class="dropdown-item" href="#">
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                        @csrf
+                        {{-- <a class="dropdown-item" href="#">
                             <svg class="icon me-2">
                                 <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-account-logout">
                                 </use>
                             </svg> Logout
                           </a> --}}
 
-                          <button type="submit" class="dropdown-item">
+                        <button type="submit" class="dropdown-item">
                             <svg class="icon me-2">
-                              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-account-logout">
-                              </use>
+                                <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-account-logout">
+                                </use>
                             </svg> Logout
-                          </button>
-                        </form>
+                        </button>
+                    </form>
                 </div>
             </li>
         </ul>

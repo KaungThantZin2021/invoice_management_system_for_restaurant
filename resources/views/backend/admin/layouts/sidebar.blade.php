@@ -23,6 +23,15 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.admin-user.index') }}">
+                <svg class="nav-icon">
+                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                </svg>
+                Admin User
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.staff.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
@@ -66,22 +75,22 @@
             <ul class="nav-group-items compact">
                 <li class="nav-item"><a class="nav-link" href="base/accordion.html"><span class="nav-icon"><span
                                 class="nav-icon-bullet"></span></span> Accordion</a></li>
-                <li class="nav-item"><a class="nav-link" href="base/breadcrumb.html"><span
-                            class="nav-icon"><span class="nav-icon-bullet"></span></span> Breadcrumb</a></li>
+                <li class="nav-item"><a class="nav-link" href="base/breadcrumb.html"><span class="nav-icon"><span
+                                class="nav-icon-bullet"></span></span> Breadcrumb</a></li>
                 <li class="nav-item"><a class="nav-link" href="base/cards.html"><span class="nav-icon"><span
                                 class="nav-icon-bullet"></span></span> Cards</a></li>
                 <li class="nav-item"><a class="nav-link" href="base/carousel.html"><span class="nav-icon"><span
                                 class="nav-icon-bullet"></span></span> Carousel</a></li>
                 <li class="nav-item"><a class="nav-link" href="base/collapse.html"><span class="nav-icon"><span
                                 class="nav-icon-bullet"></span></span> Collapse</a></li>
-                <li class="nav-item"><a class="nav-link" href="base/list-group.html"><span
-                            class="nav-icon"><span class="nav-icon-bullet"></span></span> List group</a></li>
+                <li class="nav-item"><a class="nav-link" href="base/list-group.html"><span class="nav-icon"><span
+                                class="nav-icon-bullet"></span></span> List group</a></li>
                 <li class="nav-item"><a class="nav-link" href="base/navs-tabs.html"><span class="nav-icon"><span
                                 class="nav-icon-bullet"></span></span> Navs &amp; Tabs</a></li>
-                <li class="nav-item"><a class="nav-link" href="base/pagination.html"><span
-                            class="nav-icon"><span class="nav-icon-bullet"></span></span> Pagination</a></li>
-                <li class="nav-item"><a class="nav-link" href="base/placeholders.html"><span
-                            class="nav-icon"><span class="nav-icon-bullet"></span></span> Placeholders</a></li>
+                <li class="nav-item"><a class="nav-link" href="base/pagination.html"><span class="nav-icon"><span
+                                class="nav-icon-bullet"></span></span> Pagination</a></li>
+                <li class="nav-item"><a class="nav-link" href="base/placeholders.html"><span class="nav-icon"><span
+                                class="nav-icon-bullet"></span></span> Placeholders</a></li>
                 <li class="nav-item"><a class="nav-link" href="base/popovers.html"><span class="nav-icon"><span
                                 class="nav-icon-bullet"></span></span> Popovers</a></li>
                 <li class="nav-item"><a class="nav-link" href="base/progress.html"><span class="nav-icon"><span
@@ -99,12 +108,12 @@
                     <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-cursor"></use>
                 </svg> Buttons</a>
             <ul class="nav-group-items compact">
-                <li class="nav-item"><a class="nav-link" href="buttons/buttons.html"><span
-                            class="nav-icon"><span class="nav-icon-bullet"></span></span> Buttons</a></li>
+                <li class="nav-item"><a class="nav-link" href="buttons/buttons.html"><span class="nav-icon"><span
+                                class="nav-icon-bullet"></span></span> Buttons</a></li>
                 <li class="nav-item"><a class="nav-link" href="buttons/button-group.html"><span
                             class="nav-icon"><span class="nav-icon-bullet"></span></span> Buttons Group</a></li>
-                <li class="nav-item"><a class="nav-link" href="buttons/dropdowns.html"><span
-                            class="nav-icon"><span class="nav-icon-bullet"></span></span> Dropdowns</a></li>
+                <li class="nav-item"><a class="nav-link" href="buttons/dropdowns.html"><span class="nav-icon"><span
+                                class="nav-icon-bullet"></span></span> Dropdowns</a></li>
             </ul>
         </li>
         <li class="nav-item"><a class="nav-link" href="charts.html">
@@ -116,8 +125,8 @@
                     <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-notes"></use>
                 </svg> Forms</a>
             <ul class="nav-group-items compact">
-                <li class="nav-item"><a class="nav-link" href="forms/form-control.html"><span
-                            class="nav-icon"><span class="nav-icon-bullet"></span></span> Form Control</a></li>
+                <li class="nav-item"><a class="nav-link" href="forms/form-control.html"><span class="nav-icon"><span
+                                class="nav-icon-bullet"></span></span> Form Control</a></li>
                 <li class="nav-item"><a class="nav-link" href="forms/select.html"><span class="nav-icon"><span
                                 class="nav-icon-bullet"></span></span> Select</a></li>
                 <li class="nav-item"><a class="nav-link" href="forms/checks-radios.html"><span
@@ -125,14 +134,14 @@
                 </li>
                 <li class="nav-item"><a class="nav-link" href="forms/range.html"><span class="nav-icon"><span
                                 class="nav-icon-bullet"></span></span> Range</a></li>
-                <li class="nav-item"><a class="nav-link" href="forms/input-group.html"><span
-                            class="nav-icon"><span class="nav-icon-bullet"></span></span> Input group</a></li>
+                <li class="nav-item"><a class="nav-link" href="forms/input-group.html"><span class="nav-icon"><span
+                                class="nav-icon-bullet"></span></span> Input group</a></li>
                 <li class="nav-item"><a class="nav-link" href="forms/floating-labels.html"><span
                             class="nav-icon"><span class="nav-icon-bullet"></span></span> Floating labels</a></li>
                 <li class="nav-item"><a class="nav-link" href="forms/layout.html"><span class="nav-icon"><span
                                 class="nav-icon-bullet"></span></span> Layout</a></li>
-                <li class="nav-item"><a class="nav-link" href="forms/validation.html"><span
-                            class="nav-icon"><span class="nav-icon-bullet"></span></span> Validation</a></li>
+                <li class="nav-item"><a class="nav-link" href="forms/validation.html"><span class="nav-icon"><span
+                                class="nav-icon-bullet"></span></span> Validation</a></li>
             </ul>
         </li>
         <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">

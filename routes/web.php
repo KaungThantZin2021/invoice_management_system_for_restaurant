@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\Admin\StaffController;
 use App\Http\Controllers\Backend\Admin\ProductController;
 use App\Http\Controllers\Backend\Admin\CategoryController;
+use App\Http\Controllers\Backend\Admin\AdminUserController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
 use App\Http\Controllers\Backend\Admin\Auth\PasswordController;
 use App\Http\Controllers\Backend\Admin\Auth\NewPasswordController;
@@ -95,9 +96,15 @@ Route::prefix('/admin')->name('admin.')->group(function () {
     });
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('admin-user', AdminUserController::class);
+    Route::get('admin-user/{admin_user}/change-password', [AdminUserController::class, 'changePassword'])->name('admin-user.change-password');
+    Route::patch('admin-user/{admin_user}/update-password', [AdminUserController::class, 'updatePassword'])->name('admin-user.update-password');
+
     Route::resource('staff', StaffController::class);
     Route::get('staff/{staff}/change-password', [StaffController::class, 'changePassword'])->name('staff.change-password');
     Route::patch('staff/{staff}/update-password', [StaffController::class, 'updatePassword'])->name('staff.update-password');
+
     Route::resource('category', CategoryController::class);
+
     Route::resource('product', ProductController::class);
 });
