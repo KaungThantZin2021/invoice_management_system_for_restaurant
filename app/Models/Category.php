@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\BaseModel;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Category extends BaseModel
 {
     use HasFactory;
 
     protected $guarded = [];
+
+    public function getImageUrlAttribute()
+    {
+        return Storage::url('category/' . $this->image);
+    }
 }

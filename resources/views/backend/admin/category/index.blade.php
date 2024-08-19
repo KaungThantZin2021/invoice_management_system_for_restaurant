@@ -19,14 +19,9 @@
                                     <th scope="col">Image</th>
                                     <th scope="col">Created at</th>
                                     <th scope="col">Updated at</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                                <tr>
-
-                                </tr>
-
-                            </tbody> --}}
                         </table>
                     </div>
                 </div>
@@ -38,7 +33,7 @@
 @section('js')
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#categoriesTable').DataTable({
+        var table = $('#categoriesTable').DataTable({
             processing: true,
             serverSide: true,
             responsive: true,
@@ -50,8 +45,38 @@
                 { data: 'image', name: 'image' },
                 { data: 'created_at', name: 'created_at' },
                 { data: 'updated_at', name: 'updated_at' },
-                // { data: 'action', name: 'action', orderable: false, searchable: false }
+                { data: 'action', name: 'action', orderable: false, searchable: false }
             ]
+        });
+
+        $(document).on('click', '.delete-btn', function(e){
+            e.preventDefault();
+
+            let deleteUrl = $(this).data('delete-url');
+
+            Swal.fire({
+                title: "Are you sure to delete?",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post(deleteUrl, {
+                        '_method': 'DELETE'
+                    })
+                    .then(function(res) {
+                        if (res.success == 1) {
+                            table.ajax.reload();
+                            toastr.success(res.message);
+                        } else {
+                            toastr.warning(res.message);
+                        }
+                    }).fail(function(error) {
+                        toastr.error(res.message);
+                    });
+                }
+            });
         });
     });
     </script>
