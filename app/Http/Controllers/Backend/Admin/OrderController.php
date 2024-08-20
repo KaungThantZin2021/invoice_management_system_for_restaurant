@@ -31,10 +31,11 @@ class OrderController extends Controller
                 ->addColumn('action', function ($order) {
                     $edit_btn = '<a href="'. route('admin.order.edit', $order->id) .'" class="btn btn-sm btn-warning m-2"><i class="fa-solid fa-pen-to-square"></i></a>';
                     $info_btn = '<a href="'. route('admin.order.show', $order->id) .'" class="btn btn-sm btn-primary m-2"><i class="fa-solid fa-circle-info"></i></a>';
+                    $invoice_generate_btn = '<a href="'. route('admin.invoice.show', $order->id) .'" class="btn btn-sm btn-info m-2"><i class="fa-solid fa-file-invoice"></i></a>';
                     $delete_btn = '<a href="#" class="btn btn-sm btn-danger m-2 delete-btn" data-delete-url="' . route('admin.order.destroy', $order->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">
-                        ' . $edit_btn . $info_btn . $delete_btn . '
+                        ' . $edit_btn . $info_btn . $invoice_generate_btn . $delete_btn . '
                     </div>';
                 })
                 ->rawColumns(['action'])

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\Admin\OrderController;
 use App\Http\Controllers\Backend\Admin\StaffController;
+use App\Http\Controllers\Backend\Admin\InvoiceController;
 use App\Http\Controllers\Backend\Admin\ProductController;
 use App\Http\Controllers\Backend\Admin\CategoryController;
 use App\Http\Controllers\Backend\Admin\AdminUserController;
@@ -109,5 +110,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::resource('product', ProductController::class);
 
         Route::resource('order', OrderController::class);
+
+        Route::resource('invoice', InvoiceController::class);
     });
 });

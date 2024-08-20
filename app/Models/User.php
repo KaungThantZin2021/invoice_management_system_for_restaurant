@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\Invoice;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
@@ -45,6 +46,11 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->morphMany(Order::class, 'orderable');
+    }
+
+    public function invoices()
+    {
+        return $this->morphMany(Invoice::class, 'invoiceable');
     }
 
     public function getProfileImageUrlAttribute()

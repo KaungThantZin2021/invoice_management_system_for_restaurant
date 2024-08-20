@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\Invoice;
 use App\Models\BaseModel;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,11 @@ class Staff extends Authenticatable
     public function orders()
     {
         return $this->morphMany(Order::class, 'orderable');
+    }
+
+    public function invoices()
+    {
+        return $this->morphMany(Invoice::class, 'invoiceable');
     }
 
     public function getProfileImageUrlAttribute()
