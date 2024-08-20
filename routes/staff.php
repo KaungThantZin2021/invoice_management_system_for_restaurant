@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\Staff\DashboardController;
 use App\Http\Controllers\Frontend\Staff\Auth\PasswordController;
 use App\Http\Controllers\Frontend\Staff\Auth\NewPasswordController;
 use App\Http\Controllers\Frontend\Staff\Auth\VerifyEmailController;
@@ -57,13 +58,8 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 
-    Route::get('/', function() {
-        // return 111;
-        return view('frontend.staff.dashboard.index');
-    })->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 });
-
-// Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 // Route::resource('category', CategoryController::class);
 
