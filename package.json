@@ -20,10 +20,12 @@
         "@coreui/coreui": "^5.1.1",
         "@coreui/icons": "^3.0.1",
         "@popperjs/core": "^2.11.8",
+        "@vitejs/plugin-vue": "^5.1.2",
         "datatables.net": "^2.1.4",
         "datatables.net-dt": "^2.1.4",
         "jquery": "^3.7.1",
         "sweetalert2": "^11.12.4",
-        "toastr": "^2.1.4"
+        "toastr": "^2.1.4",
+        "vue": "^3.4.38"
     }
 }
