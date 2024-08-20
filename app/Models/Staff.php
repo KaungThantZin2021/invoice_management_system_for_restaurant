@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\Order;
 use App\Models\BaseModel;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,6 +14,11 @@ class Staff extends Authenticatable
     use HasFactory;
 
     protected $guarded = [];
+
+    public function orders()
+    {
+        return $this->morphMany(Order::class, 'orderable');
+    }
 
     public function getProfileImageUrlAttribute()
     {
