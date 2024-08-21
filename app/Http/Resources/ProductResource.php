@@ -17,7 +17,10 @@ class ProductResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'image_url' => $this->image_url
+            'category_name' => optional($this->category)->name,
+            'price' => number_format($this->price) . ' MMK',
+            'stock_quantity' => number_format($this->stock_quantity),
+            'image_url' => $this->image_url,
         ];
     }
 }

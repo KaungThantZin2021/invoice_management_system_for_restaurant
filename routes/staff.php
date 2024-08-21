@@ -68,4 +68,5 @@ Route::middleware('staff')->group(function () {
     Route::resource('product', ProductController::class);
     Route::get('get-product-list', [ProductController::class, 'getProductList']);
     Route::get('get-add-to-cart-order', [ProductController::class, 'getAddToCartOrder']);
+    Route::post('add-to-cart-order-items', [ProductController::class, 'addToCartOrderItems']);
 });

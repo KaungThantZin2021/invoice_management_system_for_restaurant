@@ -17,14 +17,14 @@
                                     <hr>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <button class="btn btn-primary btn-sm me-1">
+                                            <button class="btn btn-primary btn-sm me-1" @click="addToCart(product.id, 'add')">
                                                 <i class="fa-solid fa-circle-plus"></i>
                                             </button>
-                                            <button class="btn btn-primary btn-sm">
+                                            <button class="btn btn-primary btn-sm" @click="addToCart(product.id, 'remove')">
                                                 <i class="fa-solid fa-circle-minus"></i>
                                             </button>
                                         </div>
-                                        <span>1000 MMK</span>
+                                        <span v-text="product.price"></span>
                                     </div>
                                 </div>
                             </div>
@@ -58,18 +58,19 @@
                     <div class="card mb-3" style="max-width: 18rem;">
                         <div class="card-header bg-transparent">Order Items</div>
                         <div class="card-body">
-                            <ol class="list-group list-group-numbered">
+                            <ol class="list-group">
                                 <li class="list-group-item d-flex justify-content-between align-items-start"
-                                    v-for="add_to_cart_item in add_to_cart_order.order_items" :key="add_to_cart_item.id"
+                                    v-for="(add_to_cart_item, key) in add_to_cart_order.order_items" :key="add_to_cart_item.id"
                                 >
+                                    <span v-text="`${key + 1}.`"></span>
                                     <div class="ms-2 me-auto">
                                         <div class="fw-bold" v-text="add_to_cart_item.product_name"></div>
                                         <div class="btn-group btn-group-sm mt-2" role="group" aria-label="Small button group">
-                                            <button type="button" class="btn btn-outline-secondary">
+                                            <button type="button" class="btn btn-outline-secondary" @click="addToCart(add_to_cart_item.product_id, 'add')">
                                                 <i class="fa-solid fa-circle-plus"></i>
                                             </button>
                                             <button type="button" class="btn btn-outline-secondary" v-text="add_to_cart_item.quantity"></button>
-                                            <button type="button" class="btn btn-outline-secondary">
+                                            <button type="button" class="btn btn-outline-secondary" @click="addToCart(add_to_cart_item.product_id, 'remove')">
                                                 <i class="fa-solid fa-circle-minus"></i>
                                             </button>
                                         </div>
@@ -134,6 +135,7 @@
                         links: {},
                         meta: {},
                     },
+                    order_id: null,
                     add_to_cart_order: []
                 };
             },
@@ -151,7 +153,7 @@
                 }
             },
             methods: {
-                // pagination start
+                // pagination --- start
                 fetchProducts(url = '/get-product-list') {
                     axios.get(url)
                         .then(response => {
@@ -165,20 +167,37 @@
                     const url = `/get-product-list?page=${page}`;
                     this.fetchProducts(url);
                 },
-                // pagination end
+                // pagination --- end
 
+                // Add to cart --- start
                 getAddToCartOrder() {
                     axios.get('get-add-to-cart-order')
                         .then(response => {
                             console.log(response);
 
+                            this.order_id = response.data.data.id;
                             this.add_to_cart_order = response.data.data;
 
                         })
                         .catch(error => {
                             console.error("There was an error fetching the add to cart order!", error);
                         });
+                },
+                addToCart(product_id, status) {
+                    axios.post('add-to-cart-order-items', {
+                        product_id,
+                        status
+                    })
+                        .then(response => {
+                            console.log(response);
+                            this.getAddToCartOrder();
+                        })
+                        .catch(error => {
+                            console.error("There was an error from the add to cart order items!", error);
+                        });
+
                 }
+                // Add to cart --- end
             },
             mounted() {
                 this.fetchProducts();
