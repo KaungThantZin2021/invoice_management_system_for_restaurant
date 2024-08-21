@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Frontend\Staff;
 
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OrderResource;
 use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
@@ -35,5 +37,14 @@ class ProductController extends Controller
         ];
 
         return success( $data);
+    }
+
+    public function getAddToCartOrder()
+    {
+        $order = Order::with('order_items')->pending()->where('orderable_id', auth()->guard('staff')->user()->id)->first();
+
+        $data = new OrderResource($order);
+
+        return success($data);
     }
 }

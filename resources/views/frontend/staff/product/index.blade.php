@@ -55,44 +55,46 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
-                    <div class="card border-secondary mb-3" style="max-width: 18rem;">
-                        <div class="card-header bg-transparent border-secondary">Order Items</div>
+                    <div class="card mb-3" style="max-width: 18rem;">
+                        <div class="card-header bg-transparent">Order Items</div>
                         <div class="card-body">
                             <ol class="list-group list-group-numbered">
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <li class="list-group-item d-flex justify-content-between align-items-start"
+                                    v-for="add_to_cart_item in add_to_cart_order.order_items" :key="add_to_cart_item.id"
+                                >
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Subheading</div>
+                                        <div class="fw-bold" v-text="add_to_cart_item.product_name"></div>
                                         <div class="btn-group btn-group-sm mt-2" role="group" aria-label="Small button group">
                                             <button type="button" class="btn btn-outline-secondary">
                                                 <i class="fa-solid fa-circle-plus"></i>
                                             </button>
-                                            <button type="button" class="btn btn-outline-secondary">3</button>
+                                            <button type="button" class="btn btn-outline-secondary" v-text="add_to_cart_item.quantity"></button>
                                             <button type="button" class="btn btn-outline-secondary">
                                                 <i class="fa-solid fa-circle-minus"></i>
                                             </button>
                                         </div>
                                     </div>
-                                    <span class="badge text-bg-primary rounded-pill">10000 MMK</span>
+                                    <span class="badge text-bg-primary rounded-pill" v-text="add_to_cart_item.price"></span>
                                 </li>
                             </ol>
                             <ol class="list-group mt-2 total-cart-item-lists-area">
                                 <li class="list-group-item align-items-start">
                                     <div class="d-flex justify-content-between">
                                         <div class="fw-bold">Total Product</div>
-                                        <div class="total-amount">2</div>
+                                        <div v-text="add_to_cart_order.total_product"></div>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="fw-bold">Total Quntity</div>
-                                        <div class="total-amount">5</div>
+                                        <div v-text="add_to_cart_order.total_quantity"></div>
                                     </div>
                                     <hr>
                                     <div class="d-flex justify-content-between">
                                         <div class="fw-bold">Total Price</div>
-                                        <div class="total-amount">14,000 MMK</div>
+                                        <div v-text="add_to_cart_order.total_price"></div>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="fw-bold">Tax</div>
-                                        <div class="tax-amount">0 MMK</div>
+                                        <div v-text="add_to_cart_order.tax"></div>
                                     </div>
                                     <hr>
                                     <div class="d-flex justify-content-between">
@@ -102,7 +104,7 @@
                                 </li>
                             </ol>
                         </div>
-                        <div class="card-footer bg-transparent border-secondary">
+                        <div class="card-footer bg-transparent">
                             <div class="d-grid gap-2">
                                 <button class="btn btn-primary btn-sm" type="button">Order</button>
                                 <button class="btn btn-secondary btn-sm" type="button">Cancel</button>
@@ -131,7 +133,8 @@
                         data: [],
                         links: {},
                         meta: {},
-                    }
+                    },
+                    add_to_cart_order: []
                 };
             },
             computed: {
@@ -148,11 +151,10 @@
                 }
             },
             methods: {
+                // pagination start
                 fetchProducts(url = '/get-product-list') {
                     axios.get(url)
                         .then(response => {
-                            console.log(response);
-
                             this.products = response.data.data;
                         })
                         .catch(error => {
@@ -162,10 +164,25 @@
                 fetchProductsPage(page) {
                     const url = `/get-product-list?page=${page}`;
                     this.fetchProducts(url);
+                },
+                // pagination end
+
+                getAddToCartOrder() {
+                    axios.get('get-add-to-cart-order')
+                        .then(response => {
+                            console.log(response);
+
+                            this.add_to_cart_order = response.data.data;
+
+                        })
+                        .catch(error => {
+                            console.error("There was an error fetching the add to cart order!", error);
+                        });
                 }
             },
             mounted() {
                 this.fetchProducts();
+                this.getAddToCartOrder();
             }
         }).mount('#app');
     </script>
