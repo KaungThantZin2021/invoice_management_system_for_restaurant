@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\Staff\ProductController;
 use App\Http\Controllers\Frontend\Staff\CategoryController;
 use App\Http\Controllers\Frontend\Staff\DashboardController;
 use App\Http\Controllers\Frontend\Staff\Auth\PasswordController;
@@ -62,4 +63,8 @@ Route::middleware('staff')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('category', CategoryController::class);
+    Route::get('get-category-list', [CategoryController::class, 'getCategoryList']);
+
+    Route::resource('product', ProductController::class);
+    Route::get('get-product-list', [ProductController::class, 'getProductList']);
 });

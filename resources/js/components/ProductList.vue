@@ -17,7 +17,7 @@
 <script>
 console.log('this vue product list components');
 
-export default {
+// export default {
 
-}
+// }
 </script>

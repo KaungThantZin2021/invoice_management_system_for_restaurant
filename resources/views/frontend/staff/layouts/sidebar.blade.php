@@ -31,6 +31,15 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('product.index') }}">
+                <svg class="nav-icon">
+                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                </svg>
+                Product
+            </a>
+        </li>
+
 
 
         <li class="nav-title">Theme</li>
