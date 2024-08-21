@@ -100,7 +100,7 @@
                                     <hr>
                                     <div class="d-flex justify-content-between">
                                         <div class="fw-bold">Total Amount</div>
-                                        <div class="total-amount">14,000 MMK</div>
+                                        <div v-text="add_to_cart_order.total_amount"></div>
                                     </div>
                                 </li>
                             </ol>

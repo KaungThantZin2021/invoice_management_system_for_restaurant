@@ -18,6 +18,16 @@ class Product extends BaseModel
         return $this->belongsTo(Category::class);
     }
 
+    public function scopeInStock($query)
+    {
+        return $query->where('stock_quantity', '>', 0);
+    }
+
+    public function scopeOutOfStock($query)
+    {
+        return $query->where('stock_quantity', '<=', 0);
+    }
+
     public function getImageUrlAttribute()
     {
         return Storage::url('product/' . $this->image);

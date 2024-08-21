@@ -22,7 +22,7 @@ class ProductController extends Controller
 
     public function getProductList()
     {
-        $products = Product::paginate(10);
+        $products = Product::inStock()->paginate(10);
 
         $products = ProductResource::collection($products);
 
