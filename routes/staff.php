@@ -71,6 +71,7 @@ Route::middleware('staff')->group(function () {
     Route::get('get-add-to-cart-order', [ProductController::class, 'getAddToCartOrder']);
     Route::post('add-to-cart-order-items', [ProductController::class, 'addToCartOrderItems']);
 
+    Route::resource('order', OrderController::class);
     Route::post('/order/{order}/confirm', [OrderController::class, 'orderConfirm'])->name('order.confirm');
     Route::post('/order/{order}/cancel', [OrderController::class, 'orderCancel'])->name('order.cancel');
 });

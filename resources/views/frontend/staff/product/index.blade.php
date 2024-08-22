@@ -215,11 +215,10 @@
                                     let res = response.data;
                                     if (res.success) {
                                         toastr.success(res.message);
-                                        // this.getAddToCartOrder();
 
                                         setTimeout(() => {
-                                            window.location.reload();
-                                        }, 3000);
+                                            window.location.href = `/order/${order_id}`;
+                                        }, 2000);
                                     } else {
                                         toastr.warning(res.message);
                                     }
