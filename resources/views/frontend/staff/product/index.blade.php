@@ -3,7 +3,22 @@
 @section('content')
     <div id="app">
         <div class="container-lg px-4">
-            <h1>Product</h1>
+            <div class="row">
+                <div class="col-6">
+                    <h1>Product</h1>
+                </div>
+                <div class="col-6">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Categories</label>
+                        <select class="form-select form-select-sm" v-model="category_id" @change="filterCategory(category_id)" id="inputGroupSelect01">
+                            <option value="">Choose category...</option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-sm-12 col-md-8">
@@ -82,25 +97,25 @@
                                 <li class="list-group-item align-items-start">
                                     <div class="d-flex justify-content-between">
                                         <div class="fw-bold">Total Product</div>
-                                        <div v-text="add_to_cart_order.total_product"></div>
+                                        <div v-text="add_to_cart_order.total_product ? add_to_cart_order.total_product : 0"></div>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="fw-bold">Total Quntity</div>
-                                        <div v-text="add_to_cart_order.total_quantity"></div>
+                                        <div v-text="add_to_cart_order.total_quantity ? add_to_cart_order.total_quantity : 0"></div>
                                     </div>
                                     <hr>
                                     <div class="d-flex justify-content-between">
                                         <div class="fw-bold">Total Price</div>
-                                        <div v-text="add_to_cart_order.total_price"></div>
+                                        <div v-text="add_to_cart_order.total_price ? add_to_cart_order.total_price : 0"></div>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="fw-bold">Tax</div>
-                                        <div v-text="add_to_cart_order.tax"></div>
+                                        <div v-text="add_to_cart_order.tax ? add_to_cart_order.tax : 0"></div>
                                     </div>
                                     <hr>
                                     <div class="d-flex justify-content-between">
                                         <div class="fw-bold">Total Amount</div>
-                                        <div v-text="add_to_cart_order.total_amount"></div>
+                                        <div v-text="add_to_cart_order.total_amount ? add_to_cart_order.total_amount : 0"></div>
                                     </div>
                                 </li>
                             </ol>
@@ -108,7 +123,7 @@
                         <div class="card-footer bg-transparent">
                             <div class="d-grid gap-2">
                                 <button class="btn btn-primary btn-sm" type="button" @click="orderConfirmButton(add_to_cart_order.id)">Order</button>
-                                <button class="btn btn-secondary btn-sm" type="button">Cancel</button>
+                                <button class="btn btn-secondary btn-sm" type="button" @click="orderCancelButton(add_to_cart_order.id)">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -130,6 +145,7 @@
         createApp({
             data() {
                 return {
+                    category_id: '',
                     products: {
                         data: [],
                         links: {},
@@ -164,10 +180,18 @@
                         });
                 },
                 fetchProductsPage(page) {
-                    const url = `/get-product-list?page=${page}`;
+                    const url = `/get-product-list?page=${page}&category_id=${this.category_id}`;
                     this.fetchProducts(url);
                 },
                 // pagination --- end
+
+                // Category filter --- start
+                filterCategory(category_id) {
+                    this.category_id = category_id;
+                    const url = `/get-product-list?category_id=${this.category_id}`;
+                    this.fetchProducts(url);
+                },
+                // Category filter --- end
 
                 // Add to cart --- start
                 getAddToCartOrder() {
@@ -226,6 +250,36 @@
                                 .catch(error => {
                                     toastr.error(error.message);
                                     console.error("There was an error from the order confirm!", error);
+                                });
+                        }
+                    });
+                },
+                orderCancelButton(order_id) {
+                    Swal.fire({
+                    title: "Are you sure to order cancel?",
+                        showCancelButton: true,
+                        confirmButtonColor: "#4b49b6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes",
+                        cancelButtonText: "No",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            axios.post(`/order/${order_id}/cancel`)
+                                .then(response => {
+                                    let res = response.data;
+                                    if (res.success) {
+                                        toastr.success(res.message);
+
+                                        setTimeout(() => {
+                                            window.location.href = `/product`;
+                                        }, 2000);
+                                    } else {
+                                        toastr.warning(res.message);
+                                    }
+                                })
+                                .catch(error => {
+                                    toastr.error(error.message);
+                                    console.error("There was an error from the order cancel!", error);
                                 });
                         }
                     });

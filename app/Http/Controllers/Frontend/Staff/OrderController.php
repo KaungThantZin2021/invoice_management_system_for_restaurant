@@ -56,7 +56,11 @@ class OrderController extends Controller
                 throw new Exception('Invalid request!');
             }
 
-            $order = Order::where('user_id', auth()->guard('staff')->user()->id)->pending()->find($id);
+            $order = Order::where('orderable_type', Staff::class)
+                ->where('orderable_id', auth()->guard('staff')->user()->id)
+                ->pending()
+                ->whereNull('order_datetime')
+                ->find($id);
 
             if(!$order) {
                 throw new Exception('Order not found!');
@@ -67,6 +71,36 @@ class OrderController extends Controller
             $order->update();
 
             return successMessage('Order confirmed successfully!');
+        } catch (Exception $e) {
+            return errorMessage($e->getMessage());
+        }
+    }
+
+    public function orderCancel(Request $request, $id)
+    {
+        try {
+            if (!$request->ajax()) {
+                throw new Exception('Invalid request!');
+            }
+
+            $order = Order::where('orderable_type', Staff::class)
+                ->where('orderable_id', auth()->guard('staff')->user()->id)
+                ->pending()
+                ->whereNull('order_datetime')
+                ->find($id);
+
+            if(!$order) {
+                throw new Exception('Order not found!');
+            }
+
+            if(isset($order->order_items)) {
+                $order->order_items()->delete();
+            }
+
+            $order->status = 'cancel';
+            $order->update();
+
+            return successMessage('Order canceled successfully!');
         } catch (Exception $e) {
             return errorMessage($e->getMessage());
         }

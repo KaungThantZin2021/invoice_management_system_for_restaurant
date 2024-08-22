@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Order;
 use App\Models\Staff;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,12 +18,15 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('frontend.staff.product.index');
+        $categories = Category::get();
+        return view('frontend.staff.product.index', compact('categories'));
     }
 
-    public function getProductList()
+    public function getProductList(Request $request)
     {
-        $products = Product::inStock()->paginate(10);
+        $products = Product::when($request->category_id, function($query) use ($request) {
+            $query->where('category_id', $request->category_id);
+        })->inStock()->paginate(10);
 
         $products = ProductResource::collection($products);
 
