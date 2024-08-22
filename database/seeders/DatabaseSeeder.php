@@ -17,18 +17,26 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        User::create([
-            'name' => 'Admin Name',
-            'email' => 'admin@gmail.com',
-            'phone' => '09111111111',
-            'password' => Hash::make(123123123),
-        ]);
+        User::firstOrCreate(
+            [
+                'email' => 'admin@gmail.com',
+                'phone' => '09111111111',
+            ],
+            [
+                'name' => 'Admin Name',
+                'password' => Hash::make(123123123),
+            ]
+        );
 
-        Staff::create([
-            'name' => 'Staff Name',
-            'email' => 'staff@gmail.com',
-            'phone' => '09111111111',
-            'password' => Hash::make(123123123),
-        ]);
+        Staff::firstOrCreate(
+            [
+                'email' => 'staff@gmail.com',
+                'phone' => '09111111111',
+            ],
+            [
+                'name' => 'Staff Name',
+                'password' => Hash::make(123123123),
+            ]
+        );
     }
 }
