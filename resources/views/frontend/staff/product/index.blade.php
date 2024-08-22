@@ -107,7 +107,7 @@
                         </div>
                         <div class="card-footer bg-transparent">
                             <div class="d-grid gap-2">
-                                <button class="btn btn-primary btn-sm" type="button">Order</button>
+                                <button class="btn btn-primary btn-sm" type="button" @click="orderConfirmButton(add_to_cart_order.id)">Order</button>
                                 <button class="btn btn-secondary btn-sm" type="button">Cancel</button>
                             </div>
                         </div>
@@ -196,8 +196,42 @@
                             console.error("There was an error from the add to cart order items!", error);
                         });
 
-                }
+                },
                 // Add to cart --- end
+
+                // Order --- start
+                orderConfirmButton(order_id) {
+                    Swal.fire({
+                    title: "Are you sure to order?",
+                        showCancelButton: true,
+                        confirmButtonColor: "#4b49b6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes",
+                        cancelButtonText: "No",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            axios.post(`/order/${order_id}/confirm`)
+                                .then(response => {
+                                    let res = response.data;
+                                    if (res.success) {
+                                        toastr.success(res.message);
+                                        // this.getAddToCartOrder();
+
+                                        setTimeout(() => {
+                                            window.location.reload();
+                                        }, 3000);
+                                    } else {
+                                        toastr.warning(res.message);
+                                    }
+                                })
+                                .catch(error => {
+                                    toastr.error(error.message);
+                                    console.error("There was an error from the order confirm!", error);
+                                });
+                        }
+                    });
+                }
+                // Order --- end
             },
             mounted() {
                 this.fetchProducts();

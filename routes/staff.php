@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\Staff\OrderController;
 use App\Http\Controllers\Frontend\Staff\ProductController;
 use App\Http\Controllers\Frontend\Staff\CategoryController;
 use App\Http\Controllers\Frontend\Staff\DashboardController;
@@ -69,4 +70,7 @@ Route::middleware('staff')->group(function () {
     Route::get('get-product-list', [ProductController::class, 'getProductList']);
     Route::get('get-add-to-cart-order', [ProductController::class, 'getAddToCartOrder']);
     Route::post('add-to-cart-order-items', [ProductController::class, 'addToCartOrderItems']);
+
+    Route::post('/order/{order}/confirm', [OrderController::class, 'orderConfirm'])->name('order.confirm');
+    Route::post('/order/{order}/cancel', [OrderController::class, 'orderCancel'])->name('order.cancel');
 });

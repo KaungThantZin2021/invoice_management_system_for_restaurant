@@ -45,7 +45,7 @@ class ProductController extends Controller
 
     public function getAddToCartOrder()
     {
-        $order = Order::with('order_items')->pending()->where('orderable_id', auth()->guard('staff')->user()->id)->first();
+        $order = Order::with('order_items')->pending()->where('orderable_id', auth()->guard('staff')->user()->id)->first() ?? [];
 
         $data = new OrderResource($order);
 
