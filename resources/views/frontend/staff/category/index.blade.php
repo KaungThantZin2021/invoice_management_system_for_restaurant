@@ -3,11 +3,13 @@
 @section('content')
 <div id="app">
     <div class="container-lg px-4">
-        <h1>Category</h1>
+        <div class="mb-4">
+            <h1>Category</h1>
+        </div>
         <div class="row mb-4">
             <div class="col-3" v-for="category in categories.data" :key="category.id">
-                <div class="card">
-                    <img :src="category.image_url" class="card-img-top object-cover w-full h-full" alt="...">
+                <div class="card mb-4 w-auto h-auto">
+                    <img :src="category.image_url" class="card-img-top object-cover w-full h-36" alt="...">
 
                     <div class="card-body">
                         <h5 class="card-title" v-text="category.name"></h5>

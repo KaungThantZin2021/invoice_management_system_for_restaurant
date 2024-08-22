@@ -26,7 +26,7 @@ class ProductController extends Controller
     {
         $products = Product::when($request->category_id, function($query) use ($request) {
             $query->where('category_id', $request->category_id);
-        })->inStock()->paginate(10);
+        })->inStock()->paginate(9);
 
         $products = ProductResource::collection($products);
 

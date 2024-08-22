@@ -3,7 +3,7 @@
 @section('content')
     <div id="app">
         <div class="container-lg px-4">
-            <div class="row">
+            <div class="row mb-4">
                 <div class="col-6">
                     <h1>Product</h1>
                 </div>
@@ -197,8 +197,6 @@
                 getAddToCartOrder() {
                     axios.get('get-add-to-cart-order')
                         .then(response => {
-                            console.log(response);
-
                             this.order_id = response.data.data.id;
                             this.add_to_cart_order = response.data.data;
 
@@ -213,7 +211,6 @@
                         status
                     })
                         .then(response => {
-                            console.log(response);
                             this.getAddToCartOrder();
                         })
                         .catch(error => {
@@ -234,6 +231,15 @@
                         cancelButtonText: "No",
                     }).then((result) => {
                         if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Ordering...!",
+                                html: "Please wait",
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading();
+                                }
+                            });
+
                             axios.post(`/order/${order_id}/confirm`)
                                 .then(response => {
                                     let res = response.data;
@@ -264,6 +270,16 @@
                         cancelButtonText: "No",
                     }).then((result) => {
                         if (result.isConfirmed) {
+
+                            Swal.fire({
+                                title: "Canceling...!",
+                                html: "Please wait",
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading();
+                                }
+                            });
+
                             axios.post(`/order/${order_id}/cancel`)
                                 .then(response => {
                                     let res = response.data;
