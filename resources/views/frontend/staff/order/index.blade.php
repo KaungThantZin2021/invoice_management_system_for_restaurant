@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="mb-4">
                     <button type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                    <a href="{{ route('product.index') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> Create</a>
+                    <a href="{{ route('product.index') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> Create a order</a>
                 </div>
                 <div class="card">
                     <h5 class="card-header">Order</h5>
