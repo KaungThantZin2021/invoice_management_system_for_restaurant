@@ -23,12 +23,12 @@
                                     <li class="list-group-item align-items-start">
                                         <div class="d-flex justify-content-between">
                                             <div class="fw-bold">Invoice Number</div>
-                                            <div>fdfddfdfdf</div>
+                                            <div>{{ $invoice->invoice_number }}</div>
                                         </div>
                                         <hr>
                                         <div class="d-flex justify-content-between">
                                             <div class="fw-bold">Order Number</div>
-                                            <div>aeefrefdfdfdfd</div>
+                                            <div>{{ $order->order_number }}</div>
                                         </div>
                                     </li>
                                 </ol>

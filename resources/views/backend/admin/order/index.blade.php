@@ -14,7 +14,7 @@
                         <table class="table" id="orderTable">
                             <thead>
                                 <tr>
-                                    <th scope="col">#ID</th>
+                                    <th scope="col">Order No.</th>
                                     <th scope="col">Orderable</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Order Datetime</th>
@@ -41,7 +41,7 @@
             scrollX: true,
             ajax: '{{ route("admin.order.index") }}',
             columns: [
-                { data: 'id', name: 'id' },
+                { data: 'order_number', name: 'order_number' },
                 { data: 'orderable', name: 'orderable' },
                 { data: 'status', name: 'status' },
                 { data: 'order_datetime', name: 'order_datetime' },

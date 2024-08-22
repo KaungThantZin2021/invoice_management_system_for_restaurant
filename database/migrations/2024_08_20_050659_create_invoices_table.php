@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->string('invoice_number');
             $table->string('order_id');
             $table->morphs('invoiceable');
             $table->timestamp('invoice_datetime');

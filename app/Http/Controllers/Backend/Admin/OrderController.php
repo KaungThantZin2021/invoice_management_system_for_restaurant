@@ -62,9 +62,7 @@ class OrderController extends Controller
     public function generateInvoice(Order $order)
     {
         try {
-            $order = Order::with(['order_items' => function($query) {
-                $query->with(['product']);
-            }])->find($order->id);
+            $order = Order::with('order_items')->find($order->id);
 
             $invoice = Invoice::firstOrCreate([
                 'order_id' => $order->id,
@@ -76,7 +74,7 @@ class OrderController extends Controller
                 'tax' => 0
             ]);
 
-            return successMessage();
+            return success(['invoice_id' => $invoice->id]);
 
         } catch (Exception $e) {
             Log::info($e);

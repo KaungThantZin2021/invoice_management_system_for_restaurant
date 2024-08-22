@@ -13,6 +13,15 @@ class Order extends BaseModel
 
     protected $guarded = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->order_number = 'ORD-' . str_pad(self::max('id') + 1, 8, '0', STR_PAD_LEFT);
+        });
+    }
+
     public function orderable()
     {
         return $this->morphTo();

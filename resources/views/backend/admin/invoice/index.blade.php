@@ -13,8 +13,8 @@
                         <table class="table" id="invoicesTable">
                             <thead>
                                 <tr>
-                                    <th scope="col">#ID</th>
-                                    <th scope="col">Order ID</th>
+                                    <th scope="col">Invoice No.</th>
+                                    <th scope="col">Order No.</th>
                                     <th scope="col">Invoiceable</th>
                                     <th scope="col">Invoice Datetime</th>
                                     <th scope="col">Total Amount</th>
@@ -38,8 +38,8 @@
         var table = $('#invoicesTable').DataTable({
             ajax: '{{ route("admin.invoice.index") }}',
             columns: [
-                { data: 'id', name: 'id' },
-                { data: 'order_id', name: 'order_id' },
+                { data: 'invoice_number', name: 'invoice_number' },
+                { data: 'order_number', name: 'order_number' },
                 { data: 'invoiceable', name: 'invoiceable' },
                 { data: 'invoice_datetime', name: 'invoice_datetime' },
                 { data: 'total_amount', name: 'total_amount' },

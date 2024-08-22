@@ -10,6 +10,12 @@
                         <div class="row">
                             <div class="col-6">
                                 <div>
+                                    <label class="fw-semibold">Order Number</label>
+                                    <p>{{ $order->order_number }}</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
                                     <label class="fw-semibold">Orderable</label>
                                     <p>{{ optional($order->orderable)->name }} ({{ class_basename($order->orderable) }})</p>
                                 </div>
@@ -172,7 +178,7 @@
                             .then(function(res) {
                                 if (res.success) {
                                     setTimeout(() => {
-                                        window.location.href = `/admin/invoice`;
+                                        window.location.href = `/admin/invoice/${res.data.invoice_id}`;
                                     }, 1000);
                                 } else {
                                     toastr.warning(res.message);

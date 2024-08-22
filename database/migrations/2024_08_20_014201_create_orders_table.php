@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('order_number');
             $table->morphs('orderable');
             $table->string('status')->default('pending')->comment('pending, confirm, cancel');
             $table->timestamp('order_datetime')->nullable();

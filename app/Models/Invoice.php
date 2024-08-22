@@ -12,6 +12,15 @@ class Invoice extends BaseModel
 
     protected $guarded = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->invoice_number = 'INV-' . str_pad(self::max('id') + 1, 8, '0', STR_PAD_LEFT);
+        });
+    }
+
     public function invoiceable()
     {
         return $this->morphTo();

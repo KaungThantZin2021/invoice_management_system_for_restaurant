@@ -18,17 +18,19 @@ class InvoiceController extends Controller
             $invoices = Invoice::query();
 
             return DataTables::of($invoices)
+                ->addColumn('order_number', function ($invoice) {
+                    return optional($invoice->order)->order_number;
+                })
                 ->addColumn('invoiceable', function ($invoice) {
                     return optional($invoice->invoiceable)->name . ' (' . class_basename($invoice->invoiceable) . ')';
                 })
                 ->addColumn('action', function ($invoice) {
-                    $edit_btn = '<a href="'. route('admin.invoice.edit', $invoice->id) .'" class="btn btn-sm btn-warning m-2"><i class="fa-solid fa-pen-to-square"></i></a>';
                     $info_btn = '<a href="'. route('admin.invoice.show', $invoice->id) .'" class="btn btn-sm btn-primary m-2"><i class="fa-solid fa-circle-info"></i></a>';
                     $invoice_download_btn = '<a href="'. route('admin.invoice.show', $invoice->id) .'" class="btn btn-sm btn-dark m-2"><i class="fa-solid fa-download"></i></a>';
                     $delete_btn = '<a href="#" class="btn btn-sm btn-danger m-2 delete-btn" data-delete-url="' . route('admin.invoice.destroy', $invoice->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">
-                        ' . $edit_btn . $info_btn . $invoice_download_btn . $delete_btn . '
+                        ' . $info_btn . $invoice_download_btn . $delete_btn . '
                     </div>';
                 })
                 ->rawColumns(['action'])
