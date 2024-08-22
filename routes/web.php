@@ -113,5 +113,6 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::post('order/{order}/generate-invoice', [OrderController::class, 'generateInvoice'])->name('generate-invoice');
 
         Route::resource('invoice', InvoiceController::class);
+        Route::get('invoice/{invoice}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');
     });
 });

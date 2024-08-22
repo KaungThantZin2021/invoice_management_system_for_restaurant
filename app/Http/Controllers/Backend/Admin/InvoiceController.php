@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend\Admin;
 
+use PDF;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -92,5 +93,27 @@ class InvoiceController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function downloadInvoice(Invoice $invoice)
+    {
+        $invoice = Invoice::with(['order' => function($query) {
+            $query->with(['order_items' => function($q) {
+                $q->with('product');
+            }]);
+        }])->find($invoice->id);
+
+        if (!$invoice) {
+            abort(404);
+        }
+
+        $data = [
+            'title' => 'Invoice No. ' . $invoice->invoice_number,
+            'invoice' => $invoice
+        ];
+
+        $pdf = PDF::loadView('pdf.invoice', $data);
+
+        return $pdf->stream('invoice-' . $invoice->id . '-' . $invoice->invoice_number . '.pdf');
     }
 }

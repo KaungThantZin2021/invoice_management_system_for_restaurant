@@ -71,7 +71,7 @@
                                 </ol>
 
                                 <div class="d-grid my-3">
-                                    <a href="#" class="btn btn-dark" type="button"><i class="fa-solid fa-file-arrow-down"></i> Download Invoice</a>
+                                    <a href="{{ route('admin.invoice.download', $invoice->id) }}" target="_black" class="btn btn-dark" type="button"><i class="fa-solid fa-file-arrow-down"></i> Download Invoice</a>
                                   </div>
                             </div>
                         </div>
