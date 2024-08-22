@@ -29,17 +29,29 @@ class OrderController extends Controller
                 ->addColumn('orderable', function ($order) {
                     return optional($order->orderable)->name . ' (' . class_basename($order->orderable) . ')';
                 })
+                ->addColumn('status', function ($order) {
+                    $status = '';
+                    if ($order->isPending()) {
+                        $status = '<span class="badge text-bg-warning">' . ucfirst($order->status) . '</span>';
+                    } elseif ($order->isConfirm()) {
+                        $status = '<span class="badge text-bg-success text-light">' . ucfirst($order->status) . '</span>';
+                    } elseif ($order->isCancel()) {
+                        $status = '<span class="badge text-bg-danger text-light">' . ucfirst($order->status) . '</span>';
+                    }
+
+                    return $status;
+                })
                 ->addColumn('action', function ($order) {
                     $edit_btn = '<a href="'. route('admin.order.edit', $order->id) .'" class="btn btn-sm btn-warning m-2"><i class="fa-solid fa-pen-to-square"></i></a>';
                     $info_btn = '<a href="'. route('admin.order.show', $order->id) .'" class="btn btn-sm btn-primary m-2"><i class="fa-solid fa-circle-info"></i></a>';
-                    $invoice_generate_btn = '<a href="'. route('admin.invoice.show', $order->id) .'" class="btn btn-sm btn-info m-2"><i class="fa-solid fa-file-invoice"></i></a>';
-                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger m-2 delete-btn" data-delete-url="' . route('admin.order.destroy', $order->id) . '"><i class="fa-solid fa-trash"></i></a>';
+                    $invoice_generate_btn = '<a href="'. route('admin.invoice.show', $order->id) .'" class="btn btn-sm btn-dark m-2"><i class="fa-solid fa-file-invoice"></i></a>';
+                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light m-2 delete-btn" data-delete-url="' . route('admin.order.destroy', $order->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">
                         ' . $edit_btn . $info_btn . $invoice_generate_btn . $delete_btn . '
                     </div>';
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['status', 'action'])
                 ->make(true);
         }
 

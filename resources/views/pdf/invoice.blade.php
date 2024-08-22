@@ -32,7 +32,7 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="fw-bold">Order No.</div>
-                        <div class="total-amount">{{ $order->invoice_number }}</div>
+                        <div class="total-amount">{{ $order->order_number }}</div>
                     </div>
                 </li>
             </ol>

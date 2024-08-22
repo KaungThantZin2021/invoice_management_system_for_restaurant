@@ -27,8 +27,8 @@ class InvoiceController extends Controller
                 })
                 ->addColumn('action', function ($invoice) {
                     $info_btn = '<a href="'. route('admin.invoice.show', $invoice->id) .'" class="btn btn-sm btn-primary m-2"><i class="fa-solid fa-circle-info"></i></a>';
-                    $invoice_download_btn = '<a href="'. route('admin.invoice.show', $invoice->id) .'" class="btn btn-sm btn-dark m-2"><i class="fa-solid fa-download"></i></a>';
-                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger m-2 delete-btn" data-delete-url="' . route('admin.invoice.destroy', $invoice->id) . '"><i class="fa-solid fa-trash"></i></a>';
+                    $invoice_download_btn = '<a href="'. route('admin.invoice.download', $invoice->id) .'" target="_black" class="btn btn-sm btn-dark m-2"><i class="fa-solid fa-file-arrow-down"></i></a>';
+                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light m-2 delete-btn" data-delete-url="' . route('admin.invoice.destroy', $invoice->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">
                         ' . $info_btn . $invoice_download_btn . $delete_btn . '
