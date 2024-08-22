@@ -17,7 +17,7 @@ class InvoiceController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $invoices = Invoice::where('invoiceable_type', Staff::class)->where('invoiceable_id', auth()->guard('staff')->user()->id);
+            $invoices = Invoice::where('invoiceable_type', Staff::class)->where('invoiceable_id', auth()->guard('staff')->user()->id)->orderByDesc('created_at');
 
             return DataTables::of($invoices)
                 ->addColumn('order_number', function ($invoice) {

@@ -110,7 +110,13 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::resource('product', ProductController::class);
 
         Route::resource('order', OrderController::class);
-        Route::post('order/{order}/generate-invoice', [OrderController::class, 'generateInvoice'])->name('generate-invoice');
+        Route::get('order/add-to-cart/form', [OrderController::class, 'addToCartForm'])->name('order.add-to-cart.form');
+        Route::get('order/get-product-list/data', [OrderController::class, 'getProductList']);
+        Route::get('order/get-add-to-cart-order/data', [OrderController::class, 'getAddToCartOrder']);
+        Route::post('order/add-to-cart-order-items', [OrderController::class, 'addToCartOrderItems']);
+        Route::post('order/{order}/confirm', [OrderController::class, 'orderConfirm'])->name('order.confirm');
+        Route::post('order/{order}/cancel', [OrderController::class, 'orderCancel'])->name('order.cancel');
+        Route::post('order/{order}/generate-invoice', [OrderController::class, 'generateInvoice'])->name('order.generate-invoice');
 
         Route::resource('invoice', InvoiceController::class);
         Route::get('invoice/{invoice}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');

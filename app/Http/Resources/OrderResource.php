@@ -15,7 +15,7 @@ class OrderResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $order_items = $this->order_items;
+        $order_items = optional($this->order_items);
 
         $total_product = $order_items->count();
         $total_price = $order_items->sum('price');

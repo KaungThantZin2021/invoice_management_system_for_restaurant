@@ -17,7 +17,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $orders = Order::where('orderable_type', Staff::class)->where('orderable_id', auth()->guard('staff')->user()->id);
+            $orders = Order::where('orderable_type', Staff::class)->where('orderable_id', auth()->guard('staff')->user()->id)->orderByDesc('created_at');
 
             return DataTables::of($orders)
                 ->addColumn('orderable', function ($order) {
@@ -37,7 +37,7 @@ class OrderController extends Controller
                 })
                 ->addColumn('action', function ($order) {
                     $info_btn = '<a href="'. route('order.show', $order->id) .'" class="btn btn-sm btn-primary m-2"><i class="fa-solid fa-circle-info"></i></a>';
-                    $invoice_generate_btn = '<a href="'. route('invoice.show', $order->id) .'" class="btn btn-sm btn-dark m-2"><i class="fa-solid fa-file-invoice"></i></a>';
+                    $invoice_generate_btn = $order->isConfirm() ? '<a href="'. route('invoice.show', $order->id) .'" class="btn btn-sm btn-dark m-2"><i class="fa-solid fa-file-invoice"></i></a>' : '';
                     $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light m-2 delete-btn" data-delete-url="' . route('order.destroy', $order->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">

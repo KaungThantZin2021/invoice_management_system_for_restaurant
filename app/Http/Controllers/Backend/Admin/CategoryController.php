@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $categories = Category::query();
+            $categories = Category::orderByDesc('created_at');
 
             return DataTables::of($categories)
                 ->addColumn('image', function ($category) {
@@ -27,7 +27,7 @@ class CategoryController extends Controller
                 ->addColumn('action', function ($category) {
                     $edit_btn = '<a href="'. route('admin.category.edit', $category->id) .'" class="btn btn-sm btn-warning m-1"><i class="fa-solid fa-pen-to-square"></i></a>';
                     $info_btn = '<a href="'. route('admin.category.show', $category->id) .'" class="btn btn-sm btn-primary m-1"><i class="fa-solid fa-circle-info"></i></a>';
-                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger delete-btn m-1" data-delete-url="' . route('admin.category.destroy', $category->id) . '"><i class="fa-solid fa-trash"></i></a>';
+                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light delete-btn m-1" data-delete-url="' . route('admin.category.destroy', $category->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">
                         ' . $edit_btn . ' ' . $info_btn . ' ' . $delete_btn . '

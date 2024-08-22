@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $products = Product::query();
+            $products = Product::orderByDesc('created_at');
 
             return DataTables::of($products)
                 ->addColumn('category', function ($product) {
@@ -30,7 +30,7 @@ class ProductController extends Controller
                 })
                 ->addColumn('action', function ($product) {
                     $edit_btn = '<a href="'. route('admin.product.edit', $product->id) .'" class="btn btn-sm btn-warning m-2"><i class="fa-solid fa-pen-to-square"></i></a>';
-                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger m-2 delete-btn" data-delete-url="' . route('admin.product.destroy', $product->id) . '"><i class="fa-solid fa-trash"></i></a>';
+                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light m-2 delete-btn" data-delete-url="' . route('admin.product.destroy', $product->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">
                         ' . $edit_btn . ' ' . $delete_btn . '

@@ -16,7 +16,7 @@ class InvoiceController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $invoices = Invoice::query();
+            $invoices = Invoice::orderByDesc('created_at');
 
             return DataTables::of($invoices)
                 ->addColumn('order_number', function ($invoice) {

@@ -19,7 +19,7 @@ class StaffController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $staffs = Staff::query();
+            $staffs = Staff::orderByDesc('created_at');
 
             return DataTables::of($staffs)
                 ->addColumn('profile_image', function ($staff) {
@@ -27,8 +27,8 @@ class StaffController extends Controller
                 })
                 ->addColumn('action', function ($staff) {
                     $edit_btn = '<a href="'. route('admin.staff.edit', $staff->id) .'" class="btn btn-sm btn-warning m-2"><i class="fa-solid fa-pen-to-square"></i></a>';
-                    $change_password_btn = '<a href="'. route('admin.staff.change-password', $staff->id) .'" class="btn btn-sm btn-success m-2"><i class="fa-solid fa-user-shield"></i></a>';
-                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger m-2 delete-btn" data-delete-url="' . route('admin.staff.destroy', $staff->id) . '"><i class="fa-solid fa-trash"></i></a>';
+                    $change_password_btn = '<a href="'. route('admin.staff.change-password', $staff->id) .'" class="btn btn-sm btn-success text-light m-2"><i class="fa-solid fa-user-shield"></i></a>';
+                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light m-2 delete-btn" data-delete-url="' . route('admin.staff.destroy', $staff->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">
                         ' . $edit_btn . $change_password_btn . $delete_btn . '

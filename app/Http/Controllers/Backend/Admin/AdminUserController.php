@@ -18,7 +18,7 @@ class AdminUserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $admin_users = User::query();
+            $admin_users = User::orderByDesc('created_at');
 
             return DataTables::of($admin_users)
                 ->addColumn('profile_image', function ($admin_user) {
@@ -26,8 +26,8 @@ class AdminUserController extends Controller
                 })
                 ->addColumn('action', function ($admin_user) {
                     $edit_btn = '<a href="'. route('admin.admin-user.edit', $admin_user->id) .'" class="btn btn-sm btn-warning m-2"><i class="fa-solid fa-pen-to-square"></i></a>';
-                    $change_password_btn = '<a href="'. route('admin.admin-user.change-password', $admin_user->id) .'" class="btn btn-sm btn-success m-2"><i class="fa-solid fa-user-shield"></i></a>';
-                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger m-2 delete-btn" data-delete-url="' . route('admin.admin-user.destroy', $admin_user->id) . '"><i class="fa-solid fa-trash"></i></a>';
+                    $change_password_btn = '<a href="'. route('admin.admin-user.change-password', $admin_user->id) .'" class="btn btn-sm btn-success text-light m-2"><i class="fa-solid fa-user-shield"></i></a>';
+                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light m-2 delete-btn" data-delete-url="' . route('admin.admin-user.destroy', $admin_user->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">
                         ' . $edit_btn . $change_password_btn . $delete_btn . '
