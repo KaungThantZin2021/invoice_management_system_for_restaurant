@@ -59,7 +59,7 @@
                         <button class="btn btn-danger btn-sm text-light float-end ms-1" type="button"><i class="fa-solid fa-xmark"></i> Order Cancel</button>
                         <button class="btn btn-success btn-sm text-light float-end ms-1" type="button"><i class="fa-solid fa-check"></i> Order Confirm</button>
                         @elseif ($order->isConfirm())
-                        <button class="btn btn-dark btn-sm float-end ms-1" type="button"><i class="fas fa-file-invoice"></i> Generate Invoice</button>
+                        <button class="btn btn-dark btn-sm float-end ms-1 generate-invoice" data-order-id="{{ $order->id }}" type="button"><i class="fas fa-file-invoice"></i> Generate Invoice</button>
                         @endif
                     </h5>
 
@@ -146,70 +146,39 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready(function() {
-            var table = $('#orderTable').DataTable({
-                processing: true,
-                serverSide: true,
-                responsive: true,
-                scrollX: true,
-                ajax: '{{ route('order.index') }}',
-                columns: [{
-                        data: 'id',
-                        name: 'id'
-                    },
-                    {
-                        data: 'orderable',
-                        name: 'orderable'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status'
-                    },
-                    {
-                        data: 'order_datetime',
-                        name: 'order_datetime'
-                    },
-                    {
-                        data: 'created_at',
-                        name: 'created_at'
-                    },
-                    {
-                        data: 'updated_at',
-                        name: 'updated_at'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false
-                    }
-                ]
-            });
-
-            $(document).on('click', '.delete-btn', function(e) {
-                e.preventDefault();
-
-                let deleteUrl = $(this).data('delete-url');
+            $(document).on('click', '.generate-invoice', function() {
+                var order_id = $(this).data('order-id');
 
                 Swal.fire({
-                    title: "Are you sure to delete?",
+                    title: "Are you sure to <br>generate invoice?",
                     showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
+                    confirmButtonColor: "#4b49b6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $.post(deleteUrl, {
-                                '_method': 'DELETE'
-                            })
+
+                        Swal.fire({
+                            title: "Generating...!",
+                            html: "Please wait",
+                            timerProgressBar: true,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        $.post(`/admin/order/${order_id}/generate-invoice`,)
                             .then(function(res) {
-                                if (res.success == 1) {
-                                    table.ajax.reload();
-                                    toastr.success(res.message);
+                                if (res.success) {
+                                    setTimeout(() => {
+                                        window.location.href = `/admin/invoice`;
+                                    }, 1000);
                                 } else {
                                     toastr.warning(res.message);
                                 }
                             }).fail(function(error) {
-                                toastr.error(res.message);
+                                toastr.error(error.message);
                             });
                     }
                 });

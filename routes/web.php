@@ -110,6 +110,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::resource('product', ProductController::class);
 
         Route::resource('order', OrderController::class);
+        Route::post('order/{order}/generate-invoice', [OrderController::class, 'generateInvoice'])->name('generate-invoice');
 
         Route::resource('invoice', InvoiceController::class);
     });

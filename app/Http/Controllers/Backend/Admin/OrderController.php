@@ -6,6 +6,7 @@ use Exception;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Invoice;
 use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
@@ -45,80 +46,9 @@ class OrderController extends Controller
         return view('backend.admin.order.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $products = Product::get();
-        return view('backend.admin.order.create', compact('products'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        DB::beginTransaction();
-        try {
-            $request->validate([
-                'product_ids' => 'required|array',
-                'status' => 'required',
-            ]);
-
-            $auth_user = User::select('id', 'name')->find(auth()->guard('web')->user()->id);
-
-            $order = Order::create([
-                'orderable_type' => get_class($auth_user),
-                'orderable_id' => $auth_user->id,
-                'status' => $request->status,
-                'order_datetime' => Carbon::now()->format('Y-m-d H:i:s'),
-            ]);
-
-            $product_ids_ary = $request->product_ids;
-
-            foreach ($product_ids_ary as $key => $value) {
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'product_id' => $value,
-                    'quantity' => '',
-                    'price' => '',
-                ]);
-            }
-
-
-            DB::commit();
-            return redirect()->route('admin.order.index')->with('success', 'Order created successfully');
-
-        } catch (Exception $e) {
-            DB::rollback();
-            Log::info($e);
-            return redirect()->back()->with('error', $e->getMessage());
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Order $order)
     {
         return view('backend.admin.order.show', compact('order'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 
     /**
@@ -127,5 +57,30 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function generateInvoice(Order $order)
+    {
+        try {
+            $order = Order::with(['order_items' => function($query) {
+                $query->with(['product']);
+            }])->find($order->id);
+
+            $invoice = Invoice::firstOrCreate([
+                'order_id' => $order->id,
+                'invoiceable_type' => $order->orderable_type,
+                'invoiceable_id' => $order->orderable_id
+            ], [
+                'invoice_datetime' => Carbon::now()->format('Y-m-d H:i:s'),
+                'total_amount' => $order->order_items->sum('price'),
+                'tax' => 0
+            ]);
+
+            return successMessage();
+
+        } catch (Exception $e) {
+            Log::info($e);
+            return errorMessage($e->getMessage());
+        }
     }
 }
