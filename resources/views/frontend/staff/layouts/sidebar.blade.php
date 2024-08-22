@@ -48,6 +48,15 @@
                 Order
             </a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('invoice.index') }}">
+                <svg class="nav-icon">
+                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                </svg>
+                Invoice
+            </a>
+        </li>
     </ul>
     <div class="sidebar-footer border-top d-none d-md-flex">
         <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>

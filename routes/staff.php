@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Staff\OrderController;
+use App\Http\Controllers\Frontend\Staff\InvoiceController;
 use App\Http\Controllers\Frontend\Staff\ProductController;
 use App\Http\Controllers\Frontend\Staff\CategoryController;
 use App\Http\Controllers\Frontend\Staff\DashboardController;
@@ -74,4 +75,8 @@ Route::middleware('staff')->group(function () {
     Route::resource('order', OrderController::class);
     Route::post('/order/{order}/confirm', [OrderController::class, 'orderConfirm'])->name('order.confirm');
     Route::post('/order/{order}/cancel', [OrderController::class, 'orderCancel'])->name('order.cancel');
+    Route::post('order/{order}/generate-invoice', [OrderController::class, 'generateInvoice'])->name('generate-invoice');
+
+    Route::resource('invoice', InvoiceController::class);
+    Route::get('invoice/{invoice}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');
 });

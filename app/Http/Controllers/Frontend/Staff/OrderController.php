@@ -6,8 +6,10 @@ use Exception;
 use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Staff;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
@@ -35,8 +37,8 @@ class OrderController extends Controller
                 })
                 ->addColumn('action', function ($order) {
                     $info_btn = '<a href="'. route('order.show', $order->id) .'" class="btn btn-sm btn-primary m-2"><i class="fa-solid fa-circle-info"></i></a>';
-                    $invoice_generate_btn = '<a href="'. route('admin.invoice.show', $order->id) .'" class="btn btn-sm btn-info text-light m-2"><i class="fa-solid fa-file-invoice"></i></a>';
-                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light m-2 delete-btn" data-delete-url="' . route('admin.order.destroy', $order->id) . '"><i class="fa-solid fa-xmark"></i></a>';
+                    $invoice_generate_btn = '<a href="'. route('invoice.show', $order->id) .'" class="btn btn-sm btn-dark m-2"><i class="fa-solid fa-file-invoice"></i></a>';
+                    $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light m-2 delete-btn" data-delete-url="' . route('order.destroy', $order->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">
                         ' . $info_btn . $invoice_generate_btn . $delete_btn . '
@@ -109,5 +111,28 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         return view('frontend.staff.order.show', compact('order'));
+    }
+
+    public function generateInvoice(Order $order)
+    {
+        try {
+            $order = Order::with('order_items')->find($order->id);
+
+            $invoice = Invoice::firstOrCreate([
+                'order_id' => $order->id,
+                'invoiceable_type' => $order->orderable_type,
+                'invoiceable_id' => $order->orderable_id
+            ], [
+                'invoice_datetime' => Carbon::now()->format('Y-m-d H:i:s'),
+                'total_amount' => $order->order_items->sum('price'),
+                'tax' => 0
+            ]);
+
+            return success(['invoice_id' => $invoice->id]);
+
+        } catch (Exception $e) {
+            Log::info($e);
+            return errorMessage($e->getMessage());
+        }
     }
 }

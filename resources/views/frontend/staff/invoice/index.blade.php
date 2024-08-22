@@ -5,19 +5,20 @@
         <div class="row mb-4">
             <div class="col-12">
                 <div class="mb-4">
-                    <button type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                    <a href="{{ route('product.index') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> Create</a>
+                    @include('components.back-button')
                 </div>
                 <div class="card">
-                    <h5 class="card-header">Order</h5>
+                    <h5 class="card-header">Invoice</h5>
                     <div class="card-body">
-                        <table class="table" id="orderTable">
+                        <table class="table" id="invoicesTable">
                             <thead>
                                 <tr>
+                                    <th scope="col">Invoice No.</th>
                                     <th scope="col">Order No.</th>
-                                    <th scope="col">Orderable</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Order Datetime</th>
+                                    <th scope="col">Invoiceable</th>
+                                    <th scope="col">Invoice Datetime</th>
+                                    <th scope="col">Total Amount</th>
+                                    <th scope="col">Tax</th>
                                     <th scope="col">Created at</th>
                                     <th scope="col">Updated at</th>
                                     <th scope="col">Action</th>
@@ -34,17 +35,15 @@
 @section('js')
 <script type="text/javascript">
     $(document).ready(function() {
-        var table = $('#orderTable').DataTable({
-            processing: true,
-            serverSide: true,
-            responsive: true,
-            scrollX: true,
-            ajax: '{{ route("order.index") }}',
+        var table = $('#invoicesTable').DataTable({
+            ajax: '{{ route("invoice.index") }}',
             columns: [
+                { data: 'invoice_number', name: 'invoice_number' },
                 { data: 'order_number', name: 'order_number' },
-                { data: 'orderable', name: 'orderable' },
-                { data: 'status', name: 'status' },
-                { data: 'order_datetime', name: 'order_datetime' },
+                { data: 'invoiceable', name: 'invoiceable' },
+                { data: 'invoice_datetime', name: 'invoice_datetime' },
+                { data: 'total_amount', name: 'total_amount' },
+                { data: 'tax', name: 'tax' },
                 { data: 'created_at', name: 'created_at' },
                 { data: 'updated_at', name: 'updated_at' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }
