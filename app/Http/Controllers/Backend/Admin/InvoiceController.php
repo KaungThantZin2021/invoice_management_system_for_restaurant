@@ -57,9 +57,15 @@ class InvoiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Invoice $invoice)
     {
-        //
+        $invoice = Invoice::with(['order' => function($query) {
+            $query->with(['order_items' => function($q) {
+                $q->with('product');
+            }]);
+        }])->find($invoice->id);
+
+        return view('backend.admin.invoice.show', compact('invoice'));
     }
 
     /**
