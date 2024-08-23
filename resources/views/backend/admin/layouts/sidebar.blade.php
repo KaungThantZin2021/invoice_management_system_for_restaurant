@@ -1,7 +1,8 @@
 <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
     <div class="sidebar-header border-bottom">
         <div class="sidebar-brand">
-            <h6>{{ config('app.name') }}</h6>
+            <h5>Admin Panel</h5>
+            <h6 class="text-muted">{{ config('app.name') }}</h6>
         </div>
         <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark"
             aria-label="Close"

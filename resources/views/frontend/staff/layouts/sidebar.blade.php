@@ -1,12 +1,8 @@
 <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
     <div class="sidebar-header border-bottom">
         <div class="sidebar-brand">
-            <svg class="sidebar-brand-full" width="88" height="32" alt="CoreUI Logo">
-                <use xlink:href="assets/brand/coreui.svg#full"></use>
-            </svg>
-            <svg class="sidebar-brand-narrow" width="32" height="32" alt="CoreUI Logo">
-                <use xlink:href="assets/brand/coreui.svg#signet"></use>
-            </svg>
+            <h5>Staff Panel</h5>
+            <h6 class="text-muted">{{ config('app.name') }}</h6>
         </div>
         <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark"
             aria-label="Close"
@@ -16,16 +12,16 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('dashboard') }}">
                 <svg class="nav-icon">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                    <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-speedometer') }}"></use>
                 </svg>
-                Dashboard <span class="badge badge-sm bg-info ms-auto">NEW</span>
+                Dashboard
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('category.index') }}">
                 <svg class="nav-icon">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                    <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-fastfood') }}"></use>
                 </svg>
                 Category
             </a>
@@ -34,7 +30,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('product.index') }}">
                 <svg class="nav-icon">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                    <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-restaurant') }}"></use>
                 </svg>
                 Product
             </a>
@@ -43,7 +39,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('order.index') }}">
                 <svg class="nav-icon">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                    <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-dinner') }}"></use>
                 </svg>
                 Order
             </a>
@@ -52,7 +48,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('invoice.index') }}">
                 <svg class="nav-icon">
-                    <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                    <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-description') }}"></use>
                 </svg>
                 Invoice
             </a>
