@@ -26,11 +26,12 @@ class AdminUserController extends Controller
                 })
                 ->addColumn('action', function ($admin_user) {
                     $edit_btn = '<a href="'. route('admin.admin-user.edit', $admin_user->id) .'" class="btn btn-sm btn-warning m-2"><i class="fa-solid fa-pen-to-square"></i></a>';
+                    $info_btn = '<a href="'. route('admin.admin-user.show', $admin_user->id) .'" class="btn btn-sm btn-primary m-2"><i class="fa-solid fa-circle-info"></i></a>';
                     $change_password_btn = '<a href="'. route('admin.admin-user.change-password', $admin_user->id) .'" class="btn btn-sm btn-success text-light m-2"><i class="fa-solid fa-user-shield"></i></a>';
                     $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light m-2 delete-btn" data-delete-url="' . route('admin.admin-user.destroy', $admin_user->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">
-                        ' . $edit_btn . $change_password_btn . $delete_btn . '
+                        ' . $edit_btn . $info_btn . $change_password_btn . $delete_btn . '
                     </div>';
                 })
                 ->rawColumns(['profile_image', 'action'])
@@ -93,9 +94,9 @@ class AdminUserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $admin_user)
     {
-        //
+        return view('backend.admin.admin_user.show', compact('admin_user'));
     }
 
     /**
