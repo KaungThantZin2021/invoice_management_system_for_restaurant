@@ -14,7 +14,7 @@
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-speedometer') }}"></use>
                 </svg>
-                Dashboard
+                {{ __('message.dashboard') }}
             </a>
         </li>
 
@@ -23,7 +23,7 @@
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-fastfood') }}"></use>
                 </svg>
-                Category
+                {{ __('message.category') }}
             </a>
         </li>
 
@@ -32,7 +32,7 @@
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-restaurant') }}"></use>
                 </svg>
-                Product
+                {{ __('message.product') }}
             </a>
         </li>
 
@@ -41,7 +41,7 @@
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-dinner') }}"></use>
                 </svg>
-                Order
+                {{ __('message.order') }}
             </a>
         </li>
 
@@ -50,7 +50,7 @@
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-description') }}"></use>
                 </svg>
-                Invoice
+                {{ __('message.invoice') }}
             </a>
         </li>
     </ul>

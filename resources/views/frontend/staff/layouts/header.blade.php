@@ -27,6 +27,29 @@
             <li class="nav-item dropdown">
                 <button class="btn btn-link nav-link py-2 px-2 d-flex align-items-center" type="button"
                     aria-expanded="false" data-coreui-toggle="dropdown">
+                    <svg class="icon icon-lg">
+                        <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-language') }}"></use>
+                    </svg>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" style="--cui-dropdown-min-width: 8rem;">
+                    <li>
+                        <a href="{{ route('language.switch', 'en') }}" class="dropdown-item d-flex align-items-center {{ session('locale') == 'en' ? 'active' : '' }}">
+                            ENG
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('language.switch', 'mm') }}" class="dropdown-item d-flex align-items-center {{ session('locale') == 'mm' ? 'active' : '' }}">
+                            MM
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item py-1">
+                <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
+            </li>
+            <li class="nav-item dropdown">
+                <button class="btn btn-link nav-link py-2 px-2 d-flex align-items-center" type="button"
+                    aria-expanded="false" data-coreui-toggle="dropdown">
                     <svg class="icon icon-lg theme-icon-active">
                         <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-contrast') }}"></use>
                     </svg>
