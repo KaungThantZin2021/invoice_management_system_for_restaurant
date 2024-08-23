@@ -39,7 +39,8 @@ class AuthenticatedSessionController extends Controller
         if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(RouteServiceProvider::ADMIN_HOME);
+            // return redirect()->intended(RouteServiceProvider::ADMIN_HOME);
+            return redirect()->route('admin.dashboard');
         }
 
         return back()->withErrors([

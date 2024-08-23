@@ -14,13 +14,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="description" content="{{ config('app.name') }}">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>CoreUI Free Bootstrap Admin Template</title>
+    <title>{{ config('app.name') }} (Staff Panel)</title>
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('theme/src/assets/favicon/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('theme/src/assets/favicon/apple-icon-60x60.png') }}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('theme/src/assets/favicon/apple-icon-72x72.png') }}">
