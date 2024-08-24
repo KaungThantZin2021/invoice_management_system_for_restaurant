@@ -33,6 +33,39 @@ import { Tooltip, Toast, Popover } from '@coreui/coreui'
 import Swal from 'sweetalert2';
 window.Swal = Swal;
 
+const CustomAlert = Swal.mixin({
+    text: "Are you sure to delete?",
+    width: 400,
+    showCancelButton: true,
+    confirmButtonText: 'Yes',
+    confirmButtonColor: '#5856d6',
+    cancelButtonText: 'No',
+    cancelButtonColor: '#6b7785',
+    customClass: {
+        popup: 'p-0 card',
+        actions: 'mt-1 mb-3 p-0',
+        confirmButton: 'py-2',
+        cancelButton: 'bg-secondary py-2',
+    }
+});
+window.CustomAlert = CustomAlert;
+
+const ProcessingAlert = Swal.mixin({
+    text: "Processing..., Please wait!",
+    width: 400,
+    customClass: {
+        popup: 'p-0 card',
+        actions: 'mt-1 mb-3 p-0',
+        confirmButton: 'py-2',
+        cancelButton: 'bg-secondary py-2',
+    },
+    timerProgressBar: true,
+    didOpen: () => {
+        Swal.showLoading();
+    }
+});
+window.ProcessingAlert = ProcessingAlert;
+
 const DeleteAlert = Swal.mixin({
     text: "Are you sure to delete?",
     width: 350,

@@ -71,7 +71,7 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="card mb-3" style="max-width: 18rem;">
-                        <div class="card-header bg-transparent">Order Items</div>
+                        <div class="card-header bg-transparent">{{ __('message.order_items') }}</div>
                         <div class="card-body">
                             <ol class="list-group">
                                 <li class="list-group-item d-flex justify-content-between align-items-start"
@@ -222,22 +222,13 @@
 
                 // Order --- start
                 orderConfirmButton(order_id) {
-                    Swal.fire({
-                    title: "Are you sure to order?",
-                        showCancelButton: true,
-                        confirmButtonColor: "#4b49b6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes",
-                        cancelButtonText: "No",
-                    }).then((result) => {
+                    CustomAlert.fire({
+                        text: "{{ translate('Are you sure to order?', 'အမှာစာတင်ရန် အတည်ပြုပါသလား?') }}",
+                    })
+                    .then((result) => {
                         if (result.isConfirmed) {
-                            Swal.fire({
-                                title: "Ordering...!",
-                                html: "Please wait",
-                                timerProgressBar: true,
-                                didOpen: () => {
-                                    Swal.showLoading();
-                                }
+                            ProcessingAlert.fire({
+                                text: "{{ translate('Ordering..., Please wait!', 'အမှာစာမှာယူနေသည်..., ခဏစောင့်ပါ!') }}",
                             });
 
                             axios.post(`/admin/order/${order_id}/confirm`)
@@ -258,26 +249,16 @@
                                     console.error("There was an error from the order confirm!", error);
                                 });
                         }
-                    });
+                    })
                 },
                 orderCancelButton(order_id) {
-                    Swal.fire({
-                    title: "Are you sure to order cancel?",
-                        showCancelButton: true,
-                        confirmButtonColor: "#4b49b6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes",
-                        cancelButtonText: "No",
-                    }).then((result) => {
+                    CustomAlert.fire({
+                        text: "{{ translate('Are you sure to order cancel?', 'အမှာစာပယ်ဖျက်ရန် သေချာပါသလား?') }}",
+                    })
+                    .then((result) => {
                         if (result.isConfirmed) {
-
-                            Swal.fire({
-                                title: "Canceling...!",
-                                html: "Please wait",
-                                timerProgressBar: true,
-                                didOpen: () => {
-                                    Swal.showLoading();
-                                }
+                            ProcessingAlert.fire({
+                                text: "{{ translate('Canceling..., Please wait!', 'အမှာစာပယ်ဖျက်နေသည်..., ခဏစောင့်ပါ!') }}",
                             });
 
                             axios.post(`/admin/order/${order_id}/cancel`)
@@ -298,7 +279,7 @@
                                     console.error("There was an error from the order cancel!", error);
                                 });
                         }
-                    });
+                    })
                 }
                 // Order --- end
             },
