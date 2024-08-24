@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Admin Name',
+                'profile_image' => '',
                 'password' => Hash::make(123123123),
             ]
         );
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Staff Name',
+                'profile_image' => '',
                 'password' => Hash::make(123123123),
             ]
         );
