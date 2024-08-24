@@ -65,18 +65,13 @@
             ]
         });
 
-        $(document).on('click', '.delete-btn', function(e){
+        $(document).on('click', '.delete-btn', function (e) {
             e.preventDefault();
-
             let deleteUrl = $(this).data('delete-url');
-
-            Swal.fire({
-                title: "Are you sure to delete?",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
+            DeleteAlert.fire({
+                text: "{{ translate('Are you sure to delete?', 'ဖျက်ရန်သေချာပါသလား?') }}",
+            })
+            .then((result) => {
                 if (result.isConfirmed) {
                     $.post(deleteUrl, {
                         '_method': 'DELETE'
@@ -92,7 +87,7 @@
                         toastr.error(res.message);
                     });
                 }
-            });
+            })
         });
     });
     </script>

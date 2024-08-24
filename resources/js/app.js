@@ -33,6 +33,22 @@ import { Tooltip, Toast, Popover } from '@coreui/coreui'
 import Swal from 'sweetalert2';
 window.Swal = Swal;
 
+const DeleteAlert = Swal.mixin({
+    text: "Are you sure to delete?",
+    width: 350,
+    showCancelButton: true,
+    confirmButtonColor: '#e55353',
+    cancelButtonColor: '#6b7785',
+    confirmButtonText: 'Delete',
+    customClass: {
+        popup: 'p-0 card',
+        actions: 'mt-1 mb-3 p-0',
+        confirmButton: 'py-2',
+        cancelButton: 'bg-secondary py-2',
+    }
+});
+window.DeleteAlert = DeleteAlert;
+
 import toastr from 'toastr';
 window.toastr = toastr;
 
