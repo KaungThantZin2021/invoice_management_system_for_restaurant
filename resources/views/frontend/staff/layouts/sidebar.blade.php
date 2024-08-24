@@ -37,7 +37,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('order.index') }}">
+            <a class="nav-link {{ request()->routeIs('order.*') ? 'active' : '' }}" href="{{ route('order.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-dinner') }}"></use>
                 </svg>
@@ -46,7 +46,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('invoice.index') }}">
+            <a class="nav-link {{ request()->routeIs('invoice.*') ? 'active' : '' }}" href="{{ route('invoice.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-description') }}"></use>
                 </svg>

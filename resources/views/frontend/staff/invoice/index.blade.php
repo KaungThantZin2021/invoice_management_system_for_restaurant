@@ -1,5 +1,13 @@
 @extends('frontend.staff.layouts.app')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb my-0">
+        <li class="breadcrumb-item active"><span>{{ __('message.invoice') }}</span></li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
     <div class="container-lg px-4">
         <div class="row mb-4">
@@ -8,7 +16,7 @@
                     @include('components.back-button')
                 </div>
                 <div class="card">
-                    <h5 class="card-header">Invoice</h5>
+                    <h5 class="card-header">{{ __('message.invoices') }}</h5>
                     <div class="card-body">
                         <table class="table" id="invoicesTable">
                             <thead>

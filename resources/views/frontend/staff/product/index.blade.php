@@ -1,11 +1,19 @@
 @extends('frontend.staff.layouts.app')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb my-0">
+        <li class="breadcrumb-item active"><span>{{ __('message.product') }}</span></li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
     <div id="app">
         <div class="container-lg px-4">
             <div class="row mb-4">
                 <div class="col-6">
-                    <h2>{{ __('message.product') }}</h2>
+                    <h2>{{ __('message.products') }}</h2>
                 </div>
                 <div class="col-6">
                     <div class="input-group mb-3">
@@ -122,8 +130,8 @@
                         </div>
                         <div class="card-footer bg-transparent">
                             <div class="d-grid gap-2">
-                                <button class="btn btn-primary btn-sm" type="button" @click="orderConfirmButton(add_to_cart_order.id)">Order</button>
-                                <button class="btn btn-secondary btn-sm" type="button" @click="orderCancelButton(add_to_cart_order.id)">Cancel</button>
+                                <button class="btn btn-primary btn-sm" type="button" @click="orderConfirmButton(add_to_cart_order.id)">{{ __('message.order_confirm') }}</button>
+                                <button class="btn btn-secondary btn-sm" type="button" @click="orderCancelButton(add_to_cart_order.id)">{{ __('message.order_cancel') }}</button>
                             </div>
                         </div>
                     </div>

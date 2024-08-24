@@ -34,12 +34,12 @@
                 <ul class="dropdown-menu dropdown-menu-end" style="--cui-dropdown-min-width: 8rem;">
                     <li>
                         <a href="{{ route('language.switch', 'en') }}" class="dropdown-item d-flex align-items-center {{ session('locale') == 'en' ? 'active' : '' }}">
-                            ENG
+                            ENG - အင်္ဂလိပ်
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('language.switch', 'mm') }}" class="dropdown-item d-flex align-items-center {{ session('locale') == 'mm' ? 'active' : '' }}">
-                            MM
+                            MM - မြန်မာ
                         </a>
                     </li>
                 </ul>
@@ -113,13 +113,6 @@
         </ul>
     </div>
     <div class="container-fluid px-4">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb my-0">
-                <li class="breadcrumb-item"><a href="#">Home</a>
-                </li>
-                <li class="breadcrumb-item active"><span>Dashboard</span>
-                </li>
-            </ol>
-        </nav>
+        @yield('breadcrumb')
     </div>
 </header>

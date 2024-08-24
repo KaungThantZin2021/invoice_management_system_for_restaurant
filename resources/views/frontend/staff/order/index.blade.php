@@ -1,15 +1,23 @@
 @extends('frontend.staff.layouts.app')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb my-0">
+        <li class="breadcrumb-item active"><span>{{ __('message.order') }}</span></li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
     <div class="container-lg px-4">
         <div class="row mb-4">
             <div class="col-12">
                 <div class="mb-4">
-                    <button type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                    <a href="{{ route('product.index') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> Create a order</a>
+                    @include('components.back-button')
+                    <a href="{{ route('product.index') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> {{ __('message.create_a_order') }}</a>
                 </div>
                 <div class="card">
-                    <h5 class="card-header">{{ __('message.order') }}</h5>
+                    <h5 class="card-header">{{ __('message.orders') }}</h5>
                     <div class="card-body">
                         <table class="table" id="orderTable">
                             <thead>

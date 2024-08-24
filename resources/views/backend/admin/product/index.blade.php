@@ -5,7 +5,7 @@
         <div class="row mb-4">
             <div class="col-12">
                 <div class="mb-4">
-                    <button type="button" class="btn btn-dark"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    @include('components.back-button')
                     <a href="{{ route('admin.product.create') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> Create</a>
                 </div>
                 <div class="card">

@@ -1,5 +1,13 @@
 @extends('frontend.staff.layouts.app')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb my-0">
+        <li class="breadcrumb-item active"><span>{{ __('message.dashboard') }}</span></li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
 <div class="container-lg px-4">
     <div class="row mb-4">

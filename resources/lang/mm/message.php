@@ -5,25 +5,40 @@ return [
     'profile' => 'ပရိုဖိုင်',
     'logout' => 'အကောင့်မှထွက်ရန်',
 
+    'back' => 'နောက်သို့',
+
     'dashboard' => 'ဒက်ရှ်ဘုတ်',
+
     'admin_user' => 'admin အသုံးပြုသူ',
+    'admin_users' => 'admin အသုံးပြုသူများ',
+
     'staff' => 'ဝန်ထမ်း',
+    'staffs' => 'ဝန်ထမ်းများ',
 
     'category' => 'အမျိုးအစား',
     'categories' => 'အမျိုးအစားများ',
     'all_categories' => 'အမျိုးအစားများအားလုံး',
 
     'product' => 'ပစ္စည်း',
+    'products' => 'ပစ္စည်းများ',
 
     'order' => 'အမှာစာ',
+    'orders' => 'အမှာစာများ',
+    'create_a_order' => 'အမှာစာတင်ရန်',
     'order_detail' => 'အမှာစာအသေးစိတ်',
     'order_items' => 'အမှာစာပစ္စည်းများ',
     'order_number' => 'အမှာစာအမှတ်',
     'orderable' => 'အမှာစာမှာပေးသူ',
     'order_datetime' => 'အမှာစာမှာချိန်',
     'status' => 'အခြေအနေ',
+    'no.' => 'စဥ်',
+    'item_name' => 'ပစ္စည်းအမည်',
+    'item_price' => 'ပစ္စည်းစျေး',
+    'quantity' => 'အရေအတွက်',
+    'total' => 'စုစုပေါင်း',
 
     'invoice' => 'ပြေစာ',
+    'invoices' => 'ပြေစာများ',
     'invoice_detail' => 'ပြေစာအသေးစိတ်',
     'invoice_number' => 'ပြေစာအမှတ်',
     'invoiceable' => 'ပြေစာထုတ်ပေးသူ',

@@ -1,9 +1,21 @@
 @extends('frontend.staff.layouts.app')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb my-0">
+        <li class="breadcrumb-item"><a href="{{ route('invoice.index') }}">{{ __('message.invoice') }}</a></li>
+        <li class="breadcrumb-item active"><span>{{ $invoice->invoice_number }}</span></li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
     <div class="container-lg px-4">
         <div class="row mb-4">
             <div class="col-12">
+                <div class="mb-4">
+                    @include('components.back-button')
+                </div>
                 <div class="card">
                     @php
                         $order = optional($invoice->order);
