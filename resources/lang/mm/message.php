@@ -80,4 +80,6 @@ return [
     'order_cancel' => 'အမှာစာပယ်ဖျက်ရန်',
     'generate_invoice' => 'ပြေစာထုတ်ရန်',
     'download_invoice' => 'ပြေစာဒေါင်းလော့လုပ်ရန်',
+
+    'revenue' => 'ဝင်ငွေ'
 ];

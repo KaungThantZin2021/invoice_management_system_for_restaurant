@@ -41,43 +41,63 @@ class DashboardController extends Controller
     {
         try {
             if (!$request->ajax()) {
-                throw new Exception('invalid request!');
+                throw new Exception('Invalid request!');
             }
 
-            $startOf = Carbon::now()->startOfWeek();
-            $endOf = Carbon::now()->endOfWeek();
+            $start_of = Carbon::now()->startOfWeek();
+            $end_of = Carbon::now()->endOfWeek();
 
             if ($request->chart_current_duration == 'monthly') {
-                $startOf = Carbon::now()->startOfMonth();
-                $endOf = Carbon::now()->endOfMonth();
+                $start_of = Carbon::now()->startOfMonth();
+                $end_of = Carbon::now()->endOfMonth();
             }
 
-            $orderCounts = Order::where('orderable_type', Staff::class)
-                                ->where('orderable_id', auth()->guard('staff')->user()->id)
-                                ->whereBetween('created_at', [$startOf, $endOf])
-                                ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
-                                ->groupBy('date')
-                                ->orderBy('date')
-                                ->get();
+            $order_counts = Order::where('orderable_type', Staff::class)
+                            ->where('orderable_id', auth()->guard('staff')->user()->id)
+                            ->whereBetween('created_at', [$start_of, $end_of])
+                            ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
+                            ->groupBy('date')
+                            ->orderBy('date')
+                            ->get();
+
+            $order_revenues = Order::where('orderable_type', Staff::class)
+                            ->where('orderable_id', auth()->guard('staff')->user()->id)
+                            ->whereBetween('orders.created_at', [$start_of, $end_of])
+                            ->join('order_items', 'orders.id', '=', 'order_items.order_id')
+                            ->selectRaw('DATE(orders.created_at) as date, SUM(order_items.price) as revenue')
+                            ->groupBy('date')
+                            ->orderBy('date')
+                            ->get();
 
             $dates = [];
             $counts = [];
+            $total_counts = 0;
+            $revenues = [];
+            $total_revenues = 0;
 
-            $currentDate = $startOf->copy();
+            $current_date = $start_of->copy();
 
-            while ($currentDate->lte($endOf)) {
-                $formattedDate = $currentDate->format('Y-m-d');
-                $dates[] = $formattedDate;
+            while ($current_date->lte($end_of)) {
+                $formatted_date = $current_date->format('Y-m-d');
+                $dates[] = $formatted_date;
 
-                $orderCount = $orderCounts->firstWhere('date', $formattedDate);
-                $counts[] = $orderCount ? $orderCount->count : 0;
+                $order_count = $order_counts->firstWhere('date', $formatted_date);
+                $counts[] = $order_count ? $order_count->count : 0;
+                $total_counts += $order_count ? $order_count->count : 0;
 
-                $currentDate->addDay();
+                $order_revenue = $order_revenues->firstWhere('date', $formatted_date);
+                $revenues[] = $order_revenue ? $order_revenue->revenue : 0;
+                $total_revenues += $order_revenue ? $order_revenue->revenue : 0;
+
+                $current_date->addDay();
             }
 
             $orders_ary = [
                 'dates' => $dates,
-                'counts' => $counts
+                'counts' => $counts,
+                'total_counts' => number_format($total_counts),
+                'revenues' => $revenues,
+                'total_revenues' => number_format($total_revenues) . ' ' . __('message.mmk'),
             ];
 
             return success($orders_ary);

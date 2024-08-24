@@ -80,4 +80,6 @@ return [
     'order_cancel' => 'Order Cancel',
     'generate_invoice' => 'Generate Invoice',
     'download_invoice' => 'Download Invoice',
+
+    'revenue' => 'Revenue'
 ];

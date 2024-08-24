@@ -123,16 +123,29 @@
             // order pie chart --- end
 
             // order line chart --- start
+            var orderLabel = "{{ __('message.order') }}";
+            var revenueLabel = "{{ __('message.revenue') }}";
             var orderLineChart = new Chart(document.getElementById('orderLineChart'), {
                 type: 'line',
                 data: {
                     labels: [],
                     datasets: [
                         {
-                            label: 'Order',
+                            label: orderLabel,
                             data: [],
-                            fill: false,
+                            backgroundColor: 'rgba(51, 153, 255, 0.2)',
                             borderColor: 'rgb(51, 153, 255)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.1
+                        },
+                        {
+                            label: revenueLabel,
+                            data: [],
+                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 2,
+                            fill: true,
                             tension: 0.1
                         }
                     ]
@@ -154,8 +167,14 @@
                     })
                     .then(function(res) {
                         if (res.success == 1) {
+                            console.log(res.data.total_counts);
+                            console.log(res.data.total_revenues);
+
                             orderLineChart.data.labels = res.data.dates;
                             orderLineChart.data.datasets[0].data = res.data.counts;
+                            orderLineChart.data.datasets[0].label = `${orderLabel} (${res.data.total_counts})`;
+                            orderLineChart.data.datasets[1].data = res.data.revenues;
+                            orderLineChart.data.datasets[1].label = `${revenueLabel} (${res.data.total_revenues})`;
 
                             orderLineChart.update();
 
