@@ -3,8 +3,8 @@
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-0">
-        <li class="breadcrumb-item"><a href="{{ route('admin.admin-user.index') }}">{{ __('message.admin_user') }}</a></li>
-        <li class="breadcrumb-item active"><span>{{ __('message.admin_user_detail') }}</span></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.staff.index') }}">{{ __('message.staff') }}</a></li>
+        <li class="breadcrumb-item active"><span>{{ __('message.staff_detail') }}</span></li>
     </ol>
 </nav>
 @endsection
@@ -17,44 +17,44 @@
                     @include('components.back-button')
                 </div>
                 <div class="card">
-                    <h5 class="card-header">{{ __('message.admin_user_detail') }}</h5>
+                    <h5 class="card-header">{{ __('message.staff_detail') }}</h5>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-6">
                                 <div>
                                     <label class="fw-semibold">{{ __('message.name') }}</label>
-                                    <p>{{ $admin_user->name }}</p>
+                                    <p>{{ $staff->name }}</p>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
                                     <label class="fw-semibold">{{ __('message.email') }}</label>
-                                    <p>{{ $admin_user->email }}</p>
+                                    <p>{{ $staff->email }}</p>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
                                     <label class="fw-semibold">{{ __('message.phone') }}</label>
-                                    <p>{{ $admin_user->phone }}</p>
+                                    <p>{{ $staff->phone }}</p>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
                                     <label class="fw-semibold">{{ __('message.create_at') }}</label>
-                                    <p>{{ $admin_user->created_at }}</p>
+                                    <p>{{ $staff->created_at }}</p>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
                                     <label class="fw-semibold">{{ __('message.update_at') }}</label>
-                                    <p>{{ $admin_user->updated_at }}</p>
+                                    <p>{{ $staff->updated_at }}</p>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
                                     <label class="fw-semibold">{{ __('message.profile_image') }}</label>
                                     <div>
-                                        <img src="{{ $admin_user->profile_image_url }}" class="object-cover w-24 h-24"/>
+                                        <img src="{{ $staff->profile_image_url }}" class="object-cover w-24 h-24"/>
                                     </div>
                                 </div>
                             </div>

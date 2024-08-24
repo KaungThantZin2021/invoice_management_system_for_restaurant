@@ -9,6 +9,15 @@ return [
 
     'dashboard' => 'Dashboard',
 
+    'name' => 'Name',
+    'email' => 'Email',
+    'phone' => 'Phone',
+    'image' => 'Image',
+    'profile_image' => 'Profile Image',
+    'create_at' => 'Created at',
+    'update_at' => 'Updated at',
+    'action' => 'Action',
+
     'admin_user' => 'Admin User',
     'admin_users' => 'Admin Users',
     'create_admin_user' => 'Create Admin User',
@@ -18,6 +27,10 @@ return [
 
     'staff' => 'Staff',
     'staffs' => 'Staffs',
+    'create_staff' => 'Create Staff',
+    'edit_staff' => 'Edit Staff',
+    'staff_detail' => 'Staff Detail',
+    'change_staff_password' => 'Change Staff Password',
 
     'category' => 'Category',
     'categories' => 'Categories',
@@ -47,10 +60,6 @@ return [
     'invoice_number' => 'Invoice Number',
     'invoiceable' => 'Invoiceable',
     'invoice_datetime' => 'Invoice Datetime',
-
-    'create_at' => 'Created at',
-    'update_at' => 'Updated at',
-    'action' => 'Action',
 
     'total_product' => 'Total Product',
     'total_quantity' => 'Total Quantity',

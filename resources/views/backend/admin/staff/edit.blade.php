@@ -1,5 +1,14 @@
 @extends('backend.admin.layouts.app')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb my-0">
+        <li class="breadcrumb-item"><a href="{{ route('admin.staff.index') }}">{{ __('message.staff') }}</a></li>
+        <li class="breadcrumb-item active"><span>{{ __('message.edit_staff') }}</span></li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
     <div class="container-lg px-4">
         <div class="row mb-4">
@@ -8,7 +17,7 @@
                     @include('components.back-button')
                 </div>
                 <div class="card">
-                    <h5 class="card-header">Update Staff</h5>
+                    <h5 class="card-header">{{ __('message.edit_staff') }}</h5>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.staff.update', $staff->id) }}" enctype="multipart/form-data" class="row g-3">
                             @csrf

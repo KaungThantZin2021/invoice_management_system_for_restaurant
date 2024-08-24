@@ -17,7 +17,7 @@
                     @include('components.back-button')
                 </div>
                 <div class="card">
-                    <h5 class="card-header">Change Admin User Password</h5>
+                    <h5 class="card-header">{{ __('message.change_admin_user_password') }}</h5>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.admin-user.update-password', $admin_user->id) }}" enctype="multipart/form-data" class="row g-3">
                             @csrf

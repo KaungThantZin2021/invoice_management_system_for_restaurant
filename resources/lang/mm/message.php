@@ -9,6 +9,15 @@ return [
 
     'dashboard' => 'ဒက်ရှ်ဘုတ်',
 
+    'name' => 'အမည်',
+    'email' => 'အီးမေးလ်',
+    'phone' => 'ဖုန်းနံပါတ််',
+    'image' => 'ပုံ',
+    'profile_image' => 'ပရိုဖိုင်ပုံ',
+    'create_at' => 'စတင်ဖန်တီးချိန်',
+    'update_at' => 'ထပ်မံပြုပြင်ချိန်',
+    'action' => 'လုပ်ဆောင်ချက်',
+
     'admin_user' => 'admin အသုံးပြုသူ',
     'admin_users' => 'admin အသုံးပြုသူများ',
     'create_admin_user' => 'admin အသုံးပြုသူအသစ်ထည့်ရန်',
@@ -18,6 +27,10 @@ return [
 
     'staff' => 'ဝန်ထမ်း',
     'staffs' => 'ဝန်ထမ်းများ',
+    'create_staff' => 'ဝန်ထမ်းအသစ်ထည့်ရန်',
+    'edit_staff' => 'ဝန်ထမ်းအားပြုပြင်ရန်',
+    'staff_detail' => 'ဝန်ထမ်းအသေးစိတ်',
+    'change_staff_password' => 'ဝန်ထမ်း၏ password အားပြောင်းလဲရန်',
 
     'category' => 'အမျိုးအစား',
     'categories' => 'အမျိုးအစားများ',
@@ -47,10 +60,6 @@ return [
     'invoice_number' => 'ပြေစာအမှတ်',
     'invoiceable' => 'ပြေစာထုတ်ပေးသူ',
     'invoice_datetime' => 'ပြေစာထုတ်ချိန်',
-
-    'create_at' => 'စတင်ဖန်တီးချိန်',
-    'update_at' => 'ထပ်မံပြုပြင်ချိန်',
-    'action' => 'လုပ်ဆောင်ချက်',
 
     'total_product' => 'စုစုပေါင်းပစ္စည်း',
     'total_quantity' => 'စုစုပေါင်းအရေအတွက်',

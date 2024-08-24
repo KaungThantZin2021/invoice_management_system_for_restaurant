@@ -27,11 +27,12 @@ class StaffController extends Controller
                 })
                 ->addColumn('action', function ($staff) {
                     $edit_btn = '<a href="'. route('admin.staff.edit', $staff->id) .'" class="btn btn-sm btn-warning m-2"><i class="fa-solid fa-pen-to-square"></i></a>';
+                    $info_btn = '<a href="'. route('admin.staff.show', $staff->id) .'" class="btn btn-sm btn-primary m-2"><i class="fa-solid fa-circle-info"></i></a>';
                     $change_password_btn = '<a href="'. route('admin.staff.change-password', $staff->id) .'" class="btn btn-sm btn-success text-light m-2"><i class="fa-solid fa-user-shield"></i></a>';
                     $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light m-2 delete-btn" data-delete-url="' . route('admin.staff.destroy', $staff->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">
-                        ' . $edit_btn . $change_password_btn . $delete_btn . '
+                        ' . $edit_btn . $info_btn . $change_password_btn . $delete_btn . '
                     </div>';
                 })
                 ->rawColumns(['profile_image', 'action'])
@@ -94,9 +95,9 @@ class StaffController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Staff $staff)
     {
-        //
+        return view('backend.admin.staff.show', compact('staff'));
     }
 
     /**

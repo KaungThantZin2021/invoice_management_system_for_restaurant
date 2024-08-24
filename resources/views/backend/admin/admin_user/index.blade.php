@@ -17,18 +17,18 @@
                     <a href="{{ route('admin.admin-user.create') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> {{ __('message.create_admin_user') }}</a>
                 </div>
                 <div class="card">
-                    <h5 class="card-header">Admin User</h5>
+                    <h5 class="card-header">{{ __('message.admin_users') }}</h5>
                     <div class="card-body">
                         <table class="table" id="adminUsersTable">
                             <thead>
                                 <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Phone</th>
-                                    <th scope="col">Profile Image</th>
-                                    <th scope="col">Created at</th>
-                                    <th scope="col">Updated at</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">{{ __('message.name') }}</th>
+                                    <th scope="col">{{ __('message.email') }}</th>
+                                    <th scope="col">{{ __('message.phone') }}</th>
+                                    <th scope="col">{{ __('message.profile_image') }}</th>
+                                    <th scope="col">{{ __('message.create_at') }}</th>
+                                    <th scope="col">{{ __('message.update_at') }}</th>
+                                    <th scope="col">{{ __('message.action') }}</th>
                                 </tr>
                             </thead>
                         </table>

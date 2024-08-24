@@ -17,7 +17,7 @@
                     @include('components.back-button')
                 </div>
                 <div class="card">
-                    <h5 class="card-header">Update Admin User</h5>
+                    <h5 class="card-header">{{ __('message.edit_admin_user') }}</h5>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.admin-user.update', $admin_user->id) }}" enctype="multipart/form-data" class="row g-3">
                             @csrf

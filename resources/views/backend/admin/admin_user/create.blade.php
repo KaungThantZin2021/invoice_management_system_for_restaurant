@@ -17,7 +17,7 @@
                     @include('components.back-button')
                 </div>
                 <div class="card">
-                    <h5 class="card-header">Create Staff</h5>
+                    <h5 class="card-header">{{ __('message.create_admin_user') }}</h5>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.staff.store') }}" enctype="multipart/form-data" class="row g-3">
                             @csrf
