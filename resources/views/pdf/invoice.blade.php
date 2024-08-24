@@ -8,12 +8,37 @@
             font-family: 'myanmar';
         }
 
+        table {
+            width: 100%;
+            border-bottom: 1px solid black;
+        }
+
+        td {
+            font-size: 15px;
+        }
+
+        .m-5 {
+            margin: 10px;
+        }
+
         .d-flex {
             display: flex;
         }
 
         .justify-content-between {
             justify-content: space-between;
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .text-right {
+            text-align: right
+        }
+
+        .text-left {
+            text-align: left
         }
 
     </style>
@@ -29,70 +54,52 @@
         $tax = 0;
         $total_amount = $total_price + $tax;
     @endphp
-
-    <table>
+    <h3 class="text-center">{{ config('app.name') }}</h3>
+    <table class="m-5">
         <tr class="d-flex justify-content-between">
-            <td>A</td>
-            <td>1</td>
+            <td class="text-left">{{ __('message.invoice_number') }}</td>
+            <td class="text-right">{{ $invoice->invoice_number }}</td>
         </tr>
-        <tr>
-            <td>B</td>
-            <td>2</td>
+        <tr class="d-flex justify-content-between">
+            <td class="text-left">{{ __('message.order_number') }}</td>
+            <td class="text-right">{{ $order->order_number }}</td>
         </tr>
     </table>
-
-    {{-- <div class="card">
-        <div class="card-body">
-            <ol class="list-group mt-2">
-                <li class="list-group-item align-items-start">
-                    <div class="d-flex justify-content-between">
-                        <div class="fw-bold">{{ __('message.invoice_number') }}</div>
-                        <div class="total-amount">{{ $invoice->invoice_number }}</div>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <div class="fw-bold">{{ __('message.order_number') }}</div>
-                        <div class="total-amount">{{ $order->order_number }}</div>
-                    </div>
-                </li>
-            </ol>
-            <ol class="list-group list-group-numbered mt-2">
-                @foreach ($order_items as $key => $order_item)
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="w-1/2">
-                        <div>{{ $key + 1 }}. <span class="fw-bold">{{ $order_item->product->name }}</span></div>
-                    </div>
-                    <span class="">{{ number_format($order_item->quantity) }}</span>
-                    <span class="">{{ number_format($order_item->price) }} {{ __('message.mmk') }}</span>
-                </li>
-                @endforeach
-            </ol>
-            <ol class="list-group mt-2">
-                <li class="list-group-item align-items-start">
-                    <div class="d-flex justify-content-between">
-                        <div class="fw-bold">{{ __('message.total_product') }}</div>
-                        <div>{{ number_format($total_product) }}</div>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <div class="fw-bold">{{ __('message.total_quantity') }}</div>
-                        <div>{{ number_format($total_quantity) }}</div>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <div class="fw-bold">{{ __('message.total_price') }}</div>
-                        <div>{{ number_format($total_price) }} {{ __('message.mmk') }}</div>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <div class="fw-bold">{{ __('message.tax') }}</div>
-                        <div>{{ number_format($tax) }} {{ __('message.mmk') }}</div>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <div class="fw-bold">{{ __('message.total_amount') }}</div>
-                        <div>{{ number_format($total_amount) }} {{ __('message.mmk') }}</div>
-                    </div>
-                </li>
-            </ol>
-        </div>
-    </div> --}}
+    <table class="m-5">
+        @foreach ($order_items as $key => $order_item)
+        <tr class="d-flex justify-content-between">
+            <td class="text-left">{{ $key + 1 }} . {{ $order_item->product->name }}</td>
+            <td class="text-center">{{ number_format($order_item->quantity) }}</td>
+            <td class="text-right">{{ number_format($order_item->price) }} {{ __('message.mmk') }}</td>
+        </tr>
+        @endforeach
+    </table>
+    <table class="m-5">
+        <tr class="d-flex justify-content-between">
+            <td class="text-left">{{ __('message.total_product') }}</td>
+            <td class="text-right">{{ number_format($total_product) }}</td>
+        </tr>
+        <tr class="d-flex justify-content-between">
+            <td class="text-left">{{ __('message.total_quantity') }}</td>
+            <td class="text-right">{{ number_format($total_quantity) }}</td>
+        </tr>
+    </table>
+    <table class="m-5">
+        <tr class="d-flex justify-content-between">
+            <td class="text-left">{{ __('message.total_price') }}</td>
+            <td class="text-right">{{ number_format($total_price) }} {{ __('message.mmk') }}</td>
+        </tr>
+        <tr class="d-flex justify-content-between">
+            <td class="text-left">{{ __('message.tax') }}</td>
+            <td class="text-right">{{ number_format($tax) }} {{ __('message.mmk') }}</td>
+        </tr>
+    </table>
+    <table class="m-5">
+        <tr class="d-flex justify-content-between">
+            <td class="text-left">{{ __('message.total_amount') }}</td>
+            <td class="text-right">{{ number_format($total_amount) }} {{ __('message.mmk') }}</td>
+        </tr>
+    </table>
+    <p class="text-center" style="font-size: 10px; margin-top: 30px;">This is computer generated document.</p>
 </body>
 </html>
