@@ -5,24 +5,24 @@
         <div class="row mb-4">
             <div class="col-12">
                 <div class="card">
-                    <h5 class="card-header">Order Detail</h5>
+                    <h5 class="card-header">{{ __('message.order_detail') }}</h5>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-6">
                                 <div>
-                                    <label class="fw-semibold">Order Number</label>
+                                    <label class="fw-semibold">{{ __('message.order_number') }}</label>
                                     <p>{{ $order->order_number }}</p>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
-                                    <label class="fw-semibold">Orderable</label>
+                                    <label class="fw-semibold">{{ __('message.orderable') }}</label>
                                     <p>{{ optional($order->orderable)->name }} ({{ class_basename($order->orderable) }})</p>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
-                                    <label class="fw-semibold">Status</label>
+                                    <label class="fw-semibold">{{ __('message.status') }}</label>
                                     <p>
                                         @if ($order->isPending())
                                             <span class="badge text-bg-warning">{{ ucfirst($order->status) }}</span>
@@ -38,19 +38,19 @@
                             </div>
                             <div class="col-6">
                                 <div>
-                                    <label class="fw-semibold">Order Datetime</label>
+                                    <label class="fw-semibold">{{ __('message.order_datetime') }}</label>
                                     <p>{{ $order->order_datetime }}</p>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
-                                    <label class="fw-semibold">Created at</label>
+                                    <label class="fw-semibold">{{ __('message.create_at') }}</label>
                                     <p>{{ $order->created_at }}</p>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
-                                    <label class="fw-semibold">Updated at</label>
+                                    <label class="fw-semibold">{{ __('message.update_at') }}</label>
                                     <p>{{ $order->updated_at }}</p>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
 
                 <div class="card mt-4">
                     <h5 class="card-header">
-                        <span>Order Items</span>
+                        <span>{{ __('message.order_items') }}</span>
                         @if ($order->isPending())
                         <button class="btn btn-danger btn-sm text-light float-end ms-1" type="button"><i class="fa-solid fa-xmark"></i> Order Cancel</button>
                         <button class="btn btn-success btn-sm text-light float-end ms-1" type="button"><i class="fa-solid fa-check"></i> Order Confirm</button>

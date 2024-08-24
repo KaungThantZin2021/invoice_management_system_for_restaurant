@@ -122,3 +122,10 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::get('invoice/{invoice}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoice.download');
     });
 });
+
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'mm'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('language.switch');

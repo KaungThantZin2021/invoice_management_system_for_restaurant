@@ -4,7 +4,7 @@
 <div id="app">
     <div class="container-lg px-4">
         <div class="mb-4">
-            <h1>Category</h1>
+            <h2>{{ __('message.category') }}</h2>
         </div>
         <div class="row mb-4">
             <div class="col-3" v-for="category in categories.data" :key="category.id">

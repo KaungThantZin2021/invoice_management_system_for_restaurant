@@ -5,7 +5,7 @@
         <div class="container-lg px-4">
             <div class="row mb-4">
                 <div class="col-6">
-                    <h1>Product</h1>
+                    <h2>{{ __('message.product') }}</h2>
                 </div>
                 <div class="col-6">
                     <div class="input-group mb-3">

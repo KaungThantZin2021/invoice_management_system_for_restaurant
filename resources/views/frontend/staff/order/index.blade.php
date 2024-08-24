@@ -9,7 +9,7 @@
                     <a href="{{ route('product.index') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> Create a order</a>
                 </div>
                 <div class="card">
-                    <h5 class="card-header">Order</h5>
+                    <h5 class="card-header">{{ __('message.order') }}</h5>
                     <div class="card-body">
                         <table class="table" id="orderTable">
                             <thead>
