@@ -55,6 +55,7 @@ return [
     'orderable' => 'Orderable',
     'order_datetime' => 'Order Datetime',
     'status' => 'Status',
+    'order_statuses' => 'Order Statuses',
     'no.' => 'No.',
     'item_name' => 'Item Name',
     'item_price' => 'Item Price',

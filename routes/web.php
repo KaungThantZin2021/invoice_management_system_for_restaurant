@@ -97,6 +97,8 @@ Route::prefix('/admin')->name('admin.')->group(function () {
                     ->name('logout');
 
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/get-order-chart-data', [DashboardController::class, 'getOrderChartData'])->name('get-order-chart-data');
+
         Route::resource('admin-user', AdminUserController::class);
         Route::get('admin-user/{admin_user}/change-password', [AdminUserController::class, 'changePassword'])->name('admin-user.change-password');
         Route::patch('admin-user/{admin_user}/update-password', [AdminUserController::class, 'updatePassword'])->name('admin-user.update-password');

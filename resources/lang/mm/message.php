@@ -55,6 +55,7 @@ return [
     'orderable' => 'အမှာစာမှာပေးသူ',
     'order_datetime' => 'အမှာစာမှာချိန်',
     'status' => 'အခြေအနေ',
+    'order_statuses' => 'အမှာစာအခြေအနေများ',
     'no.' => 'စဥ်',
     'item_name' => 'ပစ္စည်းအမည်',
     'item_price' => 'ပစ္စည်းစျေး',

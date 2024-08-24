@@ -53,7 +53,6 @@
     <link href="css/ads.css" rel="stylesheet">
     <script src="{{ asset('theme/src/js/config.js') }}"></script>
     <script src="{{ asset('theme/src/js/color-modes.js') }}"></script>
-    <link href="node_modules/@coreui/chartjs/dist/css/coreui-chartjs.css" rel="stylesheet">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
@@ -90,9 +89,8 @@
         });
     </script>
     <!-- Plugins and scripts required by this view-->
-    <script src="node_modules/chart.js/dist/chart.umd.js"></script>
-    <script src="node_modules/@coreui/chartjs/dist/js/coreui-chartjs.js"></script>
     <script src="node_modules/@coreui/utils/dist/umd/index.js"></script>
+
     <script src="{{ asset('theme/src/js/main.js') }}"></script>
     <script></script>
 
