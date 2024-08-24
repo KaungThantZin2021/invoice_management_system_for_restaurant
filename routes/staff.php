@@ -63,6 +63,7 @@ Route::middleware('staff')->group(function () {
                 ->name('logout');
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/get-order-chart-data', [DashboardController::class, 'getOrderChartData'])->name('get-order-chart-data');
 
     Route::resource('category', CategoryController::class);
     Route::get('get-category-list', [CategoryController::class, 'getCategoryList']);

@@ -26,7 +26,6 @@ class DashboardController extends Controller
             $cancel_order_count
         ];
 
-
         $products = Product::select('name', 'stock_quantity');
 
         $products_stock_quantity_ary = [
@@ -65,11 +64,7 @@ class DashboardController extends Controller
 
             while ($currentDate->lte($endOf)) {
                 $formattedDate = $currentDate->format('Y-m-d');
-
-                $dates[] = $currentDate->format('l');
-                if ($request->chart_current_duration == 'monthly') {
-                    $dates[] = $currentDate->format('d M');
-                }
+                $dates[] = $formattedDate;
 
                 $orderCount = $orderCounts->firstWhere('date', $formattedDate);
                 $counts[] = $orderCount ? $orderCount->count : 0;

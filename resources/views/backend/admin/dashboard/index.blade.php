@@ -1,5 +1,13 @@
 @extends('backend.admin.layouts.app')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb my-0">
+        <li class="breadcrumb-item active"><span>{{ __('message.dashboard') }}</span></li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
     <div class="container-lg px-4">
         <div class="row">
@@ -20,15 +28,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 mb-4">
-                <div class="card">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="card mb-4">
                     <h5 class="card-header">{{ __('message.order_statuses') }}</h5>
                     <div class="card-body">
                         <canvas id="orderPieChart"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="card mb-4">
                     <h5 class="card-header">{{ __('message.stock_quantity') }}</h5>
                     <div class="card-body">
