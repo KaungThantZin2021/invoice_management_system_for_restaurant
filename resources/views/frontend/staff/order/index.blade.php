@@ -14,13 +14,13 @@
                         <table class="table" id="orderTable">
                             <thead>
                                 <tr>
-                                    <th scope="col">Order No.</th>
-                                    <th scope="col">Orderable</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Order Datetime</th>
-                                    <th scope="col">Created at</th>
-                                    <th scope="col">Updated at</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">{{ __('message.order_number') }}</th>
+                                    <th scope="col">{{ __('message.orderable') }}</th>
+                                    <th scope="col">{{ __('message.status') }}</th>
+                                    <th scope="col">{{ __('message.order_datetime') }}</th>
+                                    <th scope="col">{{ __('message.create_at') }}</th>
+                                    <th scope="col">{{ __('message.update_at') }}</th>
+                                    <th scope="col">{{ __('message.action') }}</th>
                                 </tr>
                             </thead>
                         </table>

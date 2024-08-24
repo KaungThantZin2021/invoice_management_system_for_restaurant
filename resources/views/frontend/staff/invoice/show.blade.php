@@ -15,19 +15,19 @@
                         $tax = 0;
                         $total_amount = $total_price + $tax;
                     @endphp
-                    <h5 class="card-header">Invoice Detail</h5>
+                    <h5 class="card-header">{{ __('message.invoice_detail') }}</h5>
                     <div class="card-body">
                         <div class="row d-flex justify-content-center">
                             <div class="col-5">
                                 <ol class="list-group mt-2">
                                     <li class="list-group-item align-items-start">
                                         <div class="d-flex justify-content-between">
-                                            <div class="fw-bold">Invoice Number</div>
+                                            <div class="fw-bold">{{ __('message.invoice_number') }}</div>
                                             <div>{{ $invoice->invoice_number }}</div>
                                         </div>
                                         <hr>
                                         <div class="d-flex justify-content-between">
-                                            <div class="fw-bold">Order Number</div>
+                                            <div class="fw-bold">{{ __('message.order_number') }}</div>
                                             <div>{{ $order->order_number }}</div>
                                         </div>
                                     </li>
@@ -39,39 +39,39 @@
                                             <div>{{ $key + 1 }}. <span class="fw-bold">{{ $order_item->product->name }}</span></div>
                                         </div>
                                         <span class="">{{ number_format($order_item->quantity) }}</span>
-                                        <span class="">{{ number_format($order_item->price) }} MMK</span>
+                                        <span class="">{{ number_format($order_item->price) }} {{ __('message.mmk') }}</span>
                                     </li>
                                     @endforeach
                                 </ol>
                                 <ol class="list-group mt-2">
                                     <li class="list-group-item align-items-start">
                                         <div class="d-flex justify-content-between">
-                                            <div class="fw-bold">Total Product</div>
+                                            <div class="fw-bold">{{ __('message.total_product') }}</div>
                                             <div>{{ number_format($total_product) }}</div>
                                         </div>
                                         <div class="d-flex justify-content-between">
-                                            <div class="fw-bold">Total Quntity</div>
+                                            <div class="fw-bold">{{ __('message.total_quantity') }}</div>
                                             <div>{{ number_format($total_quantity) }}</div>
                                         </div>
                                         <hr>
                                         <div class="d-flex justify-content-between">
-                                            <div class="fw-bold">Total Price</div>
-                                            <div>{{ number_format($total_price) }} MMK</div>
+                                            <div class="fw-bold">{{ __('message.total_price') }}</div>
+                                            <div>{{ number_format($total_price) }} {{ __('message.mmk') }}</div>
                                         </div>
                                         <div class="d-flex justify-content-between">
-                                            <div class="fw-bold">Tax</div>
-                                            <div>{{ number_format($tax) }} MMK</div>
+                                            <div class="fw-bold">{{ __('message.tax') }}</div>
+                                            <div>{{ number_format($tax) }} {{ __('message.mmk') }}</div>
                                         </div>
                                         <hr>
                                         <div class="d-flex justify-content-between">
-                                            <div class="fw-bold">Total Amount</div>
-                                            <div>{{ number_format($total_amount) }} MMK</div>
+                                            <div class="fw-bold">{{ __('message.total_amount') }}</div>
+                                            <div>{{ number_format($total_amount) }} {{ __('message.mmk') }}</div>
                                         </div>
                                     </li>
                                 </ol>
 
                                 <div class="d-grid my-3">
-                                    <a href="{{ route('admin.invoice.download', $invoice->id) }}" target="_black" class="btn btn-dark" type="button"><i class="fa-solid fa-file-arrow-down"></i> Download Invoice</a>
+                                    <a href="{{ route('admin.invoice.download', $invoice->id) }}" target="_black" class="btn btn-dark" type="button"><i class="fa-solid fa-file-arrow-down"></i> {{ __('message.download_invoice') }}</a>
                                   </div>
                             </div>
                         </div>

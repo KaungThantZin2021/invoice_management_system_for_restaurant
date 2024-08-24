@@ -28,10 +28,10 @@ class OrderResource extends JsonResource
             'orderable' => $this->orderable,
             'order_items' => OrderItemResource::collection($order_items),
             'total_product' => number_format($total_product),
-            'total_price' => number_format($total_price) . ' MMK',
+            'total_price' => number_format($total_price) . ' ' . __('message.mmk'),
             'total_quantity' => number_format($total_quantity),
-            'tax' => number_format($tax) . ' MMK',
-            'total_amount' => number_format($total_amount) . ' MMK',
+            'tax' => number_format($tax) . ' ' . __('message.mmk'),
+            'total_amount' => number_format($total_amount) . ' ' . __('message.mmk'),
         ];
     }
 }

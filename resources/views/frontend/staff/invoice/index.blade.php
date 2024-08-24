@@ -13,15 +13,15 @@
                         <table class="table" id="invoicesTable">
                             <thead>
                                 <tr>
-                                    <th scope="col">Invoice No.</th>
-                                    <th scope="col">Order No.</th>
-                                    <th scope="col">Invoiceable</th>
-                                    <th scope="col">Invoice Datetime</th>
-                                    <th scope="col">Total Amount</th>
-                                    <th scope="col">Tax</th>
-                                    <th scope="col">Created at</th>
-                                    <th scope="col">Updated at</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">{{ __('message.invoice_number') }}</th>
+                                    <th scope="col">{{ __('message.order_number') }}</th>
+                                    <th scope="col">{{ __('message.invoiceable') }}</th>
+                                    <th scope="col">{{ __('message.invoice_datetime') }}</th>
+                                    <th scope="col">{{ __('message.total_amount') }}</th>
+                                    <th scope="col">{{ __('message.tax') }}</th>
+                                    <th scope="col">{{ __('message.create_at') }}</th>
+                                    <th scope="col">{{ __('message.update_at') }}</th>
+                                    <th scope="col">{{ __('message.action') }}</th>
                                 </tr>
                             </thead>
                         </table>

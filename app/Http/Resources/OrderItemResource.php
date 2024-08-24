@@ -20,7 +20,7 @@ class OrderItemResource extends JsonResource
             'product_id' => $this->product_id,
             'product_name' => $this->product->name,
             'quantity' => number_format($this->quantity),
-            'price' => number_format($this->price) . ' MMK',
+            'price' => number_format($this->price) . ' ' . __('message.mmk'),
         ];
     }
 }

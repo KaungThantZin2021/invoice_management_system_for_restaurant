@@ -8,7 +8,7 @@
             </svg>
         </button>
         <ul class="header-nav d-none d-lg-flex">
-            <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">{{ __('message.dashboard') }}</a></li>
         </ul>
         <ul class="header-nav ms-auto">
             <li class="nav-item">
@@ -92,12 +92,12 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
                     <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top mb-2">
-                        Account
+                        {{ __('message.account') }}
                     </div>
                     <a class="dropdown-item" href="#">
                         <svg class="icon me-2">
                             <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-user') }}"></use>
-                        </svg> Profile
+                        </svg> {{ __('message.profile') }}
                     </a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -105,7 +105,7 @@
                             <svg class="icon me-2">
                                 <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-account-logout') }}">
                                 </use>
-                            </svg> Logout
+                            </svg> {{ __('message.logout') }}
                         </button>
                     </form>
                 </div>

@@ -9,9 +9,9 @@
                 </div>
                 <div class="col-6">
                     <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupSelect01">Categories</label>
+                        <label class="input-group-text" for="inputGroupSelect01">{{ __('message.categories') }}</label>
                         <select class="form-select form-select-sm" v-model="category_id" @change="filterCategory(category_id)" id="inputGroupSelect01">
-                            <option value="">Choose category...</option>
+                            <option value="">{{ __('message.all_categories') }}...</option>
                             @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -71,7 +71,7 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <div class="card mb-3" style="max-width: 18rem;">
-                        <div class="card-header bg-transparent">Order Items</div>
+                        <div class="card-header bg-transparent">{{ __('message.order_items') }}</div>
                         <div class="card-body">
                             <ol class="list-group">
                                 <li class="list-group-item d-flex justify-content-between align-items-start"
@@ -96,25 +96,25 @@
                             <ol class="list-group mt-2 total-cart-item-lists-area">
                                 <li class="list-group-item align-items-start">
                                     <div class="d-flex justify-content-between">
-                                        <div class="fw-bold">Total Product</div>
+                                        <div class="fw-bold">{{ __('message.total_product') }}</div>
                                         <div v-text="add_to_cart_order.total_product ? add_to_cart_order.total_product : 0"></div>
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <div class="fw-bold">Total Quntity</div>
+                                        <div class="fw-bold">{{ __('message.total_quantity') }}</div>
                                         <div v-text="add_to_cart_order.total_quantity ? add_to_cart_order.total_quantity : 0"></div>
                                     </div>
                                     <hr>
                                     <div class="d-flex justify-content-between">
-                                        <div class="fw-bold">Total Price</div>
+                                        <div class="fw-bold">{{ __('message.total_price') }}</div>
                                         <div v-text="add_to_cart_order.total_price ? add_to_cart_order.total_price : 0"></div>
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <div class="fw-bold">Tax</div>
+                                        <div class="fw-bold">{{ __('message.tax') }}</div>
                                         <div v-text="add_to_cart_order.tax ? add_to_cart_order.tax : 0"></div>
                                     </div>
                                     <hr>
                                     <div class="d-flex justify-content-between">
-                                        <div class="fw-bold">Total Amount</div>
+                                        <div class="fw-bold">{{ __('message.total_amount') }}</div>
                                         <div v-text="add_to_cart_order.total_amount ? add_to_cart_order.total_amount : 0"></div>
                                     </div>
                                 </li>

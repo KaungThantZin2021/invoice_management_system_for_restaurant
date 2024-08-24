@@ -62,10 +62,10 @@
                     <h5 class="card-header">
                         <span>{{ __('message.order_items') }}</span>
                         @if ($order->isPending())
-                        <button class="btn btn-danger btn-sm text-light float-end ms-1" type="button"><i class="fa-solid fa-xmark"></i> Order Cancel</button>
-                        <button class="btn btn-success btn-sm text-light float-end ms-1" type="button"><i class="fa-solid fa-check"></i> Order Confirm</button>
+                        <button class="btn btn-danger btn-sm text-light float-end ms-1" type="button"><i class="fa-solid fa-xmark"></i> {{ __('message.order_cancel') }}</button>
+                        <button class="btn btn-success btn-sm text-light float-end ms-1" type="button"><i class="fa-solid fa-check"></i> {{ __('message.order_confirm') }}</button>
                         @elseif ($order->isConfirm())
-                        <button class="btn btn-dark btn-sm float-end ms-1 generate-invoice" data-order-id="{{ $order->id }}" type="button"><i class="fas fa-file-invoice"></i> Generate Invoice</button>
+                        <button class="btn btn-dark btn-sm float-end ms-1 generate-invoice" data-order-id="{{ $order->id }}" type="button"><i class="fas fa-file-invoice"></i> {{ __('message.generate_invoice') }}</button>
                         @endif
                     </h5>
 
@@ -117,25 +117,25 @@
                                         <li class="list-group-item align-items-start">
                                             <div class="d-flex justify-content-between">
                                                 <div class="fw-bold">Total Product</div>
-                                                <div>{{ $total_product }}</div>
+                                                <div>{{ number_format($total_product) }}</div>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <div class="fw-bold">Total Quntity</div>
-                                                <div>{{ $total_quantity }}</div>
+                                                <div>{{ number_format($total_quantity) }}</div>
                                             </div>
                                             <hr>
                                             <div class="d-flex justify-content-between">
                                                 <div class="fw-bold">Total Price</div>
-                                                <div>{{ $total_price }} MMK</div>
+                                                <div>{{ number_format($total_price) }} {{ __('message.mmk') }}</div>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <div class="fw-bold">Tax</div>
-                                                <div>{{ $tax }}</div>
+                                                <div>{{ number_format($tax) }} {{ __('message.mmk') }}</div>
                                             </div>
                                             <hr>
                                             <div class="d-flex justify-content-between">
                                                 <div class="fw-bold">Total Amount</div>
-                                                <div>{{ $total_amount }} MMK</div>
+                                                <div>{{ $total_amount }} {{ __('message.mmk') }}</div>
                                             </div>
                                         </li>
                                     </ol>
