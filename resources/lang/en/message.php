@@ -10,10 +10,13 @@ return [
     'dashboard' => 'Dashboard',
 
     'name' => 'Name',
+    'description' => 'Description',
     'email' => 'Email',
     'phone' => 'Phone',
     'image' => 'Image',
     'profile_image' => 'Profile Image',
+    'price' => 'Price',
+    'stock_quantity' => 'Stock Quantity',
     'create_at' => 'Created at',
     'update_at' => 'Updated at',
     'action' => 'Action',
@@ -34,10 +37,14 @@ return [
 
     'category' => 'Category',
     'categories' => 'Categories',
+    'create_category' => 'Create Category',
+    'edit_category' => 'Edit Category',
     'all_categories' => 'All Categories',
 
     'product' => 'Product',
     'products' => 'Products',
+    'create_product' => 'Create Product',
+    'edit_product' => 'Edit Product',
 
     'order' => 'Order',
     'orders' => 'Orders',

@@ -1,25 +1,33 @@
 @extends('backend.admin.layouts.app')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb my-0">
+        <li class="breadcrumb-item active"><span>{{ __('message.category') }}</span></li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
     <div class="container-lg px-4">
         <div class="row mb-4">
             <div class="col-12">
                 <div class="mb-4">
                     @include('components.back-button')
-                    <a href="{{ route('admin.category.create') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> Create</a>
+                    <a href="{{ route('admin.category.create') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> {{ __('message.create_category') }}</a>
                 </div>
                 <div class="card">
-                    <h5 class="card-header">Category</h5>
+                    <h5 class="card-header">{{ __('message.categories') }}</h5>
                     <div class="card-body">
                         <table class="table" id="categoriesTable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Created at</th>
-                                    <th scope="col">Updated at</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">{{ __('message.name') }}</th>
+                                    <th scope="col">{{ __('message.image') }}</th>
+                                    <th scope="col">{{ __('message.create_at') }}</th>
+                                    <th scope="col">{{ __('message.update_at') }}</th>
+                                    <th scope="col">{{ __('message.action') }}</th>
                                 </tr>
                             </thead>
                         </table>

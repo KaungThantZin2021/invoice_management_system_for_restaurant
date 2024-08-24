@@ -28,6 +28,12 @@ class ProductController extends Controller
                 ->addColumn('image', function ($product) {
                     return '<img src="' . $product->image_url . '" class="object-cover w-9 h-9"/>';
                 })
+                ->addColumn('price', function ($invoice) {
+                    return number_format($invoice->price) . ' ' . __('message.mmk');
+                })
+                ->addColumn('stock_quantity', function ($invoice) {
+                    return number_format($invoice->stock_quantity);
+                })
                 ->addColumn('action', function ($product) {
                     $edit_btn = '<a href="'. route('admin.product.edit', $product->id) .'" class="btn btn-sm btn-warning m-2"><i class="fa-solid fa-pen-to-square"></i></a>';
                     $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light m-2 delete-btn" data-delete-url="' . route('admin.product.destroy', $product->id) . '"><i class="fa-solid fa-trash"></i></a>';
