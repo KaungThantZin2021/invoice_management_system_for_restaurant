@@ -14,61 +14,61 @@
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-speedometer') }}"></use>
                 </svg>
-                Dashboard
+                {{ __('message.dashboard') }}
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.admin-user.index') }}">
+            <a class="nav-link {{ request()->routeIs('admin.admin-user.*') ? 'active' : '' }}" href="{{ route('admin.admin-user.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-user') }}"></use>
                 </svg>
-                Admin User
+                {{ __('message.admin_user') }}
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.staff.index') }}">
+            <a class="nav-link {{ request()->routeIs('admin.staff.*') ? 'active' : '' }}" href="{{ route('admin.staff.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-group') }}"></use>
                 </svg>
-                Staff
+                {{ __('message.staff') }}
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.category.index') }}">
+            <a class="nav-link {{ request()->routeIs('admin.category.*') ? 'active' : '' }}" href="{{ route('admin.category.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-fastfood') }}"></use>
                 </svg>
-                Category
+                {{ __('message.category') }}
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.product.index') }}">
+            <a class="nav-link {{ request()->routeIs('admin.product.*') ? 'active' : '' }}" href="{{ route('admin.product.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-restaurant') }}"></use>
                 </svg>
-                Product
+                {{ __('message.product') }}
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.order.index') }}">
+            <a class="nav-link {{ request()->routeIs('admin.order.*') ? 'active' : '' }}" href="{{ route('admin.order.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-dinner') }}"></use>
                 </svg>
-                Order
+                {{ __('message.order') }}
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.invoice.index') }}">
+            <a class="nav-link {{ request()->routeIs('admin.invoice.*') ? 'active' : '' }}" href="{{ route('admin.invoice.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-description') }}"></use>
                 </svg>
-                Invoice
+                {{ __('message.invoice') }}
             </a>
         </li>
     </ul>

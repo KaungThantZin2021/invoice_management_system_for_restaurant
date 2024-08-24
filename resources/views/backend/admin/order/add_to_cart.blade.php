@@ -5,13 +5,13 @@
         <div class="container-lg px-4">
             <div class="row mb-4">
                 <div class="col-6">
-                    <h1>Product</h1>
+                    <h2>{{ __('message.products') }}</h2>
                 </div>
                 <div class="col-6">
                     <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupSelect01">Categories</label>
+                        <label class="input-group-text" for="inputGroupSelect01">{{ __('message.categories') }}</label>
                         <select class="form-select form-select-sm" v-model="category_id" @change="filterCategory(category_id)" id="inputGroupSelect01">
-                            <option value="">Choose category...</option>
+                            <option value="">{{ __('message.all_categories') }}...</option>
                             @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach

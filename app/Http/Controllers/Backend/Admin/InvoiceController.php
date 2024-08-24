@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend\Admin;
 
 use PDF;
+use App\Models\User;
+use App\Models\Staff;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -23,7 +25,20 @@ class InvoiceController extends Controller
                     return optional($invoice->order)->order_number;
                 })
                 ->addColumn('invoiceable', function ($invoice) {
-                    return optional($invoice->invoiceable)->name . ' (' . class_basename($invoice->invoiceable) . ')';
+                    $causer = '';
+                    if (get_class($invoice->invoiceable) == User::class ) {
+                        $causer = '(' . __('message.admin_user') . ')';
+                    } elseif (get_class($invoice->invoiceable) == Staff::class ) {
+                        $causer = '(' . __('message.staff') . ')';
+                    }
+
+                    return optional($invoice->invoiceable)->name . ' ' . $causer;
+                })
+                ->addColumn('total_amount', function ($invoice) {
+                    return number_format($invoice->total_amount) . ' ' . __('message.mmk');
+                })
+                ->addColumn('tax', function ($invoice) {
+                    return number_format($invoice->tax) . ' ' . __('message.mmk');
                 })
                 ->addColumn('action', function ($invoice) {
                     $info_btn = '<a href="'. route('admin.invoice.show', $invoice->id) .'" class="btn btn-sm btn-primary m-2"><i class="fa-solid fa-circle-info"></i></a>';

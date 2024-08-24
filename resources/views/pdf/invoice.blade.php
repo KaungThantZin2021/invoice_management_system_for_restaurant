@@ -27,11 +27,11 @@
             <ol class="list-group mt-2">
                 <li class="list-group-item align-items-start">
                     <div class="d-flex justify-content-between">
-                        <div class="fw-bold">Invoice No.</div>
+                        <div class="fw-bold">{{ __('message.invoice_number') }}</div>
                         <div class="total-amount">{{ $invoice->invoice_number }}</div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <div class="fw-bold">Order No.</div>
+                        <div class="fw-bold">{{ __('message.order_number') }}</div>
                         <div class="total-amount">{{ $order->order_number }}</div>
                     </div>
                 </li>
@@ -43,33 +43,33 @@
                         <div>{{ $key + 1 }}. <span class="fw-bold">{{ $order_item->product->name }}</span></div>
                     </div>
                     <span class="">{{ number_format($order_item->quantity) }}</span>
-                    <span class="">{{ number_format($order_item->price) }} MMK</span>
+                    <span class="">{{ number_format($order_item->price) }} {{ __('message.mmk') }}</span>
                 </li>
                 @endforeach
             </ol>
             <ol class="list-group mt-2">
                 <li class="list-group-item align-items-start">
                     <div class="d-flex justify-content-between">
-                        <div class="fw-bold">Total Product</div>
+                        <div class="fw-bold">{{ __('message.total_product') }}</div>
                         <div>{{ number_format($total_product) }}</div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <div class="fw-bold">Total Quntity</div>
+                        <div class="fw-bold">{{ __('message.total_quantity') }}</div>
                         <div>{{ number_format($total_quantity) }}</div>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between">
-                        <div class="fw-bold">Total Price</div>
-                        <div>{{ number_format($total_price) }} MMK</div>
+                        <div class="fw-bold">{{ __('message.total_price') }}</div>
+                        <div>{{ number_format($total_price) }} {{ __('message.mmk') }}</div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <div class="fw-bold">Tax</div>
-                        <div>{{ number_format($tax) }} MMK</div>
+                        <div class="fw-bold">{{ __('message.tax') }}</div>
+                        <div>{{ number_format($tax) }} {{ __('message.mmk') }}</div>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between">
-                        <div class="fw-bold">Total Amount</div>
-                        <div>{{ number_format($total_amount) }} MMK</div>
+                        <div class="fw-bold">{{ __('message.total_amount') }}</div>
+                        <div>{{ number_format($total_amount) }} {{ __('message.mmk') }}</div>
                     </div>
                 </li>
             </ol>

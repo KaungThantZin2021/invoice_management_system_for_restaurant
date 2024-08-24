@@ -6,6 +6,7 @@ use Exception;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Staff;
 use App\Models\Invoice;
 use App\Models\Product;
 use App\Models\Category;
@@ -30,7 +31,14 @@ class OrderController extends Controller
 
             return DataTables::of($orders)
                 ->addColumn('orderable', function ($order) {
-                    return optional($order->orderable)->name . ' (' . class_basename($order->orderable) . ')';
+                    $causer = '';
+                    if (get_class($order->orderable) == User::class ) {
+                        $causer = '(' . __('message.admin_user') . ')';
+                    } elseif (get_class($order->orderable) == Staff::class ) {
+                        $causer = '(' . __('message.staff') . ')';
+                    }
+
+                    return optional($order->orderable)->name . ' ' . $causer;
                 })
                 ->addColumn('status', function ($order) {
                     $status = '';

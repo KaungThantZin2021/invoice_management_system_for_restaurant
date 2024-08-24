@@ -8,7 +8,7 @@
             </svg>
         </button>
         <ul class="header-nav d-none d-lg-flex">
-            <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}">{{ __('message.dashboard') }}</a></li>
         </ul>
         <ul class="header-nav ms-auto">
             <li class="nav-item">
@@ -21,6 +21,29 @@
             </li>
         </ul>
         <ul class="header-nav">
+            <li class="nav-item py-1">
+                <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
+            </li>
+            <li class="nav-item dropdown">
+                <button class="btn btn-link nav-link py-2 px-2 d-flex align-items-center" type="button"
+                    aria-expanded="false" data-coreui-toggle="dropdown">
+                    <svg class="icon icon-lg">
+                        <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-language') }}"></use>
+                    </svg>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" style="--cui-dropdown-min-width: 8rem;">
+                    <li>
+                        <a href="{{ route('language.switch', 'en') }}" class="dropdown-item d-flex align-items-center {{ session('locale') == 'en' ? 'active' : '' }}">
+                            ENG - အင်္ဂလိပ်
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('language.switch', 'mm') }}" class="dropdown-item d-flex align-items-center {{ session('locale') == 'mm' ? 'active' : '' }}">
+                            MM - မြန်မာ
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-item py-1">
                 <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
             </li>
@@ -70,12 +93,12 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
                     <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top mb-2">
-                        Account
+                        {{ __('message.profile') }}
                     </div>
                     <a class="dropdown-item" href="{{ route('admin.admin-user.edit', auth()->guard('web')->user()->id) }}">
                         <svg class="icon me-2">
                             <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-user') }}"></use>
-                        </svg> Profile
+                        </svg> {{ __('message.profile') }}
                     </a>
                     <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
@@ -83,7 +106,7 @@
                             <svg class="icon me-2">
                                 <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-account-logout') }}">
                                 </use>
-                            </svg> Logout
+                            </svg> {{ __('message.logout') }}
                         </button>
                     </form>
                 </div>
@@ -91,13 +114,6 @@
         </ul>
     </div>
     <div class="container-fluid px-4">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb my-0">
-                <li class="breadcrumb-item"><a href="#">Home</a>
-                </li>
-                <li class="breadcrumb-item active"><span>Dashboard</span>
-                </li>
-            </ol>
-        </nav>
+        @yield('breadcrumb')
     </div>
 </header>
