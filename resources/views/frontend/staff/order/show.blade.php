@@ -167,39 +167,29 @@
             $(document).on('click', '.generate-invoice', function() {
                 var order_id = $(this).data('order-id');
 
-                Swal.fire({
-                    title: "Are you sure to <br>generate invoice?",
-                    showCancelButton: true,
-                    confirmButtonColor: "#4b49b6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes",
-                    cancelButtonText: "No",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-
-                        Swal.fire({
-                            title: "Generating...!",
-                            html: "Please wait",
-                            timerProgressBar: true,
-                            didOpen: () => {
-                                Swal.showLoading();
-                            }
-                        });
-
-                        $.post(`/order/${order_id}/generate-invoice`,)
-                            .then(function(res) {
-                                if (res.success) {
-                                    setTimeout(() => {
-                                        window.location.href = `/invoice/${res.data.invoice_id}`;
-                                    }, 1000);
-                                } else {
-                                    toastr.warning(res.message);
-                                }
-                            }).fail(function(error) {
-                                toastr.error(error.message);
+                CustomAlert.fire({
+                        text: "{{ translate('Are you sure to generate invoice?', 'ပြေစာထုတ်ရန် သေချာပါသလား?') }}",
+                    })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            ProcessingAlert.fire({
+                                text: "{{ translate('Generating..., Please wait!', 'ပြေစာထုတ်နေသည်..., ခဏစောင့်ပါ!') }}",
                             });
-                    }
-                });
+
+                            $.post(`/order/${order_id}/generate-invoice`,)
+                                .then(function(res) {
+                                    if (res.success) {
+                                        setTimeout(() => {
+                                            window.location.href = `/invoice/${res.data.invoice_id}`;
+                                        }, 1000);
+                                    } else {
+                                        toastr.warning(res.message);
+                                    }
+                                }).fail(function(error) {
+                                    toastr.error(error.message);
+                                });
+                        }
+                    })
             });
         });
     </script>
