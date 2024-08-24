@@ -8,6 +8,13 @@
             font-family: 'myanmar';
         }
 
+        .d-flex {
+            display: flex;
+        }
+
+        .justify-content-between {
+            justify-content: space-between;
+        }
 
     </style>
 </head>
@@ -22,7 +29,19 @@
         $tax = 0;
         $total_amount = $total_price + $tax;
     @endphp
-    <div class="card">
+
+    <table>
+        <tr class="d-flex justify-content-between">
+            <td>A</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>2</td>
+        </tr>
+    </table>
+
+    {{-- <div class="card">
         <div class="card-body">
             <ol class="list-group mt-2">
                 <li class="list-group-item align-items-start">
@@ -74,6 +93,6 @@
                 </li>
             </ol>
         </div>
-    </div>
+    </div> --}}
 </body>
 </html>
