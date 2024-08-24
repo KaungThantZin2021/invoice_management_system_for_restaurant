@@ -230,22 +230,13 @@
 
                 // Order --- start
                 orderConfirmButton(order_id) {
-                    Swal.fire({
-                    title: "Are you sure to order?",
-                        showCancelButton: true,
-                        confirmButtonColor: "#4b49b6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes",
-                        cancelButtonText: "No",
-                    }).then((result) => {
+                    CustomAlert.fire({
+                        text: "{{ translate('Are you sure to order?', 'အမှာစာတင်ရန် အတည်ပြုပါသလား?') }}",
+                    })
+                    .then((result) => {
                         if (result.isConfirmed) {
-                            Swal.fire({
-                                title: "Ordering...!",
-                                html: "Please wait",
-                                timerProgressBar: true,
-                                didOpen: () => {
-                                    Swal.showLoading();
-                                }
+                            ProcessingAlert.fire({
+                                text: "{{ translate('Ordering..., Please wait!', 'အမှာစာမှာယူနေသည်..., ခဏစောင့်ပါ!') }}",
                             });
 
                             axios.post(`/order/${order_id}/confirm`)
@@ -266,26 +257,16 @@
                                     console.error("There was an error from the order confirm!", error);
                                 });
                         }
-                    });
+                    })
                 },
                 orderCancelButton(order_id) {
-                    Swal.fire({
-                    title: "Are you sure to order cancel?",
-                        showCancelButton: true,
-                        confirmButtonColor: "#4b49b6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes",
-                        cancelButtonText: "No",
-                    }).then((result) => {
+                    CustomAlert.fire({
+                        text: "{{ translate('Are you sure to order cancel?', 'အမှာစာပယ်ဖျက်ရန် သေချာပါသလား?') }}",
+                    })
+                    .then((result) => {
                         if (result.isConfirmed) {
-
-                            Swal.fire({
-                                title: "Canceling...!",
-                                html: "Please wait",
-                                timerProgressBar: true,
-                                didOpen: () => {
-                                    Swal.showLoading();
-                                }
+                            ProcessingAlert.fire({
+                                text: "{{ translate('Canceling..., Please wait!', 'အမှာစာပယ်ဖျက်နေသည်..., ခဏစောင့်ပါ!') }}",
                             });
 
                             axios.post(`/order/${order_id}/cancel`)
@@ -306,7 +287,7 @@
                                     console.error("There was an error from the order cancel!", error);
                                 });
                         }
-                    });
+                    })
                 }
                 // Order --- end
             },
