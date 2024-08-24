@@ -1,12 +1,20 @@
 @extends('backend.admin.layouts.app')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb my-0">
+        <li class="breadcrumb-item active"><span>{{ __('message.admin_user') }}</span></li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
     <div class="container-lg px-4">
         <div class="row mb-4">
             <div class="col-12">
                 <div class="mb-4">
                     @include('components.back-button')
-                    <a href="{{ route('admin.admin-user.create') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> Create</a>
+                    <a href="{{ route('admin.admin-user.create') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> {{ __('message.create_admin_user') }}</a>
                 </div>
                 <div class="card">
                     <h5 class="card-header">Admin User</h5>

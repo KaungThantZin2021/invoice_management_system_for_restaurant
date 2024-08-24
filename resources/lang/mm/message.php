@@ -11,6 +11,10 @@ return [
 
     'admin_user' => 'admin အသုံးပြုသူ',
     'admin_users' => 'admin အသုံးပြုသူများ',
+    'create_admin_user' => 'admin အသုံးပြုသူအသစ်ထည့်ရန်',
+    'edit_admin_user' => 'admin အသုံးပြုသူအားပြုပြင်ရန်',
+    'admin_user_detail' => 'admin အသုံးပြုသူအသေးစိတ်',
+    'change_admin_user_password' => 'အသုံးပြုသူ၏ password အားပြောင်းလဲရန်',
 
     'staff' => 'ဝန်ထမ်း',
     'staffs' => 'ဝန်ထမ်းများ',

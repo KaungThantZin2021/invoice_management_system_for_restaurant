@@ -11,6 +11,10 @@ return [
 
     'admin_user' => 'Admin User',
     'admin_users' => 'Admin Users',
+    'create_admin_user' => 'Create Admin User',
+    'edit_admin_user' => 'Edit Admin User',
+    'admin_user_detail' => 'Admin User Detail',
+    'change_admin_user_password' => 'Change Admin User Password',
 
     'staff' => 'Staff',
     'staffs' => 'Staffs',

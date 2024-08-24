@@ -1,9 +1,21 @@
 @extends('backend.admin.layouts.app')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb my-0">
+        <li class="breadcrumb-item"><a href="{{ route('admin.admin-user.index') }}">{{ __('message.admin_user') }}</a></li>
+        <li class="breadcrumb-item active"><span>{{ __('message.admin_user_detail') }}</span></li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
     <div class="container-lg px-4">
         <div class="row mb-4">
             <div class="col-12">
+                <div class="mb-4">
+                    @include('components.back-button')
+                </div>
                 <div class="card">
                     <h5 class="card-header">Admin User Detail</h5>
                     <div class="card-body">
