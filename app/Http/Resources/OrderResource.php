@@ -17,16 +17,16 @@ class OrderResource extends JsonResource
     {
         $order_items = optional($this->order_items);
 
-        $total_product = $order_items->count();
-        $total_price = $order_items->sum('price');
-        $total_quantity = $order_items->sum('quantity');
+        $total_product = $order_items ? $order_items->count() : 0;
+        $total_price = $order_items ? $order_items->sum('price'): 0;
+        $total_quantity = $order_items ? $order_items->sum('quantity') : 0;
         $tax = 0;
         $total_amount = $total_price + $tax;
 
         return [
             'id' => $this->id,
             'orderable' => $this->orderable,
-            'order_items' => OrderItemResource::collection($order_items),
+            'order_items' => $order_items ? OrderItemResource::collection($order_items) : [],
             'total_product' => number_format($total_product),
             'total_price' => number_format($total_price) . ' ' . __('message.mmk'),
             'total_quantity' => number_format($total_quantity),

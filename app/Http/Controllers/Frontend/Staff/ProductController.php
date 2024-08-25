@@ -53,9 +53,9 @@ class ProductController extends Controller
             ->pending()
             ->where('orderable_type', Staff::class)
             ->where('orderable_id', auth()->guard('staff')->user()->id)
-            ->first() ?? [];
+            ->first();
 
-        $data = new OrderResource($order);
+            $data = !is_null($order) ? new OrderResource($order) : [];
 
         return success($data);
     }
@@ -85,11 +85,17 @@ class ProductController extends Controller
 
                 if ($order_item) {
                     if ($status == 'add') {
+                        if ($product->isOutOfStock()) {
+                            throw new Exception(translate('Out of stock!', 'ပစ္စည်းမရှိတော့ပါ!'));
+                        }
+
                         $quantity = ($order_item->quantity ?? 0) + 1;
                         $price = $product->price * $quantity;
 
                         $order_item->quantity = $quantity;
                         $order_item->price = $price;
+
+                        $product->decrement('stock_quantity');
                     } elseif ($status == 'remove') {
                         $quantity = ($order_item->quantity ?? 0) - 1;
                         $price = $quantity > 0 ? $order_item->price - $product->price : 0;
@@ -99,7 +105,10 @@ class ProductController extends Controller
                             $order_item->price = $price;
                         } else {
                             $order_item->delete();
+                            // $order->delete();
                         }
+
+                        $product->increment('stock_quantity');
                     } else {
                         throw new Exception('Invalid status!');
                     }
@@ -113,6 +122,8 @@ class ProductController extends Controller
                         $order_item->quantity = 1;
                         $order_item->price = $product->price;
                         $order_item->save();
+
+                        $product->decrement('stock_quantity');
                     }
                 }
 
@@ -129,6 +140,8 @@ class ProductController extends Controller
                 $order_item->quantity = 1;
                 $order_item->price = $product->price;
                 $order_item->save();
+
+                $product->decrement('stock_quantity');
             }
 
             DB::commit();

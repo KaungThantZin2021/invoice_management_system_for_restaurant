@@ -119,11 +119,9 @@ class OrderController extends Controller
             ->pending()
             ->where('orderable_type', User::class)
             ->where('orderable_id', auth()->guard('web')->user()->id)
-            ->first() ?? [];
+            ->first();
 
-            Log::info($order);
-
-        $data = new OrderResource($order);
+        $data = !is_null($order) ? new OrderResource($order) : [];
 
         return success($data);
     }
@@ -153,11 +151,17 @@ class OrderController extends Controller
 
                 if ($order_item) {
                     if ($status == 'add') {
+                        if ($product->isOutOfStock()) {
+                            throw new Exception(translate('Out of stock!', 'ပစ္စည်းမရှိတော့ပါ!'));
+                        }
+
                         $quantity = ($order_item->quantity ?? 0) + 1;
                         $price = $product->price * $quantity;
 
                         $order_item->quantity = $quantity;
                         $order_item->price = $price;
+
+                        $product->decrement('stock_quantity');
                     } elseif ($status == 'remove') {
                         $quantity = ($order_item->quantity ?? 0) - 1;
                         $price = $quantity > 0 ? $order_item->price - $product->price : 0;
@@ -167,7 +171,10 @@ class OrderController extends Controller
                             $order_item->price = $price;
                         } else {
                             $order_item->delete();
+                            // $order->delete();
                         }
+
+                        $product->increment('stock_quantity');
                     } else {
                         throw new Exception('Invalid status!');
                     }
@@ -181,6 +188,8 @@ class OrderController extends Controller
                         $order_item->quantity = 1;
                         $order_item->price = $product->price;
                         $order_item->save();
+
+                        $product->decrement('stock_quantity');
                     }
                 }
 
@@ -197,6 +206,8 @@ class OrderController extends Controller
                 $order_item->quantity = 1;
                 $order_item->price = $product->price;
                 $order_item->save();
+
+                $product->decrement('stock_quantity');
             }
 
             DB::commit();

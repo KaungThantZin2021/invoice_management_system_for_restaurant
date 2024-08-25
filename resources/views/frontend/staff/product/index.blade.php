@@ -36,10 +36,13 @@
                                 <img :src="product.image_url" class="card-img-top object-cover w-full h-36" alt="...">
 
                                 <div class="card-body">
-                                    <h5 class="card-title" v-text="product.name"></h5>
+                                    <div class="card-title">
+                                        <h6 v-text="product.name"></h6>
+                                        <small class="text-muted my-0">{{ __('message.stock_quantity') }}: <span v-text="product.stock_quantity"></span></small>
+                                    </div>
                                     <hr>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div>
+                                        <div class="m-0 p-0">
                                             <button class="btn btn-primary btn-sm me-1" @click="addToCart(product.id, 'add')">
                                                 <i class="fa-solid fa-circle-plus"></i>
                                             </button>
@@ -205,11 +208,15 @@
                 getAddToCartOrder() {
                     axios.get('get-add-to-cart-order')
                         .then(response => {
-                            this.order_id = response.data.data.id;
-                            this.add_to_cart_order = response.data.data;
-
+                            if (response.data.success) {
+                                this.order_id = response.data.data.id;
+                                this.add_to_cart_order = response.data.data;
+                            } else {
+                                toastr.warning(response.data.message);
+                            }
                         })
                         .catch(error => {
+                            toastr.warning(error.response.data.message);
                             console.error("There was an error fetching the add to cart order!", error);
                         });
                 },
@@ -219,9 +226,15 @@
                         status
                     })
                         .then(response => {
-                            this.getAddToCartOrder();
+                            if (response.data.success) {
+                                this.fetchProducts();
+                                this.getAddToCartOrder();
+                            } else {
+                                toastr.warning(response.data.message);
+                            }
                         })
                         .catch(error => {
+                            toastr.warning(error.response.data.message);
                             console.error("There was an error from the add to cart order items!", error);
                         });
 
