@@ -94,7 +94,7 @@
                     <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold rounded-top mb-2">
                         {{ __('message.account') }}
                     </div>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ route('staff.show', auth()->guard('staff')->user()->id) }}">
                         <svg class="icon me-2">
                             <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-user') }}"></use>
                         </svg> {{ __('message.profile') }}

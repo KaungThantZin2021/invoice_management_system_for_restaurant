@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\Staff\OrderController;
+use App\Http\Controllers\Frontend\Staff\StaffController;
 use App\Http\Controllers\Frontend\Staff\InvoiceController;
 use App\Http\Controllers\Frontend\Staff\ProductController;
 use App\Http\Controllers\Frontend\Staff\CategoryController;
@@ -64,6 +65,8 @@ Route::middleware('staff')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/get-order-chart-data', [DashboardController::class, 'getOrderChartData'])->name('get-order-chart-data');
+
+    Route::get('staff/{staff}', [StaffController::class, 'show'])->name('staff.show');
 
     Route::resource('category', CategoryController::class);
     Route::get('get-category-list', [CategoryController::class, 'getCategoryList']);
