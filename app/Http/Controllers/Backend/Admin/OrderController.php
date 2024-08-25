@@ -53,13 +53,12 @@ class OrderController extends Controller
                     return $status;
                 })
                 ->addColumn('action', function ($order) {
-                    $edit_btn = '<a href="'. route('admin.order.edit', $order->id) .'" class="btn btn-sm btn-warning m-2"><i class="fa-solid fa-pen-to-square"></i></a>';
                     $info_btn = '<a href="'. route('admin.order.show', $order->id) .'" class="btn btn-sm btn-primary m-2"><i class="fa-solid fa-circle-info"></i></a>';
-                    $invoice_generate_btn = $order->isConfirm() ? '<a href="'. route('admin.invoice.show', $order->id) .'" class="btn btn-sm btn-dark m-2"><i class="fa-solid fa-file-invoice"></i></a>' : '';
+                    $invoice_generate_btn = $order->isConfirm() ? '<a href="#" class="btn btn-sm btn-dark m-2 generate-invoice" data-order-id="'. $order->id .'"><i class="fa-solid fa-file-invoice"></i></a>' : '';
                     $delete_btn = '<a href="#" class="btn btn-sm btn-danger text-light m-2 delete-btn" data-delete-url="' . route('admin.order.destroy', $order->id) . '"><i class="fa-solid fa-trash"></i></a>';
 
                     return '<div class="flex justify-evenly">
-                        ' . $edit_btn . $info_btn . $invoice_generate_btn . $delete_btn . '
+                        ' . $info_btn . $invoice_generate_btn . $delete_btn . '
                     </div>';
                 })
                 ->rawColumns(['status', 'action'])
@@ -77,9 +76,21 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, Order $order)
     {
-        //
+        try {
+            if (!$request->ajax()) {
+                throw new Exception('Invalid request!');
+            }
+
+            $order->delete();
+
+            return successMessage('Order deleted successfully');
+
+        } catch (Exception $e) {
+            Log::info($e);
+            return errorMessage($e->getMessage());
+        }
     }
 
     public function addToCartForm()

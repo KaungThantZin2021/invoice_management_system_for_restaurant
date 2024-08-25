@@ -97,7 +97,30 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready(function() {
-
+            $(document).on('click', '.delete-btn', function (e) {
+                e.preventDefault();
+                let deleteUrl = $(this).data('delete-url');
+                DeleteAlert.fire({
+                    text: "{{ translate('Are you sure to delete?', 'ဖျက်ရန်သေချာပါသလား?') }}",
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        $.post(deleteUrl, {
+                            '_method': 'DELETE'
+                        })
+                        .then(function(res) {
+                            if (res.success == 1) {
+                                table.ajax.reload();
+                                toastr.success(res.message);
+                            } else {
+                                toastr.warning(res.message);
+                            }
+                        }).fail(function(error) {
+                            toastr.error(res.message);
+                        });
+                    }
+                })
+            });
         });
     </script>
 @endsection

@@ -83,6 +83,35 @@
                 }
             })
         });
+
+        $(document).on('click', '.generate-invoice', function(e) {
+            e.preventDefault();
+            var order_id = $(this).data('order-id');
+
+            CustomAlert.fire({
+                    text: "{{ translate('Are you sure to generate invoice?', 'ပြေစာထုတ်ရန် သေချာပါသလား?') }}",
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        ProcessingAlert.fire({
+                            text: "{{ translate('Generating..., Please wait!', 'ပြေစာထုတ်နေသည်..., ခဏစောင့်ပါ!') }}",
+                        });
+
+                        $.post(`/admin/order/${order_id}/generate-invoice`,)
+                            .then(function(res) {
+                                if (res.success) {
+                                    setTimeout(() => {
+                                        window.location.href = `/admin/invoice/${res.data.invoice_id}`;
+                                    }, 1000);
+                                } else {
+                                    toastr.warning(res.message);
+                                }
+                            }).fail(function(error) {
+                                toastr.error(error.message);
+                            });
+                    }
+                })
+        });
     });
     </script>
 @endsection

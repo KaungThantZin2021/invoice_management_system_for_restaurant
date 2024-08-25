@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Backend\Admin;
 
 use PDF;
+use Exception;
 use App\Models\User;
 use App\Models\Staff;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
 class InvoiceController extends Controller
@@ -105,9 +107,21 @@ class InvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, Invoice $invoice)
     {
-        //
+        try {
+            if (!$request->ajax()) {
+                throw new Exception('Invalid request!');
+            }
+
+            $invoice->delete();
+
+            return successMessage('Invoice deleted successfully');
+
+        } catch (Exception $e) {
+            Log::info($e);
+            return errorMessage($e->getMessage());
+        }
     }
 
     public function downloadInvoice(Invoice $invoice)
