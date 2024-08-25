@@ -275,6 +275,9 @@ class OrderController extends Controller
             }
 
             if(isset($order->order_items)) {
+                foreach ($order->order_items as $order_item) {
+                    $order_item->product()->first()->increment('stock_quantity', $order_item->quantity);
+                }
                 $order->order_items()->delete();
             }
 
