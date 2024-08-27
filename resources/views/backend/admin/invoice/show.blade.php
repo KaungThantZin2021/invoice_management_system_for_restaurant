@@ -24,13 +24,21 @@
                         $total_product = $order_items->count();
                         $total_price = $order_items->sum('price');
                         $total_quantity = $order_items->sum('quantity');
-                        $tax = 0;
+                        $tax = $invoice->tax;
                         $total_amount = $total_price + $tax;
                     @endphp
                     <h5 class="card-header">{{ __('message.invoice_detail') }}</h5>
                     <div class="card-body">
                         <div class="row d-flex justify-content-center">
                             <div class="col-5">
+                                <ol class="list-group mt-2">
+                                    <li class="list-group-item align-items-start">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="fw-bold">{{ __('message.invoice_datetime') }}</div>
+                                            <div>{{ $invoice->invoice_datetime }}</div>
+                                        </div>
+                                    </li>
+                                </ol>
                                 <ol class="list-group mt-2">
                                     <li class="list-group-item align-items-start">
                                         <div class="d-flex justify-content-between">

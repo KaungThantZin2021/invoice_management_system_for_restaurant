@@ -295,14 +295,17 @@ class OrderController extends Controller
         try {
             $order = Order::with('order_items')->find($order->id);
 
+            $total_amount = $order->order_items->sum('price');
+            $tax = ($total_amount*5)/100;
+
             $invoice = Invoice::firstOrCreate([
                 'order_id' => $order->id,
                 'invoiceable_type' => $order->orderable_type,
                 'invoiceable_id' => $order->orderable_id
             ], [
                 'invoice_datetime' => Carbon::now()->format('Y-m-d H:i:s'),
-                'total_amount' => $order->order_items->sum('price'),
-                'tax' => 0
+                'total_amount' => $total_amount,
+                'tax' => $tax
             ]);
 
             return success(['invoice_id' => $invoice->id]);

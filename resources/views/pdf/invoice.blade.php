@@ -7,7 +7,7 @@
         body {
             padding: 0px;
         }
-        
+
         table {
             width: 30%;
         }
@@ -66,6 +66,12 @@
     </table>
     <table class="my-5 border-bottom">
         <tr class="d-flex justify-content-between">
+            <td class="text-left">{{ __('message.invoice_datetime') }}</td>
+            <td class="text-right">{{ $invoice->invoice_datetime }}</td>
+        </tr>
+    </table>
+    <table class="my-5 border-bottom">
+        <tr class="d-flex justify-content-between">
             <td class="text-left">{{ __('message.invoice_number') }}</td>
             <td class="text-right">{{ $invoice->invoice_number }}</td>
         </tr>
@@ -111,7 +117,7 @@
     </table>
     <table class="my-5">
         <tr>
-            <td class="text-center" style="font-size: 10px; margin-top: 30px;">This is computer generated document.</td>
+            <td class="text-center" style="font-size: 8px; margin-top: 30px;">{{ translate('Thank you...', 'ကျေးဇူးတင်ပါသည်...') }}</td>
         </tr>
     </table>
 </body>

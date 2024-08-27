@@ -122,7 +122,7 @@
                                         $total_product = $order_items->count();
                                         $total_price = $order_items->sum('price');
                                         $total_quantity = $order_items->sum('quantity');
-                                        $tax = 0;
+                                        $tax = ($total_price*5)/100;
                                         $total_amount = number_format($total_price + $tax);
                                     @endphp
                                     <ol class="list-group total-cart-item-lists-area">
