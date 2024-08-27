@@ -74,8 +74,8 @@
                     <h5 class="card-header">
                         <span>{{ __('message.order_items') }}</span>
                         @if ($order->isPending())
-                        <button class="btn btn-danger btn-sm text-light float-end ms-1" type="button"><i class="fa-solid fa-xmark"></i> {{ __('message.order_cancel') }}</button>
-                        <button class="btn btn-success btn-sm text-light float-end ms-1" type="button"><i class="fa-solid fa-check"></i> {{ __('message.order_confirm') }}</button>
+                        {{-- <button class="btn btn-danger btn-sm text-light float-end ms-1" type="button"><i class="fa-solid fa-xmark"></i> {{ __('message.order_cancel') }}</button>
+                        <button class="btn btn-success btn-sm text-light float-end ms-1" type="button"><i class="fa-solid fa-check"></i> {{ __('message.order_confirm') }}</button> --}}
                         @elseif ($order->isConfirm())
                         <button class="btn btn-dark btn-sm float-end ms-1 generate-invoice" data-order-id="{{ $order->id }}" type="button"><i class="fas fa-file-invoice"></i> {{ __('message.generate_invoice') }}</button>
                         @endif

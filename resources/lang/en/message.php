@@ -72,7 +72,7 @@ return [
     'total_product' => 'Total Product',
     'total_quantity' => 'Total Quantity',
     'total_price' => 'Total Price',
-    'tax' => 'Tax',
+    'tax' => 'Tax 5%',
     'total_amount' => 'Total Amount',
     'mmk' => 'MMK',
 

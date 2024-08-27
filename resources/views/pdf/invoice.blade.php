@@ -54,7 +54,7 @@
         $total_product = $order_items->count();
         $total_price = $order_items->sum('price');
         $total_quantity = $order_items->sum('quantity');
-        $tax = 0;
+        $tax = $invoice->tax;
         $total_amount = $total_price + $tax;
     @endphp
     <table>

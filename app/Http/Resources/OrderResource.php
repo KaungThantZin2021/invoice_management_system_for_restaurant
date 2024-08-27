@@ -20,7 +20,7 @@ class OrderResource extends JsonResource
         $total_product = $order_items ? $order_items->count() : 0;
         $total_price = $order_items ? $order_items->sum('price'): 0;
         $total_quantity = $order_items ? $order_items->sum('quantity') : 0;
-        $tax = 0;
+        $tax = ($total_price*5)/100;
         $total_amount = $total_price + $tax;
 
         return [
