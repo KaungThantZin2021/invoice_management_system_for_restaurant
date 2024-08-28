@@ -49,20 +49,40 @@ class DashboardController extends Controller
             if ($request->chart_current_duration == 'monthly') {
                 $start_of = Carbon::now()->startOfMonth();
                 $end_of = Carbon::now()->endOfMonth();
+            } elseif ($request->chart_current_duration == 'today') {
+                $end_of = Carbon::today();
+                $start_of = $end_of->copy()->subHours(24);
             }
 
-            $order_counts = Order::whereBetween('created_at', [$start_of, $end_of])
-                            ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            $order_counts = Order::whereBetween('created_at', [$start_of, $end_of]);
+
+            if ($request->chart_current_duration == 'today') {
+                $order_counts = $order_counts->selectRaw('DATE_FORMAT(created_at, "%Y-%m-%d %H:00:00") as hour, COUNT(*) as count')
+                            ->groupBy('hour')
+                            ->orderBy('hour')
+                            ->get();
+            } else {
+                $order_counts = $order_counts->selectRaw('DATE(created_at) as date, COUNT(*) as count')
                             ->groupBy('date')
                             ->orderBy('date')
                             ->get();
+            }
 
             $order_revenues = Order::whereBetween('orders.created_at', [$start_of, $end_of])
-                            ->join('order_items', 'orders.id', '=', 'order_items.order_id')
-                            ->selectRaw('DATE(orders.created_at) as date, SUM(order_items.price) as revenue')
+                            ->join('order_items', 'orders.id', '=', 'order_items.order_id');
+
+            if ($request->chart_current_duration == 'today') {
+                $order_revenues = $order_revenues->selectRaw('DATE_FORMAT(orders.created_at, "%Y-%m-%d %H:00:00") as hour, SUM(order_items.price) as revenue')
+                            ->groupBy('hour')
+                            ->orderBy('hour')
+                            ->get();
+            } else {
+                $order_revenues = $order_revenues->selectRaw('DATE(orders.created_at) as date, SUM(order_items.price) as revenue')
                             ->groupBy('date')
                             ->orderBy('date')
                             ->get();
+            }
+
 
             $dates = [];
             $counts = [];
@@ -73,18 +93,31 @@ class DashboardController extends Controller
             $current_date = $start_of->copy();
 
             while ($current_date->lte($end_of)) {
-                $formatted_date = $current_date->format('Y-m-d');
-                $dates[] = $formatted_date;
+                if ($request->chart_current_duration == 'today') {
+                    $formattedHour = $current_date->format('Y-m-d H:00:00');
+                    $dates[] = $formattedHour;
 
-                $order_count = $order_counts->firstWhere('date', $formatted_date);
+                    $order_count = $order_counts->firstWhere('hour', $formattedHour);
+                    $order_revenue = $order_revenues->firstWhere('hour', $formattedHour);
+                } else {
+                    $formatted_date = $current_date->format('Y-m-d');
+                    $dates[] = $formatted_date;
+
+                    $order_count = $order_counts->firstWhere('date', $formatted_date);
+                    $order_revenue = $order_revenues->firstWhere('date', $formatted_date);
+                }
+
                 $counts[] = $order_count ? $order_count->count : 0;
                 $total_counts += $order_count ? $order_count->count : 0;
 
-                $order_revenue = $order_revenues->firstWhere('date', $formatted_date);
                 $revenues[] = $order_revenue ? $order_revenue->revenue : 0;
                 $total_revenues += $order_revenue ? $order_revenue->revenue : 0;
 
-                $current_date->addDay();
+                if ($request->chart_current_duration == 'today') {
+                    $current_date->addHour();
+                } else {
+                    $current_date->addDay();
+                }
             }
 
             $orders_ary = [

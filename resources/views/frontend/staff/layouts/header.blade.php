@@ -87,7 +87,7 @@
             </li>
             <li class="nav-item dropdown"><a class="nav-link py-0 pe-0" data-coreui-toggle="dropdown" href="#"
                     role="button" aria-haspopup="true" aria-expanded="false">
-                    <div class="avatar avatar-md"><img class="avatar-img" src="{{ auth()->guard('staff')->user()->profile_image_url }}" alt="{{  auth()->guard('staff')->user()->email }}">
+                    <div class="avatar avatar-md"><img class="rounded-full object-cover w-10 h-10" src="{{ auth()->guard('staff')->user()->profile_image_url }}" alt="{{  auth()->guard('staff')->user()->email }}">
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">

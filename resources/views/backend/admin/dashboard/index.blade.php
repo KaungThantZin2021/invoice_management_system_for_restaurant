@@ -17,6 +17,7 @@
                         <h5 class="">{{ __('message.orders') }}</h5>
                         <div>
                             <select class="form-select form-select-sm chart-current-duration">
+                                <option value="today">{{ translate('Today', 'ယနေ့') }}</option>
                                 <option value="weekly">{{ translate('Weekly', 'အပတ်စဥ်') }}</option>
                                 <option value="monthly">{{ translate('Monthly', 'လစဥ်') }}</option>
                             </select>
@@ -137,7 +138,7 @@
                 },
             });
 
-            getOrderLineChart('weekly');
+            getOrderLineChart('today');
 
             $(document).on('change', '.chart-current-duration', function () {
                 let chart_current_duration = $(this).val();
