@@ -2,7 +2,7 @@
     <div class="sidebar-header border-bottom">
         <div class="sidebar-brand">
             <h5>Admin Panel</h5>
-            <h6 class="text-muted">{{ config('app.name') }}</h6>
+            <h6 class="text-muted" style="width: 23ch; white-space: break-spaces;">{{ config('app.name') }}</h6>
         </div>
         <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark"
             aria-label="Close"

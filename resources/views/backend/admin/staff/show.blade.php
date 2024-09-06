@@ -40,6 +40,18 @@
                             </div>
                             <div class="col-6">
                                 <div>
+                                    <label class="fw-semibold">{{ __('message.nrc') }}</label>
+                                    <p>{{ $staff->nrc }}</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label class="fw-semibold">{{ __('message.address') }}</label>
+                                    <p>{{ $staff->address }}</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
                                     <label class="fw-semibold">{{ __('message.create_at') }}</label>
                                     <p>{{ $staff->created_at }}</p>
                                 </div>

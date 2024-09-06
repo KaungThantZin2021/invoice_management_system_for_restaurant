@@ -61,6 +61,7 @@ class StaffController extends Controller
                 'email' => 'required|unique:staff,email',
                 'phone' => 'required|unique:staff,phone',
                 'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'nrc' => 'required|unique:staff,nrc',
                 'password' => 'required',
                 'password_confirmation' => 'required|same:password',
             ]);
@@ -81,6 +82,8 @@ class StaffController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'profile_image' => $file_name,
+                'nrc' => $request->nrc,
+                'address' => $request->address,
                 'password' => Hash::make($request->password),
             ]);
 
@@ -119,6 +122,7 @@ class StaffController extends Controller
                 'email' => 'required|unique:staff,email,' . $staff->id,
                 'phone' => 'required|unique:staff,phone,' . $staff->id,
                 'profile_image' => (!$staff->profile_image ? 'required' : '') . '|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'nrc' => 'required|unique:staff,nrc,' . $staff->id,
             ]);
 
             $file_name = null;
@@ -138,7 +142,9 @@ class StaffController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
+                'nrc' => $request->nrc,
                 'profile_image' => $file_name ? $file_name : $staff->profile_image,
+                'address' => $request->address,
             ]);
 
             return redirect()->route('admin.staff.index')->with('success', 'Staff updated successfully');

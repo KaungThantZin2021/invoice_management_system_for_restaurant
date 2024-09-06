@@ -47,6 +47,14 @@
                                     <img id="previewImage" src="{{ $staff->profile_image_url }}" alt="Image Preview" style="max-width: 300px; max-height: 300px;">
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <label for="nrc" class="form-label">{{ __('message.nrc') }}</label>
+                                <input type="text" name="nrc" class="form-control" id="nrc" value="{{ old('nrc', $staff->nrc) }}">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="address" class="form-label">{{ __('message.address') }}</label>
+                                <textarea name="address" class="form-control" id="address" cols="30" rows="3">{{ old('address', $staff->address) }}</textarea>
+                            </div>
                             <div class="col-12 mt-3">
                                 <button type="submit" class="btn btn-primary">Update</button>
                                 <a href="{{ route('admin.staff.index') }}" class="btn btn-secondary">Cancel</a>

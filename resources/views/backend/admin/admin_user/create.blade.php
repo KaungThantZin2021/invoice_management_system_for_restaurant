@@ -25,19 +25,19 @@
                             @include('backend.admin.layouts.flash')
 
                             <div class="col-md-12">
-                                <label for="name" class="form-label">Name</label>
+                                <label for="name" class="form-label">{{ __('message.name') }}</label>
                                 <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}">
                             </div>
                             <div class="col-md-12">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email" class="form-label">{{ __('message.email') }}</label>
                                 <input type="email" name="email" class="form-control" id="email" value="{{ old('email') }}">
                             </div>
                             <div class="col-md-12">
-                                <label for="phone" class="form-label">Phone</label>
+                                <label for="phone" class="form-label">{{ __('message.phone') }}</label>
                                 <input type="number" name="phone" class="form-control" id="phone" value="{{ old('phone') }}">
                             </div>
                             <div class="col-md-12">
-                                <label for="image" class="form-label">Profile Image</label>
+                                <label for="image" class="form-label">{{ __('message.profile_image') }}</label>
                                 <input class="form-control" type="file" name="profile_image" id="image">
                             </div>
                             <div class="col-md-12">
@@ -47,11 +47,11 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="password" class="form-label">{{ __('message.password') }}</label>
                                 <input type="password" name="password" class="form-control" id="password">
                             </div>
                             <div class="col-md-12">
-                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <label for="confirmPassword" class="form-label">{{ __('message.confirm_password') }}</label>
                                 <input type="password" name="password_confirmation" class="form-control" id="confirmPassword">
                             </div>
                             <div class="col-12 mt-3">

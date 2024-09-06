@@ -60,7 +60,7 @@
     <table>
         <tr>
             <td class="text-center">
-                <h3>{{ config('app.name') }}</h3>
+                <h3>{{ translate('Invoice', 'ငွေတောင်းခံလွှာ') }}</h3>
             </td>
         </tr>
     </table>

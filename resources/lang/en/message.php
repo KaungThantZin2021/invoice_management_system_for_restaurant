@@ -3,6 +3,7 @@
 return [
     'account' => 'Account',
     'profile' => 'Profile',
+    'login' => 'Login',
     'logout' => 'Logout',
 
     'back' => 'Back',
@@ -15,6 +16,10 @@ return [
     'phone' => 'Phone',
     'image' => 'Image',
     'profile_image' => 'Profile Image',
+    'nrc' => 'NRC',
+    'address' => 'Address',
+    'password' => 'Password',
+    'confirm_password' => 'Confirm Password',
     'price' => 'Price',
     'stock_quantity' => 'Stock Quantity',
     'create_at' => 'Created at',
