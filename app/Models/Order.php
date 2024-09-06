@@ -42,6 +42,11 @@ class Order extends BaseModel
         return $this->where('status', 'pending');
     }
 
+    public function scopeNotPending()
+    {
+        return $this->where('status', '!=', 'pending');
+    }
+
     public function scopeConfirm()
     {
         return $this->where('status', 'confirm');

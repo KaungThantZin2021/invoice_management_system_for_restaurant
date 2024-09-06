@@ -50,34 +50,34 @@ class DashboardController extends Controller
                 $start_of = Carbon::now()->startOfMonth();
                 $end_of = Carbon::now()->endOfMonth();
             } elseif ($request->chart_current_duration == 'today') {
-                $end_of = Carbon::today();
-                $start_of = $end_of->copy()->subHours(24);
+                $end_of = Carbon::now()->endOfDay();
+                $start_of = $end_of->copy()->startOfDay();
             }
 
-            $order_counts = Order::whereBetween('created_at', [$start_of, $end_of]);
+            $order_counts = Order::notPending()->whereBetween('order_datetime', [$start_of, $end_of]);
 
             if ($request->chart_current_duration == 'today') {
-                $order_counts = $order_counts->selectRaw('DATE_FORMAT(created_at, "%Y-%m-%d %H:00:00") as hour, COUNT(*) as count')
+                $order_counts = $order_counts->selectRaw('DATE_FORMAT(order_datetime, "%Y-%m-%d %H:%i:00") as hour, COUNT(*) as count')
                             ->groupBy('hour')
                             ->orderBy('hour')
                             ->get();
             } else {
-                $order_counts = $order_counts->selectRaw('DATE(created_at) as date, COUNT(*) as count')
+                $order_counts = $order_counts->selectRaw('DATE(order_datetime) as date, COUNT(*) as count')
                             ->groupBy('date')
                             ->orderBy('date')
                             ->get();
             }
 
-            $order_revenues = Order::whereBetween('orders.created_at', [$start_of, $end_of])
+            $order_revenues = Order::notPending()->whereBetween('orders.order_datetime', [$start_of, $end_of])
                             ->join('order_items', 'orders.id', '=', 'order_items.order_id');
 
             if ($request->chart_current_duration == 'today') {
-                $order_revenues = $order_revenues->selectRaw('DATE_FORMAT(orders.created_at, "%Y-%m-%d %H:00:00") as hour, SUM(order_items.price) as revenue')
+                $order_revenues = $order_revenues->selectRaw('DATE_FORMAT(orders.order_datetime, "%Y-%m-%d %H:%i:00") as hour, SUM(order_items.price) as revenue')
                             ->groupBy('hour')
                             ->orderBy('hour')
                             ->get();
             } else {
-                $order_revenues = $order_revenues->selectRaw('DATE(orders.created_at) as date, SUM(order_items.price) as revenue')
+                $order_revenues = $order_revenues->selectRaw('DATE(orders.order_datetime) as date, SUM(order_items.price) as revenue')
                             ->groupBy('date')
                             ->orderBy('date')
                             ->get();
@@ -94,7 +94,7 @@ class DashboardController extends Controller
 
             while ($current_date->lte($end_of)) {
                 if ($request->chart_current_duration == 'today') {
-                    $formattedHour = $current_date->format('Y-m-d H:00:00');
+                    $formattedHour = $current_date->format('Y-m-d H:i:00');
                     $dates[] = $formattedHour;
 
                     $order_count = $order_counts->firstWhere('hour', $formattedHour);
@@ -114,7 +114,7 @@ class DashboardController extends Controller
                 $total_revenues += $order_revenue ? $order_revenue->revenue : 0;
 
                 if ($request->chart_current_duration == 'today') {
-                    $current_date->addHour();
+                    $current_date->addMinute();
                 } else {
                     $current_date->addDay();
                 }
