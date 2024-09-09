@@ -3,8 +3,8 @@
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-0">
-        <li class="breadcrumb-item"><a href="{{ route('admin.staff.index') }}">{{ __('message.staff') }}</a></li>
-        <li class="breadcrumb-item active"><span>{{ __('message.staff_detail') }}</span></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.staff.index') }}">{{ __('message.waiter') }}</a></li>
+        <li class="breadcrumb-item active"><span>{{ __('message.waiter_detail') }}</span></li>
     </ol>
 </nav>
 @endsection
@@ -17,7 +17,7 @@
                     @include('components.back-button')
                 </div>
                 <div class="card">
-                    <h5 class="card-header">{{ __('message.staff_detail') }}</h5>
+                    <h5 class="card-header">{{ __('message.waiter_detail') }}</h5>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-6">

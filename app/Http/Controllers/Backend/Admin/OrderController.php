@@ -33,9 +33,9 @@ class OrderController extends Controller
                 ->addColumn('orderable', function ($order) {
                     $causer = '';
                     if (get_class($order->orderable) == User::class ) {
-                        $causer = '(' . __('message.admin_user') . ')';
+                        $causer = '(' . __('message.cashier') . ')';
                     } elseif (get_class($order->orderable) == Staff::class ) {
-                        $causer = '(' . __('message.staff') . ')';
+                        $causer = '(' . __('message.waiter') . ')';
                     }
 
                     return optional($order->orderable)->name . ' ' . $causer;

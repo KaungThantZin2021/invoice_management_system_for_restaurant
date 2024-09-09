@@ -3,7 +3,7 @@
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-0">
-        <li class="breadcrumb-item active"><span>{{ __('message.admin_user') }}</span></li>
+        <li class="breadcrumb-item active"><span>{{ __('message.cashier') }}</span></li>
     </ol>
 </nav>
 @endsection
@@ -14,10 +14,10 @@
             <div class="col-12">
                 <div class="mb-4">
                     @include('components.back-button')
-                    <a href="{{ route('admin.admin-user.create') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> {{ __('message.create_admin_user') }}</a>
+                    <a href="{{ route('admin.admin-user.create') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> {{ __('message.create_cashier') }}</a>
                 </div>
                 <div class="card">
-                    <h5 class="card-header">{{ __('message.admin_users') }}</h5>
+                    <h5 class="card-header">{{ __('message.cashiers') }}</h5>
                     <div class="card-body">
                         <table class="table" id="adminUsersTable">
                             <thead>

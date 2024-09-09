@@ -29,9 +29,9 @@ class InvoiceController extends Controller
                 ->addColumn('invoiceable', function ($invoice) {
                     $causer = '';
                     if (get_class($invoice->invoiceable) == User::class ) {
-                        $causer = '(' . __('message.admin_user') . ')';
+                        $causer = '(' . __('message.cashier') . ')';
                     } elseif (get_class($invoice->invoiceable) == Staff::class ) {
-                        $causer = '(' . __('message.staff') . ')';
+                        $causer = '(' . __('message.waiter') . ')';
                     }
 
                     return optional($invoice->invoiceable)->name . ' ' . $causer;

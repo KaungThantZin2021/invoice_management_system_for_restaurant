@@ -1,7 +1,7 @@
 <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
     <div class="sidebar-header border-bottom">
         <div class="sidebar-brand">
-            <h5>Admin Panel</h5>
+            <h5>Cashier Panel</h5>
             <h6 class="text-muted" style="width: 23ch; white-space: break-spaces;">{{ config('app.name') }}</h6>
         </div>
         <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark"
@@ -23,7 +23,7 @@
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-user') }}"></use>
                 </svg>
-                {{ __('message.admin_user') }}
+                {{ __('message.cashier') }}
             </a>
         </li>
 
@@ -32,7 +32,7 @@
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-group') }}"></use>
                 </svg>
-                {{ __('message.staff') }}
+                {{ __('message.waiter') }}
             </a>
         </li>
 

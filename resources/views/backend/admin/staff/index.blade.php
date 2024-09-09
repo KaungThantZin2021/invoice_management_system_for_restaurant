@@ -3,7 +3,7 @@
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-0">
-        <li class="breadcrumb-item active"><span>{{ __('message.staff') }}</span></li>
+        <li class="breadcrumb-item active"><span>{{ __('message.waiter') }}</span></li>
     </ol>
 </nav>
 @endsection
@@ -14,10 +14,10 @@
             <div class="col-12">
                 <div class="mb-4">
                     @include('components.back-button')
-                    <a href="{{ route('admin.staff.create') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> {{ __('message.create_staff') }}</a>
+                    <a href="{{ route('admin.staff.create') }}" class="btn btn-success text-light"><i class="fa-solid fa-plus"></i> {{ __('message.create_waiter') }}</a>
                 </div>
                 <div class="card">
-                    <h5 class="card-header">{{ __('message.staffs') }}</h5>
+                    <h5 class="card-header">{{ __('message.waiters') }}</h5>
                     <div class="card-body">
                         <table class="table" id="staffTable">
                             <thead>

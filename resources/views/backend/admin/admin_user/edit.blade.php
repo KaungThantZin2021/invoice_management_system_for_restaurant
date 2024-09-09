@@ -3,8 +3,8 @@
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-0">
-        <li class="breadcrumb-item"><a href="{{ route('admin.admin-user.index') }}">{{ __('message.admin_user') }}</a></li>
-        <li class="breadcrumb-item active"><span>{{ __('message.edit_admin_user') }}</span></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.admin-user.index') }}">{{ __('message.cashier') }}</a></li>
+        <li class="breadcrumb-item active"><span>{{ __('message.edit_cashier') }}</span></li>
     </ol>
 </nav>
 @endsection
@@ -17,7 +17,7 @@
                     @include('components.back-button')
                 </div>
                 <div class="card">
-                    <h5 class="card-header">{{ __('message.edit_admin_user') }}</h5>
+                    <h5 class="card-header">{{ __('message.edit_cashier') }}</h5>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.admin-user.update', $admin_user->id) }}" enctype="multipart/form-data" class="row g-3">
                             @csrf

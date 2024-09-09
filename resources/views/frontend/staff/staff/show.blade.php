@@ -16,7 +16,7 @@
                     @include('components.back-button')
                 </div>
                 <div class="card">
-                    <h5 class="card-header">{{ __('message.staff_detail') }}</h5>
+                    <h5 class="card-header">{{ __('message.waiter_detail') }}</h5>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-6">

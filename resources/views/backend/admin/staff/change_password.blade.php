@@ -3,8 +3,8 @@
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-0">
-        <li class="breadcrumb-item"><a href="{{ route('admin.staff.index') }}">{{ __('message.staff') }}</a></li>
-        <li class="breadcrumb-item active"><span>{{ __('message.change_staff_password') }}</span></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.staff.index') }}">{{ __('message.waiter') }}</a></li>
+        <li class="breadcrumb-item active"><span>{{ __('message.change_waiter_password') }}</span></li>
     </ol>
 </nav>
 @endsection
@@ -17,7 +17,7 @@
                     @include('components.back-button')
                 </div>
                 <div class="card">
-                    <h5 class="card-header">{{ __('message.change_staff_password') }}</h5>
+                    <h5 class="card-header">{{ __('message.change_waiter_password') }}</h5>
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.staff.update-password', $staff->id) }}" enctype="multipart/form-data" class="row g-3">
                             @csrf

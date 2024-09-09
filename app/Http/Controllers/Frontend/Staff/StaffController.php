@@ -10,6 +10,6 @@ class StaffController extends Controller
 {
     public function show(Staff $staff)
     {
-        return view('frontend.staff.staff.show', compact('staff'));
+        return view('frontend.staff.waiter.show', compact('staff'));
     }
 }
