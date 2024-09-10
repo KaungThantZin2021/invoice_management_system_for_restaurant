@@ -54,33 +54,15 @@
 
     <script>
         $(document).ready(function() {
-            const Utils = {
-                months: function({count}) {
-                    const months = [];
-                    const date = new Date();
-
-                    for (let i = 0; i < count; i++) {
-                        months.unshift(date.toLocaleString('default', { month: 'long' }));
-                        date.setMonth(date.getMonth() - 1);
-                    }
-
-                    return months;
-                }
-            };
-
-
             // product stock quantity chart --- start
-            const ctx = document.getElementById('productStockQuantityChart').getContext('2d');
-            const stockChart = new Chart(ctx, {
-                type: 'bar',
+            new Chart(document.getElementById('productStockQuantityChart').getContext('2d'), {
+                type: 'polarArea',
                 data: {
                     labels: @json($products_stock_quantity_ary['name']),
                     datasets: [{
-                        label: 'Stock Quantity',
+                        label: "{{ __('message.stock_quantity') }}",
                         data: @json($products_stock_quantity_ary['stock_quantity']),
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
+                        hoverOffset: 4
                     }]
                 },
                 options: {
@@ -93,9 +75,9 @@
             });
             // product stock quantity chart --- end
 
-            // order pie chart --- start
+            // order doughnut chart --- start
             new Chart(document.getElementById('orderPieChart'), {
-                type: 'pie',
+                type: 'doughnut',
                 data: {
                     labels: [
                         'Pending',
@@ -121,7 +103,7 @@
                     }
                 }
             });
-            // order pie chart --- end
+            // order doughnut chart --- end
 
             // order line chart --- start
             var orderLabel = "{{ __('message.order') }}";
