@@ -44,8 +44,8 @@
                     <div class="card-group d-block d-md-flex row">
                         <div class="card col-md-7 p-4 mb-0">
                             <div class="card-body">
-                                <h1>Login</h1>
-                                <p class="text-body-secondary">Sign In to your account</p>
+                                <h1>လောဂ့်အင်</h1>
+                                <p class="text-body-secondary">သင့်အကောင့်သို့လော့ဂ်အင်ဝင်ရန်</p>
 
                                 <form method="POST" action="{{ route('admin.login') }}">
                                     @csrf
@@ -71,10 +71,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <button class="btn btn-primary px-4" type="submit">Login</button>
+                                            <button class="btn btn-primary px-4" type="submit">လောဂ့်အင်ဝင်မည်</button>
                                         </div>
                                         <div class="col-6 text-end">
-                                            {{-- <button class="btn btn-link px-0" type="button">Forgot password?</button> --}}
+                                            <button class="btn btn-link px-0" type="button">စကားဝှက်မေ့နေပါသလား?</button>
                                         </div>
                                     </div>
                                 </form>
@@ -83,7 +83,7 @@
                         <div class="card col-md-5 text-white bg-primary py-5">
                             <div class="card-body text-center">
                                 <div>
-                                    <h2>Admin Panel</h2>
+                                    <h2>Cashier Panel</h2>
                                     <h5>{{ config('app.name') }}</h5>
                                 </div>
                                 <hr>
@@ -94,7 +94,7 @@
                                                 xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-arrow-left') }}">
                                             </use>
                                         </svg></span>
-                                        Go to Staff Panel
+                                        Waiter Panel သို့သွားရန်
                                     </a>
                                 </div>
                             </div>

@@ -21,7 +21,7 @@ return [
     'password' => 'Password',
     'confirm_password' => 'Confirm Password',
     'price' => 'Price',
-    'stock_quantity' => 'Stock Quantity',
+    'stock_quantity' => 'Total Sale Items',
     'create_at' => 'Created at',
     'update_at' => 'Updated at',
     'action' => 'Action',

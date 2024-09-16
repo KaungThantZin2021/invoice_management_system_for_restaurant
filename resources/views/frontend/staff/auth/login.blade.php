@@ -44,8 +44,8 @@
                     <div class="card-group d-block d-md-flex row">
                         <div class="card col-md-7 p-4 mb-0">
                             <div class="card-body">
-                                <h1>Login</h1>
-                                <p class="text-body-secondary">Sign In to your account</p>
+                                <h1>လောဂ့်အင်</h1>
+                                <p class="text-body-secondary">သင့်အကောင့်သို့လော့ဂ်အင်ဝင်ရန်</p>
 
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <button class="btn btn-primary px-4" type="submit">Login</button>
+                                            <button class="btn btn-primary px-4" type="submit">လောဂ့်အင်ဝင်မည်</button>
                                         </div>
                                     </div>
                                 </form>
@@ -80,13 +80,13 @@
                         <div class="card col-md-5 text-white bg-primary py-5">
                             <div class="card-body text-center">
                                 <div>
-                                    <h2>Staff Panel</h2>
+                                    <h2>Waiter Panel</h2>
                                     <h5>{{ config('app.name') }}</h5>
                                 </div>
                                 <hr>
                                 <div>
                                     <a href="{{ route('admin.login') }}" class="btn btn-lg btn-outline-light mt-3">
-                                        Go to Admin Panel
+                                        Cashier Panel သို့သွားရန်
                                         <svg class="icon">
                                             <use
                                                 xlink:href="{{ asset('coreui_icons/sprites/free.svg#cil-arrow-right') }}">
